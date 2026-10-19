@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-20T01:23:15+02:00",
+ "generated_at": "2026-10-20T01:33:17+02:00",
  "generator_version": "1.0 (2026-10-19)",
  "thesis_title": "Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data",
  "repo": {
@@ -463,16 +463,16 @@
     "arch": "yolov8n",
     "dataset": "kt_v1",
     "seed": 0,
-    "epochs_done": 25,
-    "best_map50_95": 0.86673,
-    "best_epoch": 25,
-    "last_map50_95": 0.86673,
+    "epochs_done": 33,
+    "best_map50_95": 0.86997,
+    "best_epoch": 28,
+    "last_map50_95": 0.86902,
     "status": "running",
     "files": {
      "results": "data/training/yolov8n_kt_v1_s0/results.csv",
      "args": "data/training/yolov8n_kt_v1_s0/args.yaml"
     },
-    "updated": "2026-10-20T01:22:40+02:00"
+    "updated": "2026-10-20T01:32:14+02:00"
    }
   ],
   "planned_runs": 12,

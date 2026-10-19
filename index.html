@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Parked Vehicles Thesis: Progress</title>
+<meta name="description" content="Live progress of the master's thesis 'Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data' (THI): plan, synthetic data, training runs, experiment results, models, figures.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%232b6cb0'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='white' font-family='Arial'%3EP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="topbar">
+  <div class="inner">
+    <h1>Parked Vehicles Thesis: Progress
+      <span id="thesis-title">Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data</span>
+    </h1>
+    <div class="stamp" id="stamp">Loading…</div>
+    <button class="theme-toggle" id="theme-toggle" type="button" title="Switch light / dark">Theme</button>
+  </div>
+  <nav class="tabs" id="tabs">
+    <a href="#overview">Overview</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#plan">Plan</a>
+    <a href="#data">Data</a>
+    <a href="#training">Training</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#models">Models</a>
+    <a href="#figures">Figures</a>
+    <a href="#activity">Activity</a>
+  </nav>
+</div>
+
+<main>
+  <div id="error" class="empty hidden"></div>
+
+  <section class="block" id="overview">
+    <header><h2>Overview</h2><p>Where the thesis stands right now. Everything on this page is collected from the thesis repository by a script and republished when work is pushed; synthetic imagery and aggregate numbers only, no personal data.</p></header>
+    <div class="grid" id="overview-cards"></div>
+    <div class="card" id="status-card" style="margin-top:0.9rem"></div>
+  </section>
+
+  <section class="block" id="timeline">
+    <header><h2>Timeline</h2><p>Dated milestones, newest first, from the progress notes and the plan's hand-off history.</p></header>
+    <ul class="timeline" id="timeline-list"></ul>
+  </section>
+
+  <section class="block" id="plan">
+    <header><h2>Plan and phases</h2><p>The work breakdown from <code>docs/thesis_plan.md</code>; each box is one tracked item. Click a phase to expand it.</p></header>
+    <div id="phase-list"></div>
+  </section>
+
+  <section class="block" id="data">
+    <header><h2>Synthetic data</h2><p>The capture matrix on the KIVI_Twin digital twin and the exported YOLO dataset <code>kt_v1</code>. Split is by run, never by frame; road 2 appears only in the test split.</p></header>
+    <div class="grid" id="data-cards"></div>
+    <div class="grid wide" style="margin-top:0.9rem">
+      <div class="card"><h3>Frames per split</h3><div class="chart short"><canvas id="chart-splits"></canvas></div></div>
+      <div class="card"><h3>Boxes per class and split</h3><div class="chart short"><canvas id="chart-classes"></canvas></div></div>
+      <div class="card"><h3>Frames per weather</h3><div class="chart short"><canvas id="chart-weather"></canvas></div></div>
+      <div class="card"><h3>Frames per camera view</h3><div class="chart short"><canvas id="chart-views"></canvas></div></div>
+    </div>
+    <h3 style="margin-top:1.2rem">Capture matrix</h3>
+    <div id="matrix-table"></div>
+    <details style="margin-top:0.9rem"><summary class="muted">Dataset card (kt_v1 MANIFEST.md)</summary><div class="md" id="dataset-card" style="margin-top:0.5rem"></div></details>
+  </section>
+
+  <section class="block" id="training">
+    <header><h2>Training (stage S1)</h2><p>Fine-tuning of four YOLO architectures on <code>kt_v1</code> with a fixed recipe, three seeds each. Curves update while a run is in progress when the collector runs in watch mode.</p></header>
+    <div class="grid" id="training-cards"></div>
+    <div id="training-runs" style="margin-top:0.9rem"></div>
+    <div class="grid wide" style="margin-top:0.9rem" id="training-charts">
+      <div class="card">
+        <h3>Validation metric per epoch <select class="metric" id="training-metric"></select></h3>
+        <div class="chart tall"><canvas id="chart-training-curves"></canvas></div>
+      </div>
+      <div class="card"><h3>Best mAP50-95 per run</h3><div class="chart tall"><canvas id="chart-training-best"></canvas></div></div>
+    </div>
+    <details style="margin-top:0.9rem" id="training-log-wrap" class="hidden"><summary class="muted">Training log (tail)</summary><pre id="training-log"></pre></details>
+  </section>
+
+  <section class="block" id="experiments">
+    <header><h2>Experiments and results</h2><p>The pre-registered experiments EXP-A to EXP-J and every result file in <code>experiments/results/</code>, shown as sortable tables and, where the data allows, as charts.</p></header>
+    <div id="experiment-table"></div>
+    <div id="result-files" style="margin-top:1rem"></div>
+  </section>
+
+  <section class="block" id="models">
+    <header><h2>Models</h2><p>Pretrained weights, fine-tuned weights, and the model currently embedded in the smartphone demonstrator app.</p></header>
+    <div class="grid wide" id="model-cards"></div>
+  </section>
+
+  <section class="block" id="figures">
+    <header><h2>Figures</h2><p>Figures saved in <code>docs/figures/</code>: simulator views, projected parking regions, label checks and data-protection figures. Click to enlarge.</p></header>
+    <div id="figure-groups"></div>
+  </section>
+
+  <section class="block" id="activity">
+    <header><h2>Activity</h2><p>Recent commits in the thesis repository and the app repository (messages only; the repositories are private).</p></header>
+    <div class="grid wide">
+      <div class="card"><h3>Thesis repository</h3><ul class="commits" id="commits-thesis"></ul></div>
+      <div class="card"><h3>App repository</h3><ul class="commits" id="commits-app"></ul></div>
+    </div>
+  </section>
+
+  <footer class="page">
+    <p id="footer-text">Generated by <code>experiments/publish_progress.py</code> from the thesis repository. Master's thesis by Md Yamin Mollah, Technische Hochschule Ingolstadt, Faculty of Electrical Engineering and Information Technology, supervised by Prof. Dr. Stefanie Schmidtner. This page contains synthetic imagery and aggregate numbers only.</p>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

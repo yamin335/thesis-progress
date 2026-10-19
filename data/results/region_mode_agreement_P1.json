@@ -1,0 +1,29 @@
+{
+ "run": "carla/data/kt_static_P1_ClearNoon_u7",
+ "regions_image": "carla/parking_slots/image_regions_P1.json",
+ "frames": 298,
+ "rows_world": 1919,
+ "rows_image": 1928,
+ "paired_boxes": 1913,
+ "paired_fraction_of_world_rows": 0.9968733715476811,
+ "agreement_slot_id": 0.989022477783586,
+ "agreement_in_driving_lane": 0.9597490852064819,
+ "agreement_is_parked": 0.9790904338734971,
+ "parked_confusion_world_vs_image": {
+  "False/False": 1361,
+  "False/True": 40,
+  "True/True": 512
+ },
+ "top_reason_disagreements_world_vs_image": [
+  "out_of_range -> not_in_parking_region: 91",
+  "insufficient_observation -> parked: 40",
+  "not_in_parking_region -> insufficient_observation: 6",
+  "not_in_parking_region -> no_ground_point: 5",
+  "moving -> insufficient_observation: 2"
+ ],
+ "occupancy_jaccard_mean": 0.9541387024608501,
+ "tracks_world": 24,
+ "tracks_image": 18,
+ "tracks_ever_parked_world": 3,
+ "tracks_ever_parked_image": 3
+}

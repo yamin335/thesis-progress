@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-10-20T01:33:17+02:00",
+ "generated_at": "2026-10-20T01:43:19+02:00",
  "generator_version": "1.0 (2026-10-19)",
  "thesis_title": "Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data",
  "repo": {
-  "commit": "1cac36f0b979a20800511ca2ee9f143374bff1a1",
-  "short": "1cac36f",
-  "date": "2026-10-20T01:21:37+02:00",
+  "commit": "e036ac3d63607638563675ee9aa4f477d0068bfb",
+  "short": "e036ac3",
+  "date": "2026-10-20T01:39:42+02:00",
   "branch": "main",
   "dirty": false,
   "remote": "https://github.com/yamin335/thesis-parked-vehicles.git"
@@ -112,8 +112,8 @@
       "text": "4.1 Done 2026-10-20: ParkingRegions.check_run_metadata compares the run's metadata.json map with the region file's map_name by bare name and raises MapMismatchError; called in run_pipeline.py, run_experiment.py and ve..."
      },
      {
-      "done": false,
-      "text": "4.2 Image-space polygon path (D-A exception, D-I): --regions-image polygons.json with normalised coordinates; stability measured as bottom-centre displacement normalised by box height; shared semantics with the app's..."
+      "done": true,
+      "text": "4.2 Done 2026-10-20: src/parking/image_regions.py + run_pipeline.py --regions-image (bottom-centre pixel on normalised polygons, stability in box heights via a per-track reference height, no range, IoU association; de..."
      },
      {
       "done": true,
@@ -128,7 +128,7 @@
       "text": "5.1 Done 2026-10-20 (geometry re-run pending): new tests/verify_decision_parity.py replays all 15 scenarios / 790 steps of experiments/parity/decision_vectors.json through the Python rule, every field exact, all 7 rea..."
      }
     ],
-    "done": 3,
+    "done": 4,
     "total": 5
    },
    {
@@ -284,7 +284,7 @@
  "notes_status": [
   {
    "key": "Phase",
-   "value": "Phase 3 complete (53-run synthetic capture matrix, dataset kt_v1 with 14 910 frames). Next: training stage S1 and the Phase 4 pipeline work."
+   "value": "Phases 3, 4 and 5 complete (53-run synthetic capture matrix, dataset kt_v1 with 14 910 frames; pipeline and harness verified on the new map). Training stage S1 is running; next the synthetic experiments EXP-A to EXP-F."
   },
   {
    "key": "Training S1",
@@ -310,7 +310,7 @@
  "timeline": [
   {
    "date": "2026-10-20",
-   "text": "S1 training matrix started (smoke run passed: 1.8 min per epoch, mAP50-95 0.70 after one epoch). Phase 4 item 4.1 done: the pipeline refuses a run captured on a different map than the region file. Item 5.1 done: a Python parity test replays the 790-step decision-rule vectors the smartphone app also tests against (all pass), the evaluation self-check passes, and one complete result row with confidence intervals was produced on a kt_v1 test run. Item 4.3 done: a stationary-window detector finds the frames in which the windshield camera stood still from the images alone; on the scripted-stop run it recovers the 10 s red-light stop with frame precision 0.93 and recall 1.00, and finds nothing in runs without a stop.",
+   "text": "S1 training matrix started (smoke run passed: 1.8 min per epoch, mAP50-95 0.70 after one epoch). Phase 4 item 4.1 done: the pipeline refuses a run captured on a different map than the region file. Item 5.1 done: a Python parity test replays the 790-step decision-rule vectors the smartphone app also tests against (all pass), the evaluation self-check passes, and one complete result row with confidence intervals was produced on a kt_v1 test run. Item 4.3 done: a stationary-window detector finds the frames in which the windshield camera stood still from the images alone; on the scripted-stop run it recovers the 10 s red-light stop with frame precision 0.93 and recall 1.00, and finds nothing in runs without a stop. Item 4.2 done: the pipeline can now run on polygons drawn in the image (the path real smartphone footage will use, identical to the app); on a synthetic run it agrees with the reference world-space path on 97.9 % of parked decisions. Phases 4 and 5 are complete.",
    "source": "notes"
   },
   {
@@ -463,16 +463,16 @@
     "arch": "yolov8n",
     "dataset": "kt_v1",
     "seed": 0,
-    "epochs_done": 33,
-    "best_map50_95": 0.86997,
-    "best_epoch": 28,
-    "last_map50_95": 0.86902,
+    "epochs_done": 42,
+    "best_map50_95": 0.8718,
+    "best_epoch": 41,
+    "last_map50_95": 0.87166,
     "status": "running",
     "files": {
      "results": "data/training/yolov8n_kt_v1_s0/results.csv",
      "args": "data/training/yolov8n_kt_v1_s0/args.yaml"
     },
-    "updated": "2026-10-20T01:32:14+02:00"
+    "updated": "2026-10-20T01:42:52+02:00"
    }
   ],
   "planned_runs": 12,
@@ -622,6 +622,13 @@
     ]
    },
    {
+    "name": "region_mode_agreement_P1.json",
+    "path": "data/results/region_mode_agreement_P1.json",
+    "description": "",
+    "updated": "2026-10-20T01:39:15+02:00",
+    "size_kb": 0.9
+   },
+   {
     "name": "visibility_calibration_p1.json",
     "path": "data/results/visibility_calibration_p1.json",
     "description": "Visibility-ratio calibration on pose P1: ceiling of unoccluded cars and the chosen cutoff.",
@@ -717,6 +724,13 @@
    "date": "2026-09-17"
   },
   {
+   "file": "figures/kt_image_regions_p1.png",
+   "name": "kt_image_regions_p1.png",
+   "group": "Parking regions",
+   "caption": "Image-space polygons for pose P1 (task 4.2), generated from the world regions by moving each polygon 1.2 m towards the camera and projecting it: slot polygons (yellow) sit where the vehicles' bottom edges fall, lane quads (grey), study-area hull (red). The same JSON format is used by the smartphone app and will be drawn by hand for the real windshield viewpoint.",
+   "date": "2026-10-20"
+  },
+  {
    "file": "figures/kt_regions_lot_overlay_p5.png",
    "name": "kt_regions_lot_overlay_p5.png",
    "group": "Parking regions",
@@ -781,6 +795,11 @@
   }
  ],
  "commits": [
+  {
+   "hash": "e036ac3",
+   "date": "2026-10-20T01:39:42+02:00",
+   "subject": "Task 4.2: image-space polygon path, generator and world-vs-image comparison"
+  },
   {
    "hash": "1cac36f",
    "date": "2026-10-20T01:21:37+02:00",

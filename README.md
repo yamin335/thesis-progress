@@ -2,7 +2,7 @@
 
 Live progress of the master's thesis **Computer Vision Approach to Identify Parked Vehicles Based on
 Smartphone Camera Data** (Technische Hochschule Ingolstadt, Faculty of Electrical Engineering and
-Information Technology, supervisor Prof. Dr. Stefanie Schmidtner): https://yamin335.github.io/thesis-progress/
+Information Technology, AImotion institute): https://yamin335.github.io/thesis-progress/
 
 The page is static. `index.html` plus `assets/` render whatever is in `data/` and `figures/`; those two
 folders are written by `experiments/publish_progress.py` in the (private) thesis repository and
@@ -29,7 +29,9 @@ venv-cv/bin/python experiments/publish_progress.py --push --every 600  # while t
 ```
 
 Privacy: the dashboard contains synthetic imagery and aggregate numbers only. No real recording,
-frame or personal data is ever copied here; the collector does not read `datasets/real_v1`.
+frame or personal data is ever copied here; the collector does not read `datasets/real_v1` and
+refuses figure files whose name marks them as real or anonymised footage. Names of third persons
+are not published; the supervisor is referred to by the organisational unit.
 
 Libraries (loaded from cdnjs): Chart.js 4.4.1, PapaParse 5.4.1, marked 12.0.0. No cookies, no
 analytics; the light/dark choice is kept in the browser's local storage only.

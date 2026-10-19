@@ -12,10 +12,11 @@ real images. Everything else on the dashboard is collected automatically from th
 - **Real data / GDPR:** data-protection package v0.2 sent to the supervisor (week of 2026-10-12); the supervisor answers the DPO's questions (organisational unit, confirmation of measures M1 to M16). Recording waits for the DPO's release. Public privacy notice: https://yamin335.github.io/parked-vehicles-dsi/
 - **App:** Kotlin Multiplatform demonstrator builds on Android and passes 27 shared tests; carries the placeholder COCO `yolov8n.onnx`; not yet measured on a device.
 - **Writing:** chapter skeleton pending (thesis template decision D11); Method chapter draft lives in `docs/thesis_plan.md` §3.
-- **Deadlines:** technical cut-off 2026-10-31; submission 2027-01-15.
+- **Deadlines:** technical cut-off 2026-11-15 (moved from 2026-10-31 on 2026-10-20); submission 2027-01-15.
 
 ## Log
 
+- **2026-10-20** Technical cut-off moved to 2026-11-15; four technical weeks from today: S1 training (Oct 20 to 23), pipeline and harness items 4.1 to 5.1 (by Oct 25), synthetic experiments (by Nov 1), real recording if released (target Nov 6), S2/S3 and results freeze (Nov 15).
 - **2026-10-19** Progress dashboard created: `experiments/publish_progress.py` collects plan, dataset, matrix, training, results, models, figures and commits into the public site.
 - **2026-10-12** Answered the DPO's second reply with data-protection package v0.2: German project description, privacy-notice texts, two VVT entries, one 110 m recording zone on Goethestraße (B 16a) from no. 12 a (Sparkasse) to the end of no. 14, one recording day, raw-footage window 72 h. Public privacy notice page published (DE/EN). Submission deadline set to 2027-01-15.
 - **2026-10-11** Full 53-run capture matrix on `KIVI_Twin` captured and checked (frame counts, label statistics, overlays); three stalled windshield runs diagnosed (angled bay R25-1249) and recaptured; dataset `kt_v1` exported and verified (no split leakage, road 2 test-only). Plan v2 written; Town10 pilot artefacts archived under tag `town10-stand-in-final`.

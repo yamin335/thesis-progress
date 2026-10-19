@@ -1,11 +1,11 @@
 {
- "generated_at": "2026-10-20T01:13:14+02:00",
+ "generated_at": "2026-10-20T01:23:15+02:00",
  "generator_version": "1.0 (2026-10-19)",
  "thesis_title": "Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data",
  "repo": {
-  "commit": "9700dc6936b778951fee8651adf5dfea1eb51cc9",
-  "short": "9700dc6",
-  "date": "2026-10-20T01:12:19+02:00",
+  "commit": "1cac36f0b979a20800511ca2ee9f143374bff1a1",
+  "short": "1cac36f",
+  "date": "2026-10-20T01:21:37+02:00",
   "branch": "main",
   "dirty": false,
   "remote": "https://github.com/yamin335/thesis-parked-vehicles.git"
@@ -116,8 +116,8 @@
       "text": "4.2 Image-space polygon path (D-A exception, D-I): --regions-image polygons.json with normalised coordinates; stability measured as bottom-centre displacement normalised by box height; shared semantics with the app's..."
      },
      {
-      "done": false,
-      "text": "4.3 Stationary-window detector for real video: mark frames where global image motion is below a threshold (phase correlation or median optical flow), export the windows as a CSV."
+      "done": true,
+      "text": "4.3 Done 2026-10-20: src/pipeline/stationary_windows.py (median sparse-LK corner flow per frame, phase-correlation fallback, rolling median, threshold 0.0010 of image width per frame calibrated on four synthetic runs,..."
      },
      {
       "done": false,
@@ -128,7 +128,7 @@
       "text": "5.1 Done 2026-10-20 (geometry re-run pending): new tests/verify_decision_parity.py replays all 15 scenarios / 790 steps of experiments/parity/decision_vectors.json through the Python rule, every field exact, all 7 rea..."
      }
     ],
-    "done": 2,
+    "done": 3,
     "total": 5
    },
    {
@@ -310,7 +310,7 @@
  "timeline": [
   {
    "date": "2026-10-20",
-   "text": "S1 training matrix started (smoke run passed: 1.8 min per epoch, mAP50-95 0.70 after one epoch). Phase 4 item 4.1 done: the pipeline refuses a run captured on a different map than the region file. Item 5.1 done: a Python parity test replays the 790-step decision-rule vectors the smartphone app also tests against (all pass), the evaluation self-check passes, and one complete result row with confidence intervals was produced on a kt_v1 test run.",
+   "text": "S1 training matrix started (smoke run passed: 1.8 min per epoch, mAP50-95 0.70 after one epoch). Phase 4 item 4.1 done: the pipeline refuses a run captured on a different map than the region file. Item 5.1 done: a Python parity test replays the 790-step decision-rule vectors the smartphone app also tests against (all pass), the evaluation self-check passes, and one complete result row with confidence intervals was produced on a kt_v1 test run. Item 4.3 done: a stationary-window detector finds the frames in which the windshield camera stood still from the images alone; on the scripted-stop run it recovers the 10 s red-light stop with frame precision 0.93 and recall 1.00, and finds nothing in runs without a stop.",
    "source": "notes"
   },
   {
@@ -463,16 +463,16 @@
     "arch": "yolov8n",
     "dataset": "kt_v1",
     "seed": 0,
-    "epochs_done": 17,
-    "best_map50_95": 0.8604,
-    "best_epoch": 17,
-    "last_map50_95": 0.8604,
+    "epochs_done": 25,
+    "best_map50_95": 0.86673,
+    "best_epoch": 25,
+    "last_map50_95": 0.86673,
     "status": "running",
     "files": {
      "results": "data/training/yolov8n_kt_v1_s0/results.csv",
      "args": "data/training/yolov8n_kt_v1_s0/args.yaml"
     },
-    "updated": "2026-10-20T01:13:06+02:00"
+    "updated": "2026-10-20T01:22:40+02:00"
    }
   ],
   "planned_runs": 12,
@@ -752,6 +752,13 @@
    "date": "2026-10-11"
   },
   {
+   "file": "figures/kt_stationary_windows_route_a.png",
+   "name": "kt_stationary_windows_route_a.png",
+   "group": "Capture and labels",
+   "caption": "Stationary-window detector (task 4.3) on the scripted-stop run of route A: median corner motion per frame (grey), rolling median (blue), threshold (red) and the detected window (yellow). The window covers the 10 s standstill at the red light; frame precision 0.93, recall 1.00 against the recorded ego speed.",
+   "date": "2026-10-20"
+  },
+  {
    "file": "figures/kt_visibility_calibration_p1.png",
    "name": "kt_visibility_calibration_p1.png",
    "group": "Capture and labels",
@@ -774,6 +781,11 @@
   }
  ],
  "commits": [
+  {
+   "hash": "1cac36f",
+   "date": "2026-10-20T01:21:37+02:00",
+   "subject": "Task 4.3: stationary-window detector for windshield video"
+  },
   {
    "hash": "9700dc6",
    "date": "2026-10-20T01:12:19+02:00",

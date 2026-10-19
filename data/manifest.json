@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-20T01:43:19+02:00",
+ "generated_at": "2026-10-20T01:53:22+02:00",
  "generator_version": "1.0 (2026-10-19)",
  "thesis_title": "Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data",
  "repo": {
@@ -463,16 +463,38 @@
     "arch": "yolov8n",
     "dataset": "kt_v1",
     "seed": 0,
-    "epochs_done": 42,
-    "best_map50_95": 0.8718,
-    "best_epoch": 41,
-    "last_map50_95": 0.87166,
-    "status": "running",
+    "epochs_done": 50,
+    "best_map50_95": 0.87509,
+    "best_epoch": 49,
+    "last_map50_95": 0.87508,
+    "status": "done",
     "files": {
      "results": "data/training/yolov8n_kt_v1_s0/results.csv",
-     "args": "data/training/yolov8n_kt_v1_s0/args.yaml"
+     "args": "data/training/yolov8n_kt_v1_s0/args.yaml",
+     "finetune_record": "data/training/yolov8n_kt_v1_s0/finetune_record.json"
     },
-    "updated": "2026-10-20T01:42:52+02:00"
+    "updated": "2026-10-20T01:51:49+02:00",
+    "record_best_epoch": 49,
+    "record_best_val_map50_95": 0.87448,
+    "record_size_mb": 5.98,
+    "record_git_hash": "e036ac3d63607638563675ee9aa4f477d0068bfb",
+    "best_pt_mb": 6.3
+   },
+   {
+    "name": "yolov8n_kt_v1_s1",
+    "arch": "yolov8n",
+    "dataset": "kt_v1",
+    "seed": 1,
+    "epochs_done": 1,
+    "best_map50_95": 0.69311,
+    "best_epoch": 1,
+    "last_map50_95": 0.69311,
+    "status": "running",
+    "files": {
+     "results": "data/training/yolov8n_kt_v1_s1/results.csv",
+     "args": "data/training/yolov8n_kt_v1_s1/args.yaml"
+    },
+    "updated": "2026-10-20T01:53:11+02:00"
    }
   ],
   "planned_runs": 12,
@@ -670,7 +692,13 @@
     "date": "2026-07-29"
    }
   ],
-  "fine_tuned": [],
+  "fine_tuned": [
+   {
+    "name": "yolov8n_kt_v1_s0",
+    "size_mb": 6.3,
+    "date": "2026-10-20"
+   }
+  ],
   "app": {
    "model_file": "androidApp/src/main/assets/yolov8n.onnx",
    "sha256": "4e1ae07ee604292424b4f84c749dc6b56304486179dd2c740fe8c489c528d1cf",

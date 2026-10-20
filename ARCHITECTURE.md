@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-10-21 (page version `v=20261021b`, collector 1.4).
+State of the progress dashboard as of 2026-10-21 (page version `v=20261021c`, collector 1.4).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -96,7 +96,7 @@ as a tree.
 | `data` | `data-cards`, `chart-splits`, `chart-classes`, `chart-weather`, `chart-views`, `matrix-table`, `dataset-card` | `renderData` |
 | `training` | `training-cards`, `training-runs`, `training-metric`, `chart-training-curves`, `chart-training-best`, `training-log-wrap`, `training-log` | `renderTraining`, `populateMetricSelect`, `drawTrainingCurves` |
 | `experiments` | `experiment-cards`, `experiment-groups`, `other-results` | `renderExperiments`, `renderExperimentGroup`, `renderCellSummary`, `csvChartControls`, `figureStrip`, `jsonRoot` |
-| `models` | `model-cards` (`.stack`: three full-width cards, one table each) | `renderModels` |
+| `models` | `model-cards` (`.stack`: a `.grid.wide` row with the pretrained and fine-tuned tables, then the full-width app-bundle table) | `renderModels` |
 | `figures` | `figure-groups` | `renderFigures`, `openLightbox` |
 | `activity` | `commits-thesis`, `commits-app` | `renderActivity` |
 
@@ -198,4 +198,5 @@ summary charts drawn, models, figures, commits.
   before drawing (summary charts visible on first load), lazy loading with preserved open state,
   marker on the records block, `tools/check_page.py`, this document.
 * 2026-10-21 (later): Models section as three stacked tables (pretrained, fine-tuned with training
-  record, app bundle from the app's `models.json`); collector 1.4.
+  record, app bundle from the app's `models.json`); collector 1.4. Then: the two weight tables side
+  by side, the app bundle full width underneath (`v=20261021c`).

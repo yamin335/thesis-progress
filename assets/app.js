@@ -836,8 +836,8 @@
   }
 
   function renderModels(m) {
-    // Three stacked subsections, each a full-width card with a table: the wide tables need the
-    // whole row, side-by-side cards made every column a narrow scroll box.
+    // Layout: the two weight lists side by side (compact columns), then the app bundle as one
+    // full-width table underneath, because it has the most columns.
     var models = m.models || {};
     var box = clear($('model-cards'));
     function section(title, note, table) {
@@ -846,13 +846,15 @@
       card.appendChild(table);
       return card;
     }
+    var top = el('div', { class: 'grid wide' });
+    box.appendChild(top);
     var pre = models.pretrained || [];
-    box.appendChild(section('Pretrained weights (COCO)', 'Published checkpoints in models/pretrained/, the zero-shot baselines of EXP-A.',
-      pre.length ? makeTable(pre, ['name', 'format', 'size_mb', 'date'], { labels: { size_mb: 'MB' } }) : el('div', { class: 'empty small', text: 'No pretrained weights found.' })));
+    top.appendChild(section('Pretrained weights (COCO)', 'Checkpoints in models/pretrained/, the zero-shot baselines of EXP-A.',
+      pre.length ? makeTable(pre, ['name', 'size_mb', 'date'], { labels: { size_mb: 'MB' } }) : el('div', { class: 'empty small', text: 'No pretrained weights found.' })));
     var ft = models.fine_tuned || [];
-    box.appendChild(section('Fine-tuned weights (training stage S1)', 'One best.pt per run of the S1 matrix with the figures of its training record.',
-      ft.length ? makeTable(ft, ['name', 'arch', 'seed', 'image_size', 'best_epoch', 'best_val_map50_95', 'best_val_map50', 'minutes', 'size_mb', 'date'], {
-        sort: 'name', labels: { image_size: 'px', best_val_map50_95: 'best val mAP50-95', best_val_map50: 'mAP50', size_mb: 'best.pt MB' }
+    top.appendChild(section('Fine-tuned weights (training stage S1)', 'One best.pt per run of the S1 matrix; figures from its training record.',
+      ft.length ? makeTable(ft, ['name', 'best_epoch', 'best_val_map50_95', 'minutes', 'size_mb'], {
+        sort: 'name', labels: { best_epoch: 'best epoch', best_val_map50_95: 'val mAP50-95', size_mb: 'MB' }
       }) : el('div', { class: 'empty small', text: 'No fine-tuned model yet; S1 training has not produced a best.pt.' })));
     var app = models.app_models || [];
     var meta = models.app_meta || {};

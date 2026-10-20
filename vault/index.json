@@ -9,12 +9,92 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "eddbd0a409cabd5bcd2e2432795bc0ab45fd2495460c28c27f2cab949246eaf3",
-   "size": 47446
+   "sha256": "65168c94f71a534da5ee9ac97035ead21c5c199e0f7dbf13f6439bfdf033e203",
+   "size": 54716
   },
   "data/progress_notes.md": {
-   "sha256": "7915e2ed46c4eeb27fbbcea0b1a4cd1546426f604611e5cd2660dec9cd63c41f",
-   "size": 5923
+   "sha256": "63fc8fa83edccc23b796a69e5f1a4e508ebb6c869b0889c61f87b1d0729246fe",
+   "size": 6267
+  },
+  "data/results/EXP-A-yolo11n-1280-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "85ff59584ba73a0cc03553a6d6995336901c7589ff9910bdc3ae48f9dab9511b",
+   "size": 7198
+  },
+  "data/results/EXP-A-yolo11n-1280-kt_static_P3_ClearNoon_u8_result.json": {
+   "sha256": "ac2539da482bdc6d49a37ab356397cebdc73a541a7b21a815f5c5ded82fa1570",
+   "size": 7094
+  },
+  "data/results/EXP-A-yolo11n-640-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "cb401211f163f8b94d4df3a0ee59c738ee81b7042725144e8a94b4ad52c7f3c2",
+   "size": 7190
+  },
+  "data/results/EXP-A-yolo11n-640-kt_static_P3_ClearNoon_u8_result.json": {
+   "sha256": "83a8f2cbf274377c33b0cc3e83826cd4e1551805366ccc5443418c2b2b48d72e",
+   "size": 7065
+  },
+  "data/results/EXP-A-yolo11n-960-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "4c36644ac13a0d5b0403d1b5096d4a0db3e4b8996b85f8a696d86c04b8c793a3",
+   "size": 7203
+  },
+  "data/results/EXP-A-yolo11n-960-kt_static_P3_ClearNoon_u8_result.json": {
+   "sha256": "f0ce325412db218d6629e9b06ce0cbe352d3c036d47d36a02d00a594b0151e73",
+   "size": 7098
+  },
+  "data/results/EXP-A-yolo26n-1280-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "f312d8fb1c27330b389fe5b6e4183fcc623cc7abe4e3ba382a32e2d5270e5c21",
+   "size": 7208
+  },
+  "data/results/EXP-A-yolo26n-640-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "257ecd11192709a2aebd1f46657e2c46e78fdfb206775908eeed97c6556ae18c",
+   "size": 7174
+  },
+  "data/results/EXP-A-yolo26n-640-kt_static_P3_ClearNoon_u8_result.json": {
+   "sha256": "b974627d4dba9eca4bf74be5bffb5c3ba2fa61d467ff71096b3c04b8adebf724",
+   "size": 7065
+  },
+  "data/results/EXP-A-yolo26n-960-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "6bb381fea876f9970b703ef4ee8e987e7efcac3f068c88cca2f1491c0b054775",
+   "size": 7183
+  },
+  "data/results/EXP-A-yolo26s-1280-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "7371d83e249267c1b13ad7aeea8a8846f42ee6886782cc2b4f4801401c011a66",
+   "size": 7190
+  },
+  "data/results/EXP-A-yolo26s-640-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "f4387705db2d38fab656af39ec9f43b34c0730f80bd68d899027ccfa0b537b46",
+   "size": 7180
+  },
+  "data/results/EXP-A-yolo26s-960-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "f4ec159ae4c737f006c23d6b939ac68e9c94079e55900175c15dee020a001476",
+   "size": 7183
+  },
+  "data/results/EXP-A-yolov8n-1280-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "51c52fa70c5d12244bfec6be9d7ab0761bb82b59fa6a67ba23823a3b30a77f6a",
+   "size": 7204
+  },
+  "data/results/EXP-A-yolov8n-1280-kt_static_P3_ClearNoon_u8_result.json": {
+   "sha256": "d16f86cc67c81562afedd28baa74382e45c4d4dc584b1ec2530bd7711d319d44",
+   "size": 7105
+  },
+  "data/results/EXP-A-yolov8n-640-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "241ab1cbb5b6b51c432206dca73e245151989b3ae04f33031fe92cc7e4fb0927",
+   "size": 7213
+  },
+  "data/results/EXP-A-yolov8n-640-kt_static_P3_ClearNoon_u8_result.json": {
+   "sha256": "700e20590805c950273271c5a3ec3693dbc2ac4540821f46528495aefcbb885a",
+   "size": 7091
+  },
+  "data/results/EXP-A-yolov8n-960-kt_static_P1_ClearNoon_u7_result.json": {
+   "sha256": "9365ddd77da148c8dc801fd3f1b839b7f0a22011637f3a821041cb9a951c2e33",
+   "size": 7196
+  },
+  "data/results/EXP-A-yolov8n-960-kt_static_P3_ClearNoon_u8_result.json": {
+   "sha256": "a2868bb5e64a832725e70bedc26526cc5fc85a9465042af4d3447ff786a4b9e6",
+   "size": 7101
+  },
+  "data/results/all_results.csv": {
+   "sha256": "621234e64fec7f05d19c74d4f4ea9277880d9f2ceecc41543a7e6cee3f4a2f5f",
+   "size": 8062
   },
   "data/results/kt_matrix_manifest.csv": {
    "sha256": "d52cc86fd6fcf48ef31602e3279272cc60f1d7bc1d11e55b65bdfc18216b67d7",

@@ -1,1 +1,0 @@
-esprima==4.0.1          # JavaScript parser for ../thesis-progress/tools/check_page.py (dashboard page checks)

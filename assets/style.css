@@ -67,6 +67,7 @@ section.block > header { display: flex; flex-wrap: wrap; align-items: baseline; 
 section.block > header p { margin: 0; color: var(--muted); font-size: 0.92rem; flex-basis: 100%; }
 .grid { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 .grid.wide { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+.stack { display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 0.9rem 1rem; min-width: 0; }
 .card h3 { display: flex; align-items: center; gap: 0.5rem; }
 .card .big { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.01em; margin: 0.2rem 0 0; }

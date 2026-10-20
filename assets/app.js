@@ -836,24 +836,38 @@
   }
 
   function renderModels(m) {
+    // Three stacked subsections, each a full-width card with a table: the wide tables need the
+    // whole row, side-by-side cards made every column a narrow scroll box.
     var models = m.models || {};
     var box = clear($('model-cards'));
-    function weightsCard(title, list, emptyText) {
+    function section(title, note, table) {
       var card = el('div', { class: 'card' }, [el('h3', { text: title })]);
-      if (!list || !list.length) { card.appendChild(el('div', { class: 'empty small', text: emptyText })); }
-      else { card.appendChild(makeTable(list, ['name', 'size_mb', 'date'], { labels: { size_mb: 'MB' } })); }
+      if (note) { card.appendChild(el('p', { class: 'small muted', text: note })); }
+      card.appendChild(table);
       return card;
     }
-    box.appendChild(weightsCard('Pretrained weights (COCO)', models.pretrained, 'No pretrained weights found.'));
-    box.appendChild(weightsCard('Fine-tuned weights (KIVI_Twin)', models.fine_tuned, 'No fine-tuned model yet; S1 training has not produced a best.pt.'));
-    var app = models.app || {};
-    var appCard = el('div', { class: 'card' }, [el('h3', { text: 'Model in the smartphone app' })]);
-    if (Object.keys(app).length) {
-      var dl = el('dl', { class: 'kv' });
-      Object.keys(app).forEach(function (k) { dl.appendChild(el('dt', { text: k })); dl.appendChild(el('dd', { text: app[k] })); });
-      appCard.appendChild(dl);
-    } else { appCard.appendChild(el('div', { class: 'empty small', text: 'MODEL_VERSION not found.' })); }
-    box.appendChild(appCard);
+    var pre = models.pretrained || [];
+    box.appendChild(section('Pretrained weights (COCO)', 'Published checkpoints in models/pretrained/, the zero-shot baselines of EXP-A.',
+      pre.length ? makeTable(pre, ['name', 'format', 'size_mb', 'date'], { labels: { size_mb: 'MB' } }) : el('div', { class: 'empty small', text: 'No pretrained weights found.' })));
+    var ft = models.fine_tuned || [];
+    box.appendChild(section('Fine-tuned weights (training stage S1)', 'One best.pt per run of the S1 matrix with the figures of its training record.',
+      ft.length ? makeTable(ft, ['name', 'arch', 'seed', 'image_size', 'best_epoch', 'best_val_map50_95', 'best_val_map50', 'minutes', 'size_mb', 'date'], {
+        sort: 'name', labels: { image_size: 'px', best_val_map50_95: 'best val mAP50-95', best_val_map50: 'mAP50', size_mb: 'best.pt MB' }
+      }) : el('div', { class: 'empty small', text: 'No fine-tuned model yet; S1 training has not produced a best.pt.' })));
+    var app = models.app_models || [];
+    var meta = models.app_meta || {};
+    var note = app.length
+      ? meta.models + ' models, ' + meta.files + ' ONNX files, ' + meta.total_mb + ' MB in the app' + (meta.input_size ? ', ' + meta.input_size + ' px input' : '') + (meta.thesis_commit ? ', exported at thesis commit ' + meta.thesis_commit : '') + (meta.generated_at ? ' (' + fmtDate(meta.generated_at) + ')' : '') + '. The start page of the app lets the user pick any of them; "verified" means the ONNX output was matched against PyTorch on test frames; NMS-free is the end-to-end export of the YOLO26 models.'
+      : 'The app\'s model catalogue (models.json) was not found.';
+    box.appendChild(section('Models bundled in the smartphone app', note,
+      app.length ? makeTable(app, ['id', 'family', 'arch', 'size_mb', 'classes', 'verified', 'val_map50_95', 'trained_px', 'nms_free_mb', 'nms_free_verified', 'nms_free_agreement'], {
+        labels: { size_mb: 'MB', val_map50_95: 'val mAP50-95', trained_px: 'trained at px', nms_free_mb: 'NMS-free MB', nms_free_verified: 'NMS-free verified', nms_free_agreement: 'NMS-free agreement' },
+        render: {
+          family: function (v) { return pill(v === 'fine_tuned' ? 'fine-tuned' : 'pretrained', v === 'fine_tuned' ? 'ok' : 'accent'); },
+          verified: function (v) { return pill(v, v === 'yes' ? 'ok' : 'bad'); },
+          nms_free_verified: function (v) { return v ? pill(v, v === 'yes' ? 'ok' : 'bad') : document.createTextNode(''); }
+        }
+      }) : el('div', { class: 'empty small', text: 'MODEL_VERSION / models.json not found.' })));
   }
 
   function renderFigures(m) {

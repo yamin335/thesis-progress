@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-10-21 (page version `v=20261021a`, collector 1.3).
+State of the progress dashboard as of 2026-10-21 (page version `v=20261021b`, collector 1.4).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -49,7 +49,7 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
 | `matrix` | `matrix_info` | `present`, `csv` path, `runs`, `by_status{}`, `frames_on_disk`. |
 | `training` | `training_info` | `runs[]{name, arch, seed, status, epochs_done, best_epoch, best_map50_95, last_map50_95, files{results, record, log}, ...}`, `planned_runs`, `plan{archs, seeds, epochs, patience, image_size}`, `log_tail` path, `running`. |
 | `experiments` | `experiments_info` | see §3. |
-| `models` | `models_info` | `pretrained[]`, `fine_tuned[]` (`{name, size_mb, date}`), `app{}` (MODEL_VERSION key/values). |
+| `models` | `models_info` | `pretrained[]{name, format, size_mb, date}`; `fine_tuned[]{name, arch, dataset, seed, image_size, best_epoch, best_val_map50_95, best_val_map50, minutes, size_mb, date}` (from `finetune_record.json`); `app_models[]{id, family, arch, size_mb, classes, verified, nms_free_mb, nms_free_verified, nms_free_agreement, val_map50_95, trained_px}` from the app's `models.json`; `app_meta{generated_at, thesis_commit, input_size, models, files, total_mb, header{}}`. |
 | `figures` | `figures_info` | `[{file, name, group, caption, date}]`; files whose name marks real or anonymised footage are never published. |
 | `commits`, `app_commits` | `git_log` | `[{hash, date, subject}]`, writing-related subjects dropped. |
 
@@ -96,7 +96,7 @@ as a tree.
 | `data` | `data-cards`, `chart-splits`, `chart-classes`, `chart-weather`, `chart-views`, `matrix-table`, `dataset-card` | `renderData` |
 | `training` | `training-cards`, `training-runs`, `training-metric`, `chart-training-curves`, `chart-training-best`, `training-log-wrap`, `training-log` | `renderTraining`, `populateMetricSelect`, `drawTrainingCurves` |
 | `experiments` | `experiment-cards`, `experiment-groups`, `other-results` | `renderExperiments`, `renderExperimentGroup`, `renderCellSummary`, `csvChartControls`, `figureStrip`, `jsonRoot` |
-| `models` | `model-cards` | `renderModels` |
+| `models` | `model-cards` (`.stack`: three full-width cards, one table each) | `renderModels` |
 | `figures` | `figure-groups` | `renderFigures`, `openLightbox` |
 | `activity` | `commits-thesis`, `commits-app` | `renderActivity` |
 
@@ -197,3 +197,5 @@ summary charts drawn, models, figures, commits.
 * 2026-10-21: `el()` omits null/false attributes (closed `<details>` by default), charts mount
   before drawing (summary charts visible on first load), lazy loading with preserved open state,
   marker on the records block, `tools/check_page.py`, this document.
+* 2026-10-21 (later): Models section as three stacked tables (pretrained, fine-tuned with training
+  record, app bundle from the app's `models.json`); collector 1.4.

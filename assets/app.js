@@ -38,7 +38,13 @@
     });
     return node;
   }
-  function clear(node) { while (node.firstChild) { node.removeChild(node.firstChild); } return node; }
+  function clear(node) {
+    // A missing element (for example after a page/script version mismatch from a stale cache) must
+    // not take the whole render down: return a detached container instead of throwing.
+    if (!node) { return document.createElement('div'); }
+    while (node.firstChild) { node.removeChild(node.firstChild); }
+    return node;
+  }
   function fmt(value, digits) {
     if (value === null || value === undefined || value === '') { return ''; }
     if (typeof value === 'number') {

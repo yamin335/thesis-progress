@@ -40,3 +40,6 @@ Libraries (loaded from cdnjs): Chart.js 4.4.1, PapaParse 5.4.1, marked 12.0.0. N
 analytics; the light/dark choice is kept in the browser's local storage, and the session key only in
 the tab's session storage when "stay signed in" is ticked. The protection is as strong as the
 password; the credentials live only on the author's machine and in the heads of the two readers.
+
+Cache busting: `index.html` loads `assets/app.js?v=...` and `assets/style.css?v=...`; bump the `v=` value
+whenever those files change, otherwise browsers may run a stale script against a new page.

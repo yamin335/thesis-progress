@@ -1,12 +1,21 @@
 /* Progress dashboard: reads data/manifest.json (written by experiments/publish_progress.py in the
    thesis repository) plus the CSV files it points to, and renders everything client-side.
-   No build step, no tracking, no storage except the theme choice. */
+   No build step, no tracking, no storage except the theme choice (and, if asked, the session key).
+
+   Access protection: GitHub Pages cannot run a server, so the data is published ENCRYPTED under
+   vault/<path>.enc (AES-256-GCM, nonce || ciphertext || tag). The login form derives the key from
+   "user:password" with PBKDF2-SHA256 (salt and iteration count in vault/verify.json), checks it
+   against a small verifier, and every fetch below then decrypts on the fly with Web Crypto. The
+   credentials never leave the browser; a wrong password simply fails the authentication tag. */
 (function () {
   'use strict';
 
   var MANIFEST_URL = 'data/manifest.json';
   var REFRESH_MS = 5 * 60 * 1000;
-  var state = { manifest: null, charts: {}, csv: {}, generatedAt: null };
+  var state = { manifest: null, charts: {}, csv: {}, generatedAt: null, key: null, blobUrls: {}, refreshTimer: null };
+  var VERIFY_URL = 'vault/verify.json';
+  var VERIFY_TEXT = 'thesis-progress ok';
+  var SESSION_KEY = 'progress-session-key';
   var ARCH_COLORS = { yolov8n: '#2b6cb0', yolo11n: '#2e7d32', yolo26n: '#b7791f', yolo26s: '#b02a37' };
   var PALETTE = ['#2b6cb0', '#2e7d32', '#b7791f', '#b02a37', '#6b46c1', '#0e7490', '#9d174d', '#4d7c0f', '#92400e', '#1e40af'];
 
@@ -54,8 +63,47 @@
   }
   function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
   function bust(url) { return url + (url.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(); }
-  function fetchJSON(url) { return fetch(bust(url), { cache: 'no-store' }).then(function (r) { if (!r.ok) { throw new Error(r.status + ' ' + url); } return r.json(); }); }
-  function fetchText(url) { return fetch(bust(url), { cache: 'no-store' }).then(function (r) { if (!r.ok) { throw new Error(r.status + ' ' + url); } return r.text(); }); }
+  // ------------------------------------------------------------------ vault (encrypted files)
+  function bytesFromBase64(text) { var bin = atob(text); var out = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) { out[i] = bin.charCodeAt(i); } return out; }
+  function base64FromBytes(bytes) { var bin = ''; for (var i = 0; i < bytes.length; i++) { bin += String.fromCharCode(bytes[i]); } return btoa(bin); }
+  function hexToBytes(hex) { var out = new Uint8Array(hex.length / 2); for (var i = 0; i < out.length; i++) { out[i] = parseInt(hex.substr(i * 2, 2), 16); } return out; }
+  function cryptoAvailable() { return !!(window.crypto && window.crypto.subtle && window.TextEncoder); }
+  function deriveKeyBits(user, password, saltHex, iterations) {
+    // Same derivation as experiments/publish_progress.py: PBKDF2-HMAC-SHA256 over "user:password".
+    var material = new TextEncoder().encode(user + ':' + password);
+    return crypto.subtle.importKey('raw', material, 'PBKDF2', false, ['deriveBits']).then(function (base) {
+      return crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: hexToBytes(saltHex), iterations: iterations }, base, 256);
+    });
+  }
+  function importAesKey(rawBits) { return crypto.subtle.importKey('raw', rawBits, { name: 'AES-GCM' }, false, ['decrypt']); }
+  function decryptBuffer(buffer) {
+    var bytes = new Uint8Array(buffer);
+    if (bytes.length < 28) { return Promise.reject(new Error('ciphertext too short')); }
+    return crypto.subtle.decrypt({ name: 'AES-GCM', iv: bytes.slice(0, 12), tagLength: 128 }, state.key, bytes.slice(12));
+  }
+  function rawFetch(url) { return fetch(bust(url), { cache: 'no-store' }).then(function (r) { if (!r.ok) { throw new Error(r.status + ' ' + url); } return r; }); }
+  function vaultFetch(path) {
+    // path is the plaintext path the manifest uses (data/..., figures/...); the file lives at vault/<path>.enc
+    return rawFetch('vault/' + path + '.enc').then(function (r) { return r.arrayBuffer(); }).then(decryptBuffer);
+  }
+  function fetchText(url) { return vaultFetch(url).then(function (buf) { return new TextDecoder().decode(buf); }); }
+  function fetchJSON(url) { return fetchText(url).then(function (text) { return JSON.parse(text); }); }
+  function vaultImage(path) {
+    if (state.blobUrls[path]) { return Promise.resolve(state.blobUrls[path]); }
+    return vaultFetch(path).then(function (buf) {
+      var url = URL.createObjectURL(new Blob([buf], { type: 'image/png' }));
+      state.blobUrls[path] = url;
+      return url;
+    });
+  }
+  function downloadDecrypted(path) {
+    fetchText(path).then(function (text) {
+      var url = URL.createObjectURL(new Blob([text], { type: 'text/csv' }));
+      var a = el('a', { href: url, download: path.split('/').pop() });
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    }).catch(function (err) { alert('Download failed: ' + err.message); });
+  }
   function fetchCSV(url) {
     return fetchText(url).then(function (text) {
       var parsed = Papa.parse(text.trim(), { header: true, dynamicTyping: true, skipEmptyLines: true, transformHeader: function (h) { return h.trim(); } });
@@ -141,7 +189,7 @@
     tools.appendChild(filter);
     tools.appendChild(count);
     if (opts.download) {
-      tools.appendChild(el('a', { href: opts.download, class: 'small', download: '' }, ['Download CSV']));
+      tools.appendChild(el('a', { href: '#', class: 'small', onclick: function (e) { e.preventDefault(); downloadDecrypted(opts.download); } }, ['Download CSV']));
     }
     wrapper.appendChild(tools);
     var wrap = el('div', { class: 'table-wrap' });
@@ -541,7 +589,8 @@
       box.appendChild(el('h3', { text: group, style: 'margin-top:1rem' }));
       var grid = el('div', { class: 'figures' });
       groups[group].forEach(function (f) {
-        var img = el('img', { src: f.file, alt: f.caption, loading: 'lazy' });
+        var img = el('img', { alt: f.caption, loading: 'lazy' });
+        vaultImage(f.file).then(function (url) { img.src = url; }).catch(function () { img.alt = 'could not decrypt ' + f.name; });
         img.addEventListener('click', function () { openLightbox(f); });
         grid.appendChild(el('figure', { class: 'fig' }, [img, el('figcaption', null, [document.createTextNode(f.caption), el('span', { class: 'small muted', text: f.name + ' · ' + f.date })])]));
       });
@@ -550,7 +599,9 @@
     if (!Object.keys(groups).length) { box.appendChild(el('div', { class: 'empty', text: 'No figures yet.' })); }
   }
   function openLightbox(f) {
-    var lb = el('div', { class: 'lightbox' }, [el('img', { src: f.file, alt: f.caption }), el('figcaption', { text: f.caption })]);
+    var big = el('img', { alt: f.caption });
+    vaultImage(f.file).then(function (url) { big.src = url; });
+    var lb = el('div', { class: 'lightbox' }, [big, el('figcaption', { text: f.caption })]);
     lb.addEventListener('click', function () { document.body.removeChild(lb); });
     document.body.appendChild(lb);
   }
@@ -591,7 +642,7 @@
     }).catch(function (err) {
       var box = $('error');
       box.classList.remove('hidden');
-      box.textContent = 'Could not load data/manifest.json (' + err.message + '). The dashboard has not been published yet, or the file is missing.';
+      box.textContent = 'Could not load or decrypt the manifest (' + err.message + '). The dashboard may not have been published yet; try signing out and in again.';
     });
   }
   function setupNav() {
@@ -622,10 +673,80 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    setupTheme();
+  // ------------------------------------------------------------------ login gate
+  function unlock() {
+    $('login').classList.add('hidden');
+    $('topbar').classList.remove('hidden');
+    $('main').classList.remove('hidden');
     setupNav();
     load(true);
-    setInterval(function () { load(false); }, REFRESH_MS);
+    if (!state.refreshTimer) { state.refreshTimer = setInterval(function () { load(false); }, REFRESH_MS); }
+  }
+  function lock() {
+    state.key = null;
+    try { sessionStorage.removeItem(SESSION_KEY); } catch (e) { /* ignore */ }
+    Object.keys(state.blobUrls).forEach(function (k) { URL.revokeObjectURL(state.blobUrls[k]); });
+    state.blobUrls = {};
+    location.reload();
+  }
+  function verifyKey(rawBits, verify) {
+    // The verifier is a known phrase encrypted under the same key; a wrong password fails the GCM tag.
+    return importAesKey(rawBits).then(function (key) {
+      state.key = key;
+      return decryptBuffer(bytesFromBase64(verify.check).buffer);
+    }).then(function (buf) {
+      if (new TextDecoder().decode(buf) !== VERIFY_TEXT) { throw new Error('verifier mismatch'); }
+      return true;
+    }).catch(function () { state.key = null; return false; });
+  }
+  function showLoginError(text) { $('login-error').textContent = text; }
+  function attemptLogin(user, password, remember) {
+    var button = $('login-submit');
+    button.disabled = true; button.textContent = 'Checking…';
+    showLoginError('');
+    return rawFetch(VERIFY_URL).then(function (r) { return r.json(); }).then(function (verify) {
+      return deriveKeyBits(user, password, verify.salt_hex, verify.iterations).then(function (bits) {
+        return verifyKey(bits, verify).then(function (ok) {
+          if (!ok) { showLoginError('Wrong user name or password.'); return; }
+          if (remember) { try { sessionStorage.setItem(SESSION_KEY, base64FromBytes(new Uint8Array(bits))); } catch (e) { /* storage unavailable */ } }
+          unlock();
+        });
+      });
+    }).catch(function (err) {
+      showLoginError('Cannot reach the encrypted data (' + err.message + '). Check the connection and try again.');
+    }).then(function () { button.disabled = false; button.textContent = 'Sign in'; });
+  }
+  function setupLogin() {
+    var form = $('login-form');
+    $('login-toggle').addEventListener('click', function () {
+      var field = $('login-password');
+      var show = field.type === 'password';
+      field.type = show ? 'text' : 'password';
+      this.textContent = show ? 'Hide' : 'Show';
+      this.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!cryptoAvailable()) { showLoginError('This browser cannot decrypt the page (Web Crypto needs HTTPS).'); return; }
+      var user = $('login-user').value.trim();
+      var password = $('login-password').value;
+      if (!user || !password) { showLoginError('Enter the user name and the password.'); return; }
+      attemptLogin(user, password, $('login-remember').checked);
+    });
+    $('logout').addEventListener('click', lock);
+    // resume a session kept on this tab
+    var saved = null;
+    try { saved = sessionStorage.getItem(SESSION_KEY); } catch (e) { saved = null; }
+    if (saved && cryptoAvailable()) {
+      rawFetch(VERIFY_URL).then(function (r) { return r.json(); }).then(function (verify) {
+        return verifyKey(bytesFromBase64(saved).buffer, verify);
+      }).then(function (ok) { if (ok) { unlock(); } else { try { sessionStorage.removeItem(SESSION_KEY); } catch (e) { /* ignore */ } } }).catch(function () { /* stay on the login form */ });
+    }
+    $('login-user').focus();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    setupTheme();
+    setupLogin();
   });
 })();

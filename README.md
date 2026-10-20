@@ -2,12 +2,15 @@
 
 Live progress of the master's thesis **Computer Vision Approach to Identify Parked Vehicles Based on
 Smartphone Camera Data** (Technische Hochschule Ingolstadt, Faculty of Electrical Engineering and
-Information Technology, AImotion institute): https://yamin335.github.io/thesis-progress/
+Information Technology): https://yamin335.github.io/thesis-progress/
 
-The page is static. `index.html` plus `assets/` render whatever is in `data/` and `figures/`; those two
-folders are written by `experiments/publish_progress.py` in the (private) thesis repository and
-committed here. Nothing on this page is typed by hand except `docs/progress_notes.md` in the thesis
-repository, which supplies the "Current status" box and the dated timeline entries.
+The page is static and **login-protected by encryption**. GitHub Pages cannot run a server, so
+`experiments/publish_progress.py` in the (private) thesis repository encrypts every data file and
+figure with AES-256-GCM into `vault/<path>.enc`; the key is derived in the browser from the user name
+and password (PBKDF2-SHA256, salt and iteration count in `vault/verify.json`). Without the password
+this repository holds only ciphertext. Nothing on the page is typed by hand except
+`docs/progress_notes.md` in the thesis repository, which supplies the "Current status" box and the
+dated timeline entries.
 
 What is shown:
 
@@ -34,4 +37,6 @@ refuses figure files whose name marks them as real or anonymised footage. Names 
 are not published; the supervisor is referred to by the organisational unit.
 
 Libraries (loaded from cdnjs): Chart.js 4.4.1, PapaParse 5.4.1, marked 12.0.0. No cookies, no
-analytics; the light/dark choice is kept in the browser's local storage only.
+analytics; the light/dark choice is kept in the browser's local storage, and the session key only in
+the tab's session storage when "stay signed in" is ticked. The protection is as strong as the
+password; the credentials live only on the author's machine and in the heads of the two readers.

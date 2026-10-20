@@ -1,0 +1,116 @@
+{
+ "files": {
+  "data/kt_matrix_manifest.csv": {
+   "sha256": "d52cc86fd6fcf48ef31602e3279272cc60f1d7bc1d11e55b65bdfc18216b67d7",
+   "size": 4626
+  },
+  "data/kt_v1_manifest.md": {
+   "sha256": "8ec28d3c0b4e2392b7261d5e84312375d50845efca2e9b82487f250852741cea",
+   "size": 6612
+  },
+  "data/manifest.json": {
+   "sha256": "64a108afa03d4efcfac58408f777676ceb11f8a97a1d4fbf4a7b908fd8cb83e3",
+   "size": 38197
+  },
+  "data/progress_notes.md": {
+   "sha256": "64b65360a7e291668a3efd90e75564b3a6f168945cd54fab1f9d50b72cdb9b2d",
+   "size": 4412
+  },
+  "data/results/kt_matrix_manifest.csv": {
+   "sha256": "d52cc86fd6fcf48ef31602e3279272cc60f1d7bc1d11e55b65bdfc18216b67d7",
+   "size": 4626
+  },
+  "data/results/region_mode_agreement_P1.json": {
+   "sha256": "3edbc61a5e4af5ad350673fad369e80db73b1750710397e89a5b9f00bde92d09",
+   "size": 930
+  },
+  "data/results/visibility_calibration_p1.json": {
+   "sha256": "0fe77cad7176de050a5f54dcfb2938810ef5c6c66035a7f00875fabc9a0b5f8e",
+   "size": 2222
+  },
+  "data/training/log_tail.txt": {
+   "sha256": "dd28038de67948ea7ffdca356934839147738ca81836195f0530ea6ac5f9e685",
+   "size": 12160
+  },
+  "data/training/yolov8n_kt_v1_s0/args.yaml": {
+   "sha256": "3c07f942cbad10330f5d6c7789def62a33c4e17d1ddd5f0d7fa0c0d503c9755d",
+   "size": 1844
+  },
+  "data/training/yolov8n_kt_v1_s0/finetune_record.json": {
+   "sha256": "93e2f9de5162a490e77131676f6c59846e793c8a1ba8f37ace29645a5337dc7d",
+   "size": 1686
+  },
+  "data/training/yolov8n_kt_v1_s0/results.csv": {
+   "sha256": "75a5d384c6ecd83a2cce44cde3db3d73f425eaf0c106e9c5422d4878d3bbf62b",
+   "size": 8272
+  },
+  "data/training/yolov8n_kt_v1_s1/args.yaml": {
+   "sha256": "1939054f28e5ee28aea7268f9a8095ce23802bc759f0d09404a59d8b9b92bb56",
+   "size": 1844
+  },
+  "data/training/yolov8n_kt_v1_s1/results.csv": {
+   "sha256": "2ef87292c2b971fb1239e3b5efba21a53aa6f783b4b32d708b4ca79cd107cbd0",
+   "size": 3313
+  },
+  "figures/dp_data_flow_en.png": {
+   "sha256": "a79c2432ba8796f4b52debde72fec91a17bf90417a30a6ce40fe3ca752bfacad",
+   "size": 352968
+  },
+  "figures/dp_recording_area.png": {
+   "sha256": "959b5e223f4e5798e3caf6940fbd006736ff94babc0a51869383bcb72e9c977b",
+   "size": 453486
+  },
+  "figures/kivi_twin_road2_parking_lane.png": {
+   "sha256": "21ce34d87906c539bc04d8c857af9cbba0031776574f6f592e89a1d7c1e560ff",
+   "size": 1126667
+  },
+  "figures/kivi_twin_road39_parking_lane.png": {
+   "sha256": "072b2008660be4f1d0a71473d3d016bcad3eecfdd3be2164c627b4c490ca5348",
+   "size": 884036
+  },
+  "figures/kivi_twin_road39_parking_sign.png": {
+   "sha256": "a203060fccf54cbf988f32203dd2c3c60181b23ade19c4efa8f58371f5d22c30",
+   "size": 791203
+  },
+  "figures/kt_image_regions_p1.png": {
+   "sha256": "fbb127411322719883d0f84c96eff6f952c3a792c69464a8f212132146f35da5",
+   "size": 1290924
+  },
+  "figures/kt_regions_lot_overlay_p5.png": {
+   "sha256": "fc9d0e4c2e48b1722d2ac10e2c065bc5f0be332775206d4ec60b6e35ac120d93",
+   "size": 812241
+  },
+  "figures/kt_regions_road25_overlay_p4.png": {
+   "sha256": "f84337e3a908fca0db89360daf3e3b54a37da78cc5b0be0baad990de63d97d08",
+   "size": 1622284
+  },
+  "figures/kt_regions_road2_overlay_p3.png": {
+   "sha256": "46b4b2218fea06bebf7d7058396345c9ccfeae05d5ee0e5b4fb79e3b2767d692",
+   "size": 1420634
+  },
+  "figures/kt_regions_road39_overlay_p1.png": {
+   "sha256": "17c717d38d699ff6be9996df18c85224b36c60f155cbf25995a35691a854d538",
+   "size": 1327552
+  },
+  "figures/kt_regions_road39_overlay_p2.png": {
+   "sha256": "cd8e0e8da29679e90000ef320f513f4d2db854a86cba9fb352f5e2a4bb484e18",
+   "size": 957945
+  },
+  "figures/kt_stationary_windows_route_a.png": {
+   "sha256": "7283ff5899a678b3415d4c1052c8d89ae495f40648f70f7cccedf78210b7d054",
+   "size": 89748
+  },
+  "figures/kt_visibility_calibration_p1.png": {
+   "sha256": "fee0e727233bdc9936fceae8ff17435b1e990a8574d420368a03b3ab38f07c07",
+   "size": 74411
+  },
+  "figures/kt_windshield_route_a_gt.png": {
+   "sha256": "5e6767d26f86fdf9b920732d0e4758ceb1502c09986f4ef91e1969164f327842",
+   "size": 1134399
+  },
+  "figures/kt_windshield_route_a_stop.png": {
+   "sha256": "1039860bf19c4de5c3b8b7d41c1a7d89b1692bb6e92e5eb4d124a1fc3f5a2915",
+   "size": 1213260
+  }
+ }
+}

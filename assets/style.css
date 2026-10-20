@@ -161,3 +161,25 @@ footer.page { color: var(--muted); font-size: 0.84rem; border-top: 1px solid var
   .table-wrap { max-height: none; }
   .card, .phase, figure.fig { break-inside: avoid; }
 }
+
+/* login gate */
+.login { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1rem;
+  background: radial-gradient(1200px 600px at 20% -10%, var(--accent-soft), transparent 60%), var(--bg); }
+.login-card { width: 100%; max-width: 24rem; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 40px rgba(16, 24, 40, 0.12); padding: 1.6rem 1.5rem 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.login-brand { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; }
+.login-brand h1 { font-size: 1.2rem; margin: 0; }
+.login-brand p { margin: 0; }
+.login-logo { display: inline-flex; width: 2.6rem; height: 2.6rem; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 800; font-size: 1.4rem; align-items: center; justify-content: center; flex: 0 0 auto; }
+.login-card label { font-size: 0.86rem; font-weight: 600; color: var(--muted); margin-top: 0.35rem; }
+.login-card label.check { display: flex; align-items: center; gap: 0.45rem; font-weight: 500; margin-top: 0.5rem; }
+.login-card input[type="text"], .login-card input[type="password"] { width: 100%; font: inherit; font-size: 1rem; padding: 0.6rem 0.7rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+.login-card input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.password-field { position: relative; display: flex; }
+.password-field input { flex: 1 1 auto; padding-right: 4.2rem; }
+.password-field .ghost { position: absolute; right: 0.35rem; top: 50%; transform: translateY(-50%); border: none; background: transparent; color: var(--accent); font: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; padding: 0.3rem 0.5rem; }
+.login-card .primary { margin-top: 0.8rem; font: inherit; font-size: 1rem; font-weight: 600; padding: 0.65rem; border-radius: 8px; border: none; background: var(--accent); color: #fff; cursor: pointer; }
+.login-card .primary[disabled] { opacity: 0.6; cursor: progress; }
+.login-error { min-height: 1.2em; margin: 0.2rem 0 0; color: var(--bad); font-size: 0.9rem; }
+.login-foot { margin: 0.6rem 0 0; }
+.login.hidden { display: none; }
+@media (max-width: 420px) { .login-card { padding: 1.2rem 1rem 1rem; } }

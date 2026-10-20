@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "d8c6207b59f2367f8f3f57b7970edb57f53e509646de62d05fa4abe753fb256c",
-   "size": 58913
+   "sha256": "89b33754cc0a943b66fe30962bb1e332c3c24df4ada9c1504f377cfed19d7299",
+   "size": 60647
   },
   "data/progress_notes.md": {
    "sha256": "ce091d7ec85ce86b3bc16c450e2948c5a1817a1c0aa83005b1bdff90f361b9c8",
@@ -27,6 +27,14 @@
   "data/results/EXP-A_summary.json": {
    "sha256": "bd939537bbe8ce725e2aa053d752e83ab8e7d189672a4f5919512318809cb5b7",
    "size": 38970
+  },
+  "data/results/EXP-B_details.json": {
+   "sha256": "bf9a98d6f78bdf62c444d2b7f77ee986c3a21d492ed6b3259a953f4ca8236dbc",
+   "size": 90771
+  },
+  "data/results/EXP-B_rows.csv": {
+   "sha256": "8f6bb280206873cd066420b2df1e5224e717571236bdbbbd41cadc585f230250",
+   "size": 6273
   },
   "data/results/kt_matrix_manifest.csv": {
    "sha256": "d52cc86fd6fcf48ef31602e3279272cc60f1d7bc1d11e55b65bdfc18216b67d7",

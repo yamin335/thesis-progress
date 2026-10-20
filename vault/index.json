@@ -9,7 +9,7 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "3f12fc121e67d540d5e39959cae7922ae23dc99f00d99197ac6aad0df88fbc48",
+   "sha256": "686c76c1546092545a690e96b5cf07b6ad9c77c812545c42990e556b6947d8aa",
    "size": 46971
   },
   "data/progress_notes.md": {
@@ -33,8 +33,8 @@
    "size": 2222
   },
   "data/training/log_tail.txt": {
-   "sha256": "bc7d1582e82ab4fe6ca6b7108c5e9a0e64ecf138f6ea4fe60a07db9a602db1ac",
-   "size": 11987
+   "sha256": "b1bb39cfdaf62fd5daac420e9c3a62bc9b85f3e8e3e424a636886da1df1c546c",
+   "size": 12031
   },
   "data/training/yolo11n_kt_v1_s0/args.yaml": {
    "sha256": "9be58e5c93aba5b20fed7a302f9fdf6b963b33529deccdc73b2c61965ca04904",
@@ -125,8 +125,8 @@
    "size": 1843
   },
   "data/training/yolo26s_kt_v1_s1/results.csv": {
-   "sha256": "6caeb6d731ca10697b1433f85a31fe12295736df4c3220105c96d54f93067d57",
-   "size": 5224
+   "sha256": "4cc46b0d0f9635f0b642ceda2c28fe1bd7b2f32373794f18cf939610d97eac44",
+   "size": 5873
   },
   "data/training/yolov8n_kt_v1_s0/args.yaml": {
    "sha256": "3c07f942cbad10330f5d6c7789def62a33c4e17d1ddd5f0d7fa0c0d503c9755d",

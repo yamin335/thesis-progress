@@ -353,6 +353,26 @@
     });
   }
 
+  function renderWriting(m) {
+    var w = m.writing;
+    var cards = clear($('writing-cards'));
+    var table = clear($('writing-table'));
+    if (!w) { cards.appendChild(el('div', { class: 'empty', text: 'No manuscript yet.' })); return; }
+    function card(title, big, small, sub) {
+      var c = el('div', { class: 'card' }, [el('h3', { text: title })]);
+      var b = el('div', { class: 'big' }, [document.createTextNode(big)]);
+      if (small) { b.appendChild(el('small', { text: small })); }
+      c.appendChild(b);
+      if (sub) { c.appendChild(el('div', { class: 'sub', text: sub })); }
+      return c;
+    }
+    cards.appendChild(card('Prose written', fmt(w.words_total), 'words', 'LaTeX commands and draft remarks excluded'));
+    cards.appendChild(card('Open draft remarks', fmt(w.open_notes_total), '', 'each marks a passage still to write or check'));
+    cards.appendChild(card('Last built PDF', w.pdf_pages ? fmt(w.pdf_pages) : '–', w.pdf_pages ? 'pages' : '', w.pdf_built ? 'built ' + fmtDate(w.pdf_built) + ' (placeholders included)' : 'not built yet'));
+    cards.appendChild(card('Bibliography entries', fmt(w.bib_entries), '', 'target 25 to 35, each verified before use'));
+    table.appendChild(makeTable(w.chapters, ['title', 'file', 'words', 'open_notes'], { labels: { open_notes: 'open remarks' }, wrap: ['title'] }));
+  }
+
   function renderData(m) {
     var cards = clear($('data-cards'));
     var ds = m.dataset || {};
@@ -626,6 +646,7 @@
     renderOverview(m);
     renderTimeline(m);
     renderPlan(m);
+    renderWriting(m);
     renderData(m);
     renderTraining(m);
     renderExperiments(m);

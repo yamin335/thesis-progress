@@ -568,9 +568,13 @@
   // metric {mean, std, ci95_runs}. That shape gets pivot tables and grouped bar charts; any
   // other summary falls back to the JSON view.
   function renderCellSummary(summary, idPrefix, mount) {
+    // axes: which cell keys form the panel (group), the table rows and the columns; the
+    // default is the model-by-input-size layout of EXP-A, EXP-B uses run-by-t_parked.
+    var axes = summary.axes || {};
+    var GROUP = axes.group || 'view', ROW = axes.row || 'model', COL = axes.col || 'size', UNIT = axes.col_unit === undefined ? ' px' : axes.col_unit;
     var cells = summary.cells;
     var metrics = Object.keys(cells[0]).filter(function (k) { return isPlainObject(cells[0][k]) && 'mean' in cells[0][k]; });
-    var views = []; cells.forEach(function (c) { if (views.indexOf(c.view) < 0) { views.push(c.view); } });
+    var views = []; cells.forEach(function (c) { if (views.indexOf(c[GROUP]) < 0) { views.push(c[GROUP]); } });
     var box = el('div');
     mount.appendChild(box);
     var head = el('div', { class: 'table-tools' });
@@ -580,19 +584,22 @@
     head.appendChild(sel);
     if (summary.ci) { head.appendChild(el('span', { class: 'small muted', text: 'interval: ' + summary.ci })); }
     box.appendChild(head);
+    if (axes.cell_note) { box.appendChild(el('p', { class: 'small muted', text: axes.cell_note })); }
     var panels = el('div', { class: 'grid wide' });
     box.appendChild(panels);
     function draw() {
       clear(panels);
       var metric = sel.value;
       views.forEach(function (view, vi) {
-        var sub = cells.filter(function (c) { return c.view === view; });
+        var sub = cells.filter(function (c) { return c[GROUP] === view; });
         var models = [], sizes = [];
-        sub.forEach(function (c) { if (models.indexOf(c.model) < 0) { models.push(c.model); } if (sizes.indexOf(c.size) < 0) { sizes.push(c.size); } });
+        sub.forEach(function (c) { if (models.indexOf(c[ROW]) < 0) { models.push(c[ROW]); } if (sizes.indexOf(c[COL]) < 0) { sizes.push(c[COL]); } });
         sizes.sort(function (a, b) { return a - b; });
-        var lookup = {}; sub.forEach(function (c) { lookup[c.model + '|' + c.size] = c; });
-        var card = el('div', { class: 'card' }, [el('h3', { text: view + ' (' + (sub[0].runs || '?') + ' runs per cell)' })]);
-        var canvas = el('canvas', { id: idPrefix + '-' + view.replace(/\W+/g, '') + '-chart' });
+        var lookup = {}; sub.forEach(function (c) { lookup[c[ROW] + '|' + c[COL]] = c; });
+        var runsPerCell = sub.map(function (c) { return c.runs; }).filter(function (r) { return typeof r === 'number'; });
+        var runsText = runsPerCell.length ? (Math.min.apply(null, runsPerCell) === Math.max.apply(null, runsPerCell) ? runsPerCell[0] + ' runs per cell' : Math.min.apply(null, runsPerCell) + ' to ' + Math.max.apply(null, runsPerCell) + ' runs per cell') : '';
+        var card = el('div', { class: 'card' }, [el('h3', { text: String(view) + (runsText ? ' (' + runsText + ')' : '') })]);
+        var canvas = el('canvas', { id: idPrefix + '-' + String(view).replace(/\W+/g, '') + '-chart' });
         card.appendChild(el('div', { class: 'chart short' }, [canvas]));
         function cellText(c) {
           if (!c || !c[metric] || typeof c[metric].mean !== 'number') { return ''; }
@@ -600,23 +607,27 @@
           return c[metric].mean.toFixed(3) + (ci && ci.length === 2 ? ' [' + ci[0].toFixed(2) + ', ' + ci[1].toFixed(2) + ']' : '');
         }
         var rows = models.map(function (mdl) {
-          var r = { model: mdl };
-          sizes.forEach(function (sz) { r[sz + ' px'] = cellText(lookup[mdl + '|' + sz]); });
+          var r = {}; r[ROW] = mdl;
+          sizes.forEach(function (sz) { r[sz + UNIT] = cellText(lookup[mdl + '|' + sz]); });
           return r;
         });
-        card.appendChild(makeTable(rows, ['model'].concat(sizes.map(function (sz) { return sz + ' px'; })), { labels: { model: 'mean [95 % CI over runs]' } }));
+        var rowLabels = {}; rowLabels[ROW] = ROW + ' \u00b7 mean [95 % CI over runs]';
+        card.appendChild(makeTable(rows, [ROW].concat(sizes.map(function (sz) { return sz + UNIT; })), { labels: rowLabels }));
         panels.appendChild(card);
         barChart(canvas, models, sizes.map(function (sz, si) {
-          return { label: sz + ' px', backgroundColor: PALETTE[si % PALETTE.length], data: models.map(function (mdl) { var c = lookup[mdl + '|' + sz]; return c && c[metric] ? c[metric].mean : null; }) };
+          return { label: COL + ' ' + sz + UNIT, backgroundColor: PALETTE[si % PALETTE.length], data: models.map(function (mdl) { var c = lookup[mdl + '|' + sz]; return c && c[metric] ? c[metric].mean : null; }) };
         }), { yTitle: metric, legend: true });
       });
     }
     sel.addEventListener('change', draw);
     draw();
-    if (summary.best_by_f1) {
-      var best = Object.keys(summary.best_by_f1).map(function (v) { var b = summary.best_by_f1[v]; return v + ': ' + b.model + ' at ' + b.size + ' px (F1 ' + fmt(b.F1, 3) + ')'; });
-      box.appendChild(el('p', { class: 'small', style: 'margin-top:0.6rem' }, [el('strong', { text: 'Best by F1: ' }), document.createTextNode(best.join(' · '))]));
-    }
+    Object.keys(summary).filter(function (k) { return k.indexOf('best_by_') === 0 && isPlainObject(summary[k]); }).forEach(function (k) {
+      var best = Object.keys(summary[k]).map(function (v) {
+        var b = summary[k][v];
+        return v + ': ' + Object.keys(b).map(function (f) { return f + ' ' + (typeof b[f] === 'number' ? fmt(b[f], 3) : b[f]); }).join(', ');
+      });
+      box.appendChild(el('p', { class: 'small', style: 'margin-top:0.6rem' }, [el('strong', { text: k.replace('best_by_', 'best by ').replace(/_/g, ' ') + ': ' }), document.createTextNode(best.join(' · '))]));
+    });
   }
 
   // ------------------------------------------------------------------ experiments
@@ -746,7 +757,7 @@
           if (summary.description) { sumCard.appendChild(el('p', { class: 'small muted', text: summary.description + (summary.settings ? ' Settings: ' + summary.settings : '') })); }
           if (Array.isArray(summary.cells) && summary.cells.length && isPlainObject(summary.cells[0]) && 'view' in summary.cells[0]) {
             renderCellSummary(summary, id.toLowerCase(), sumCard);
-            var rest = {}; Object.keys(summary).forEach(function (k) { if (['cells', 'description', 'settings', 'best_by_f1'].indexOf(k) < 0) { rest[k] = summary[k]; } });
+            var rest = {}; Object.keys(summary).forEach(function (k) { if (['cells', 'description', 'settings', 'axes'].indexOf(k) < 0 && k.indexOf('best_by_') !== 0) { rest[k] = summary[k]; } });
             var more = el('details', { class: 'json', style: 'margin-top:0.6rem' }, [el('summary', { text: 'Other summary fields' })]);
             more.appendChild(jsonRoot(rest));
             sumCard.appendChild(more);

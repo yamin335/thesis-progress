@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-10-21 (page version `v=20261021c`, collector 1.4).
+State of the progress dashboard as of 2026-10-21 (page version `v=20261021d`, collector 1.4).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -79,9 +79,11 @@ Conventions every experiment script must follow (also in the thesis repository's
 `exp_<x>_summary.json`, figures `docs/figures/exp_<x>_*.png`, sweep log `exp_<x>.log`.
 
 The summary "cells" shape that gets pivot tables and charts:
-`{ cells: [ { view, model, size, runs, <metric>: {mean, std, ci95_runs: [lo, hi]}, ... , per_run{} } ],
-best_by_f1{view: {model, size, F1}}, description, settings, ci }`. Any other JSON summary is shown
-as a tree.
+`{ cells: [ { <group>, <row>, <col>, runs, <metric>: {mean, std, ci95_runs: [lo, hi]}, ... } ],
+axes: {group, row, col, col_unit, cell_note}   (default group "view", row "model", col "size", unit " px"),
+best_by_<x>{group: {field: value}}, description, settings, ci }`. EXP-A uses the default axes,
+EXP-B `{group: "view", row: "run", col: "t_parked", col_unit: " s"}`. Every `best_by_*` object is
+printed as a line under the tables. Any other JSON summary is shown as a tree.
 
 ## 4. Page structure (`index.html` ids ↔ renderers in `assets/app.js`)
 
@@ -204,3 +206,4 @@ summary charts drawn, models, figures, commits.
   record, app bundle from the app's `models.json`); collector 1.4. Then: the two weight tables side
   by side, the app bundle full width underneath (`v=20261021c`). The stale loop republished the
   old manifest once (empty app table); the loop now restarts itself on source changes (1.4.1).
+* 2026-10-21 (EXP-B): summary renderer reads `axes` so other row/column keys work (`v=20261021d`).

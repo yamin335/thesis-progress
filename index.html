@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <title>Parked Vehicles Thesis: Progress</title>
 <meta name="description" content="Progress of the master's thesis 'Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data' (THI). Access restricted.">
-<link rel="stylesheet" href="assets/style.css?v=20261020c">
+<link rel="stylesheet" href="assets/style.css?v=20261020d">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%232b6cb0'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='white' font-family='Arial'%3EP%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -109,9 +109,11 @@
   </section>
 
   <section class="block" id="experiments">
-    <header><h2>Experiments and results</h2><p>The pre-registered experiments EXP-A to EXP-J and every result file in <code>experiments/results/</code>, shown as sortable tables and, where the data allows, as charts.</p></header>
-    <div id="experiment-table"></div>
-    <div id="result-files" style="margin-top:1rem"></div>
+    <header><h2>Experiments and results</h2><p>The pre-registered experiments EXP-A to EXP-J, one group each: summary tables and charts, figures, the result rows of <code>all_results.csv</code> as a sortable table, and every per-row result record as an expandable item. Files that belong to no single experiment follow at the end.</p></header>
+    <div class="grid exp-cards" id="experiment-cards"></div>
+    <div id="experiment-groups" style="margin-top:1rem"></div>
+    <h3 style="margin-top:1.4rem">Other result files</h3>
+    <div id="other-results"></div>
   </section>
 
   <section class="block" id="models">
@@ -140,6 +142,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
-<script src="assets/app.js?v=20261020c"></script>
+<script src="assets/app.js?v=20261020d"></script>
 </body>
 </html>

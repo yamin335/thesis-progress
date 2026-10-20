@@ -142,6 +142,36 @@ figure.fig figcaption .small { display: block; margin-top: 0.2rem; }
 .md h1 { font-size: 1.1rem; }
 .md h2 { font-size: 1rem; }
 
+/* experiment groups and JSON view */
+.exp-cards { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+a.exp-card { text-decoration: none; color: inherit; display: block; padding: 0.7rem 0.8rem; }
+a.exp-card:hover { border-color: var(--accent); }
+.exp-card-head { display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.2rem; }
+details.exp { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 0.8rem; box-shadow: var(--shadow); }
+details.exp > summary { cursor: pointer; padding: 0.75rem 1rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 1rem; list-style: none; }
+details.exp > summary::-webkit-details-marker { display: none; }
+details.exp > summary::before { content: "▸"; color: var(--muted); font-size: 0.9rem; margin-right: -0.4rem; }
+details.exp[open] > summary::before { content: "▾"; }
+details.exp > summary .exp-title { flex: 1 1 auto; font-size: 1rem; }
+details.exp > summary .exp-meta { display: flex; align-items: center; gap: 0.6rem; }
+details.exp .exp-body { padding: 0 1rem 1rem; display: grid; gap: 0.8rem; }
+details.exp .exp-body > .card { background: var(--bg); box-shadow: none; }
+details.exp.planned > summary, details.exp.file > summary { padding: 0.55rem 1rem; }
+details.exp-details > summary { cursor: pointer; list-style: none; }
+details.exp-details > summary::-webkit-details-marker { display: none; }
+.json-root { font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; }
+details.json { margin: 0.1rem 0 0.1rem 0; padding-left: 0.2rem; border-left: 1px solid var(--line); }
+details.json > summary { cursor: pointer; list-style: none; padding: 0.05rem 0.3rem; border-radius: 4px; }
+details.json > summary::-webkit-details-marker { display: none; }
+details.json > summary::before { content: "▸ "; color: var(--muted); }
+details.json[open] > summary::before { content: "▾ "; }
+details.json > summary:hover { background: var(--accent-soft); }
+details.json > :not(summary) { margin-left: 1rem; }
+.json-leaf { padding: 0 0.3rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.json-key { color: var(--accent); font-weight: 600; }
+.json-val { color: var(--ink); overflow-wrap: anywhere; }
+.json-root .table-wrap { max-height: 22rem; font-family: var(--font); margin: 0.3rem 0; }
+
 .empty { border: 1px dashed var(--line); border-radius: var(--radius); padding: 1rem; color: var(--muted); background: transparent; }
 .commits { list-style: none; margin: 0; padding: 0; }
 .commits li { display: grid; grid-template-columns: 5.2rem 1fr auto; gap: 0.6rem; padding: 0.35rem 0; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
@@ -155,6 +185,8 @@ footer.page { color: var(--muted); font-size: 0.84rem; border-top: 1px solid var
   .commits li { grid-template-columns: 1fr; gap: 0.1rem; }
   .chart { height: 260px; }
   .grid.wide { grid-template-columns: 1fr; }
+  .exp-cards { grid-template-columns: repeat(2, 1fr); }
+  details.exp .exp-body { padding: 0 0.6rem 0.8rem; }
 }
 @media print {
   .topbar, .theme-toggle, .table-tools { display: none; }

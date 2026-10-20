@@ -172,7 +172,10 @@ Phone width (≤ 640 px): single-column grids, two-column experiment cards.
 6. **The fixed 33-column result schema** is not the page's business, but the per-experiment row
    file is a verbatim subset of `all_results.csv`; new columns appear automatically, new
    experiments need no page change as long as the file conventions in §3 are followed.
-7. **Ids are the contract**: every id the script looks up must exist in `index.html`; the check
+7. **A running collector loop is stale after an edit**: `--every` loops now re-execute themselves
+   when `publish_progress.py` changes on disk (collector 1.4.1); before that, an edited collector
+   had to be restarted by hand or the old process overwrote the new manifest on its next cycle.
+8. **Ids are the contract**: every id the script looks up must exist in `index.html`; the check
    script cross-references them.
 
 ## 7. Checks before publishing
@@ -199,4 +202,5 @@ summary charts drawn, models, figures, commits.
   marker on the records block, `tools/check_page.py`, this document.
 * 2026-10-21 (later): Models section as three stacked tables (pretrained, fine-tuned with training
   record, app bundle from the app's `models.json`); collector 1.4. Then: the two weight tables side
-  by side, the app bundle full width underneath (`v=20261021c`).
+  by side, the app bundle full width underneath (`v=20261021c`). The stale loop republished the
+  old manifest once (empty app table); the loop now restarts itself on source changes (1.4.1).

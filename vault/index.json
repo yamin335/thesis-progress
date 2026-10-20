@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "c2ecfe543f01e72ac274fa79e2556c49c5578b9b8ed9fa9fa711f9f495b746f6",
-   "size": 41952
+   "sha256": "70df5d089a3c2dc17a6f69a49a7f0096fddd8e5dd652d2b4db8650aec8fdb154",
+   "size": 42720
   },
   "data/progress_notes.md": {
    "sha256": "3edfd318fde5c5652222c6d69d24095a6e6629c4ef686233d58fa8cbb39c26cd",
@@ -29,8 +29,8 @@
    "size": 2222
   },
   "data/training/log_tail.txt": {
-   "sha256": "016fc4c446d8faeff1e9173a2945c2a3d92d2bbe1561a7d055c3c5742de9bc8c",
-   "size": 12020
+   "sha256": "83991d6118a41a26954d488aa3d435434825c79d0d698bf0703cbed355220252",
+   "size": 11559
   },
   "data/training/yolo11n_kt_v1_s0/args.yaml": {
    "sha256": "9be58e5c93aba5b20fed7a302f9fdf6b963b33529deccdc73b2c61965ca04904",
@@ -96,9 +96,21 @@
    "sha256": "cf321134f37721f71fceca74b1472f48753e9f965da57a359d489fdd41cbf5fb",
    "size": 1844
   },
+  "data/training/yolo26n_kt_v1_s2/finetune_record.json": {
+   "sha256": "51c04415d0a006487da8b6e23a10fcdb80e12178da998932f6c04dc0bc080f3f",
+   "size": 1702
+  },
   "data/training/yolo26n_kt_v1_s2/results.csv": {
-   "sha256": "f862c8523d5212a89890d629851c5a1c5629fa256a91a5d84c76ec1ccf684454",
-   "size": 7488
+   "sha256": "603cfa0cb550bfb9e64f1f5825be8e1831f8655fe3739f3913a08549e65f853f",
+   "size": 8288
+  },
+  "data/training/yolo26s_kt_v1_s0/args.yaml": {
+   "sha256": "d1a6cdd41dd5ff2b4e27432819a205303e370fbbea5a9499efac52954d0e134d",
+   "size": 1843
+  },
+  "data/training/yolo26s_kt_v1_s0/results.csv": {
+   "sha256": "8fc06b89d6655703cbf7b4f7d03da19a479ede2545221ba27f64754910dc18ec",
+   "size": 399
   },
   "data/training/yolov8n_kt_v1_s0/args.yaml": {
    "sha256": "3c07f942cbad10330f5d6c7789def62a33c4e17d1ddd5f0d7fa0c0d503c9755d",

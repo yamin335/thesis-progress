@@ -152,13 +152,15 @@ details.exp > summary { cursor: pointer; padding: 0.75rem 1rem; display: flex; f
 details.exp > summary::-webkit-details-marker { display: none; }
 details.exp > summary::before { content: "▸"; color: var(--muted); font-size: 0.9rem; margin-right: -0.4rem; }
 details.exp[open] > summary::before { content: "▾"; }
-details.exp > summary .exp-title { flex: 1 1 auto; font-size: 1rem; }
-details.exp > summary .exp-meta { display: flex; align-items: center; gap: 0.6rem; }
+details.exp > summary .exp-title { flex: 1 1 auto; font-size: 1rem; display: inline-block; }
+details.exp > summary .exp-meta { display: inline-flex; align-items: center; gap: 0.6rem; }
 details.exp .exp-body { padding: 0 1rem 1rem; display: grid; gap: 0.8rem; }
 details.exp .exp-body > .card { background: var(--bg); box-shadow: none; }
 details.exp.planned > summary, details.exp.file > summary { padding: 0.55rem 1rem; }
-details.exp-details > summary { cursor: pointer; list-style: none; }
+details.exp-details > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 details.exp-details > summary::-webkit-details-marker { display: none; }
+details.exp-details > summary::before { content: "▸"; color: var(--muted); }
+details.exp-details[open] > summary::before { content: "▾"; }
 .json-root { font-family: var(--mono); font-size: 0.82rem; line-height: 1.6; }
 details.json { margin: 0.1rem 0 0.1rem 0; padding-left: 0.2rem; border-left: 1px solid var(--line); }
 details.json > summary { cursor: pointer; list-style: none; padding: 0.05rem 0.3rem; border-radius: 4px; }

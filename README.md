@@ -43,3 +43,8 @@ password; the credentials live only on the author's machine and in the heads of 
 
 Cache busting: `index.html` loads `assets/app.js?v=...` and `assets/style.css?v=...`; bump the `v=` value
 whenever those files change, otherwise browsers may run a stale script against a new page.
+
+Developing the page: `ARCHITECTURE.md` describes the data flow, the manifest schema, every section
+with its element ids and renderers, and the rules that are easy to break. Run
+`tools/check_page.py` (JavaScript parse, id cross-check, asset versions, CSP) before every commit
+that touches `index.html` or `assets/`.

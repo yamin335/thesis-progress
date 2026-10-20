@@ -29,6 +29,8 @@
         else if (key === 'html') { node.innerHTML = attrs[key]; }
         else if (key === 'text') { node.textContent = attrs[key]; }
         else if (key.indexOf('on') === 0) { node.addEventListener(key.slice(2), attrs[key]); }
+        else if (attrs[key] === null || attrs[key] === undefined || attrs[key] === false) { /* absent attribute */ }
+        else if (attrs[key] === true) { node.setAttribute(key, ''); }
         else { node.setAttribute(key, attrs[key]); }
       });
     }
@@ -104,7 +106,8 @@
   }
   function downloadDecrypted(path) {
     fetchText(path).then(function (text) {
-      var url = URL.createObjectURL(new Blob([text], { type: 'text/csv' }));
+      var type = /\.json$/i.test(path) ? 'application/json' : (/\.md$/i.test(path) ? 'text/markdown' : 'text/csv');
+      var url = URL.createObjectURL(new Blob([text], { type: type }));
       var a = el('a', { href: url, download: path.split('/').pop() });
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
@@ -143,9 +146,12 @@
     Chart.defaults.plugins.legend.labels.boxWidth = 12;
     Chart.defaults.maintainAspectRatio = false;
   }
-  function makeChart(id, config) {
-    var canvas = $(id);
+  function makeChart(target, config) {
+    // target: a canvas element or the id of one. Charts are registered by id so a re-render
+    // destroys the previous instance instead of stacking two on the same canvas.
+    var canvas = typeof target === 'string' ? $(target) : target;
     if (!canvas || !window.Chart) { return null; }
+    var id = canvas.id || ('chart-' + Math.random().toString(36).slice(2));
     if (state.charts[id]) { state.charts[id].destroy(); }
     state.charts[id] = new Chart(canvas.getContext('2d'), config);
     return state.charts[id];
@@ -345,8 +351,7 @@
     var box = clear($('phase-list'));
     (m.plan.phases || []).forEach(function (phase, index) {
       var pct = phase.total ? Math.round(100 * phase.done / phase.total) : 0;
-      var details = el('details', { class: 'phase', open: index === 0 ? '' : null });
-      if (index !== 0) { details.removeAttribute('open'); }
+      var details = el('details', { class: 'phase', open: index === 0 });
       var summary = el('summary', null, [
         el('strong', { text: phase.title }),
         el('span', { class: 'small muted', text: phase.done + ' / ' + phase.total + ' done' }),
@@ -534,7 +539,7 @@
         var shown = value.slice(0, 24).map(scalarText).join(', ') + (value.length > 24 ? ', … (' + value.length + ' items)' : '');
         return el('div', { class: 'json-leaf' }, [el('span', { class: 'json-key', text: label }), el('span', { class: 'json-val', text: '[' + shown + ']' })]);
       }
-      var det = el('details', { class: 'json', open: depth === 0 ? 'open' : null }, [el('summary', null, [el('span', { class: 'json-key', text: label }), el('span', { class: 'muted small', text: ' list of ' + value.length })])]);
+      var det = el('details', { class: 'json', open: depth === 0 }, [el('summary', null, [el('span', { class: 'json-key', text: label }), el('span', { class: 'muted small', text: ' list of ' + value.length })])]);
       if (uniformObjects(value)) {
         det.appendChild(makeTable(value, null, { limit: 500 }));
       } else {
@@ -544,7 +549,7 @@
     }
     if (isPlainObject(value)) {
       var keys = Object.keys(value);
-      var block = el('details', { class: 'json', open: depth === 0 ? 'open' : null }, [el('summary', null, [el('span', { class: 'json-key', text: label }), el('span', { class: 'muted small', text: ' ' + keys.length + ' fields' })])]);
+      var block = el('details', { class: 'json', open: depth === 0 }, [el('summary', null, [el('span', { class: 'json-key', text: label }), el('span', { class: 'muted small', text: ' ' + keys.length + ' fields' })])]);
       keys.forEach(function (k) { block.appendChild(jsonView(value[k], k, depth + 1)); });
       return block;
     }
@@ -562,11 +567,12 @@
   // "cells", each with a grouping key (view), a row key (model), a column key (size) and per
   // metric {mean, std, ci95_runs}. That shape gets pivot tables and grouped bar charts; any
   // other summary falls back to the JSON view.
-  function renderCellSummary(summary, idPrefix) {
+  function renderCellSummary(summary, idPrefix, mount) {
     var cells = summary.cells;
     var metrics = Object.keys(cells[0]).filter(function (k) { return isPlainObject(cells[0][k]) && 'mean' in cells[0][k]; });
     var views = []; cells.forEach(function (c) { if (views.indexOf(c.view) < 0) { views.push(c.view); } });
     var box = el('div');
+    mount.appendChild(box);
     var head = el('div', { class: 'table-tools' });
     var sel = el('select', { class: 'metric' });
     metrics.forEach(function (mt) { sel.appendChild(el('option', { value: mt, text: mt })); });
@@ -586,17 +592,22 @@
         sizes.sort(function (a, b) { return a - b; });
         var lookup = {}; sub.forEach(function (c) { lookup[c.model + '|' + c.size] = c; });
         var card = el('div', { class: 'card' }, [el('h3', { text: view + ' (' + (sub[0].runs || '?') + ' runs per cell)' })]);
-        var canvasId = idPrefix + '-' + view.replace(/\W+/g, '') + '-chart';
-        card.appendChild(el('div', { class: 'chart short' }, [el('canvas', { id: canvasId })]));
+        var canvas = el('canvas', { id: idPrefix + '-' + view.replace(/\W+/g, '') + '-chart' });
+        card.appendChild(el('div', { class: 'chart short' }, [canvas]));
+        function cellText(c) {
+          if (!c || !c[metric] || typeof c[metric].mean !== 'number') { return ''; }
+          var ci = c[metric].ci95_runs;
+          return c[metric].mean.toFixed(3) + (ci && ci.length === 2 ? ' [' + ci[0].toFixed(2) + ', ' + ci[1].toFixed(2) + ']' : '');
+        }
         var rows = models.map(function (mdl) {
           var r = { model: mdl };
-          sizes.forEach(function (sz) { var c = lookup[mdl + '|' + sz]; r[sz + ' px'] = c ? c[metric].mean.toFixed(3) + ' [' + c[metric].ci95_runs[0].toFixed(2) + ', ' + c[metric].ci95_runs[1].toFixed(2) + ']' : ''; });
+          sizes.forEach(function (sz) { r[sz + ' px'] = cellText(lookup[mdl + '|' + sz]); });
           return r;
         });
         card.appendChild(makeTable(rows, ['model'].concat(sizes.map(function (sz) { return sz + ' px'; })), { labels: { model: 'mean [95 % CI over runs]' } }));
         panels.appendChild(card);
-        barChart(canvasId, models, sizes.map(function (sz, si) {
-          return { label: sz + ' px', backgroundColor: PALETTE[si % PALETTE.length], data: models.map(function (mdl) { var c = lookup[mdl + '|' + sz]; return c ? c[metric].mean : null; }) };
+        barChart(canvas, models, sizes.map(function (sz, si) {
+          return { label: sz + ' px', backgroundColor: PALETTE[si % PALETTE.length], data: models.map(function (mdl) { var c = lookup[mdl + '|' + sz]; return c && c[metric] ? c[metric].mean : null; }) };
         }), { yTitle: metric, legend: true });
       });
     }
@@ -606,7 +617,6 @@
       var best = Object.keys(summary.best_by_f1).map(function (v) { var b = summary.best_by_f1[v]; return v + ': ' + b.model + ' at ' + b.size + ' px (F1 ' + fmt(b.F1, 3) + ')'; });
       box.appendChild(el('p', { class: 'small', style: 'margin-top:0.6rem' }, [el('strong', { text: 'Best by F1: ' }), document.createTextNode(best.join(' · '))]));
     }
-    return box;
   }
 
   // ------------------------------------------------------------------ experiments
@@ -616,7 +626,7 @@
     var p = map[status] || [status, 'gray'];
     return pill(p[0], p[1], status === 'running' || live);
   }
-  function csvChartControls(rows, canvasId) {
+  function csvChartControls(rows, canvasId, mount) {
     var cols = Object.keys(rows[0]).filter(function (c) { return rows.some(function (r) { return r[c] !== '' && r[c] !== null && r[c] !== undefined; }); });
     var numericCols = cols.filter(function (c) { return rows.every(function (r) { return r[c] === '' || r[c] === null || r[c] === undefined || typeof r[c] === 'number'; }) && rows.some(function (r) { return typeof r[c] === 'number'; }); });
     var catCols = cols.filter(function (c) { return numericCols.indexOf(c) < 0; }).filter(function (c) { var u = {}; rows.forEach(function (r) { u[r[c]] = 1; }); var n = Object.keys(u).length; return n > 1 && n <= 40; });
@@ -632,15 +642,17 @@
     controls.appendChild(ySel);
     controls.appendChild(el('span', { class: 'small muted', text: 'grouped by' }));
     controls.appendChild(xSel);
-    var wrap = el('div', null, [controls, el('div', { class: 'chart short' }, [el('canvas', { id: canvasId })])]);
+    var canvas = el('canvas', { id: canvasId });
+    var wrap = el('div', null, [controls, el('div', { class: 'chart short' }, [canvas])]);
+    mount.appendChild(wrap);
     var draw = function () {
       var groups = {};
       rows.forEach(function (r) { if (typeof r[ySel.value] === 'number') { (groups[r[xSel.value]] = groups[r[xSel.value]] || []).push(r[ySel.value]); } });
       var labels = Object.keys(groups);
-      barChart(canvasId, labels, [{ label: 'mean ' + ySel.value, data: labels.map(function (k) { return meanStd(groups[k]).mean; }), backgroundColor: labels.map(function (_, i) { return PALETTE[i % PALETTE.length]; }) }], { yTitle: ySel.value });
+      barChart(canvas, labels, [{ label: 'mean ' + ySel.value, data: labels.map(function (k) { return meanStd(groups[k]).mean; }), backgroundColor: labels.map(function (_, i) { return PALETTE[i % PALETTE.length]; }) }], { yTitle: ySel.value });
     };
     xSel.onchange = draw; ySel.onchange = draw;
-    setTimeout(draw, 0);
+    draw();
     return wrap;
   }
   function figureStrip(names, m) {
@@ -655,14 +667,31 @@
     });
     return grid;
   }
-  function renderExperimentGroup(exp, m, index) {
-    var open = exp.status === 'running' || (exp.status !== 'planned' && index === 0);
-    var det = el('details', { class: 'exp', open: open ? 'open' : null, id: 'exp-' + exp.id });
-    var head = el('summary', null, [
-      el('div', { class: 'exp-title' }, [el('strong', { text: exp.id }), document.createTextNode(' ' + exp.name)]),
-      el('div', { class: 'exp-meta' }, [statusPill(exp.status), el('span', { class: 'muted small', text: (exp.rows ? exp.rows + ' result rows' : 'no rows yet') + (exp.updated ? ' · ' + fmtDate(exp.updated) : '') })])
-    ]);
-    det.appendChild(head);
+  // Which experiment groups and file cards the reader has open; survives the periodic re-render
+  // (a new manifest rebuilds the DOM) and the theme toggle. Keyed by element id.
+  var openGroups = {};
+  function groupSummary(titleNodes, metaNodes) {
+    return el('summary', null, [el('span', { class: 'exp-title' }, titleNodes), el('span', { class: 'exp-meta' }, metaNodes)]);
+  }
+  function lazyDetails(det, loader) {
+    // Load the heavy content of a <details> the first time it is opened; remember the state.
+    var loaded = false;
+    function run() { if (!loaded) { loaded = true; loader(); } }
+    det.addEventListener('toggle', function () {
+      if (det.id) { openGroups[det.id] = det.open; }
+      if (det.open) { run(); }
+    });
+    if (det.open) { run(); }
+    return det;
+  }
+  function renderExperimentGroup(exp, m, defaultOpen) {
+    var id = 'exp-' + exp.id;
+    var open = id in openGroups ? openGroups[id] : defaultOpen;
+    var det = el('details', { class: 'exp', id: id, open: open });
+    det.appendChild(groupSummary(
+      [el('strong', { text: exp.id }), document.createTextNode(' ' + exp.name)],
+      [statusPill(exp.status), el('span', { class: 'muted small', text: (exp.rows ? exp.rows + ' result rows' : 'no rows yet') + (exp.updated ? ' · ' + fmtDate(exp.updated) : '') })]
+    ));
     var body = el('div', { class: 'exp-body' });
     det.appendChild(body);
     var dl = el('dl', { class: 'kv' });
@@ -673,60 +702,23 @@
     if (exp.log_tail && exp.log_tail.length && exp.status === 'running') {
       body.appendChild(el('div', { class: 'card' }, [el('h3', { text: 'Sweep log (tail)' }), el('pre', { text: exp.log_tail.join('\n') })]));
     }
-    if (exp.summary_file) {
-      var sumCard = el('div', { class: 'card' }, [el('h3', null, [document.createTextNode('Summary '), el('span', { class: 'muted small', text: exp.summary_file.split('/').pop() })])]);
-      body.appendChild(sumCard);
-      fetchJSON(exp.summary_file).then(function (summary) {
-        if (summary.description) { sumCard.appendChild(el('p', { class: 'small muted', text: summary.description + (summary.settings ? ' Settings: ' + summary.settings : '') })); }
-        if (Array.isArray(summary.cells) && summary.cells.length && 'view' in summary.cells[0]) {
-          sumCard.appendChild(renderCellSummary(summary, 'exp-' + exp.id.toLowerCase()));
-          var rest = {}; Object.keys(summary).forEach(function (k) { if (['cells', 'description', 'settings', 'best_by_f1'].indexOf(k) < 0) { rest[k] = summary[k]; } });
-          var more = el('details', { class: 'json', style: 'margin-top:0.6rem' }, [el('summary', { text: 'Other summary fields' })]);
-          more.appendChild(jsonRoot(rest));
-          sumCard.appendChild(more);
-        } else {
-          sumCard.appendChild(jsonRoot(summary));
-        }
-      }).catch(function (err) { sumCard.appendChild(el('div', { class: 'empty small', text: 'Could not load: ' + err.message })); });
-    }
+    var sumCard = exp.summary_file ? el('div', { class: 'card' }, [el('h3', null, [document.createTextNode('Summary '), el('span', { class: 'muted small', text: exp.summary_file.split('/').pop() })])]) : null;
+    if (sumCard) { body.appendChild(sumCard); }
     if (exp.figures && exp.figures.length) {
       var strip = figureStrip(exp.figures, m);
       if (strip) { body.appendChild(el('div', { class: 'card' }, [el('h3', { text: 'Figures' }), strip])); }
     }
-    if (exp.rows_file) {
-      var rowsCard = el('div', { class: 'card' }, [el('h3', null, [document.createTextNode('Result rows '), el('span', { class: 'muted small', text: exp.rows + ' rows of all_results.csv' })])]);
-      body.appendChild(rowsCard);
-      fetchCSV(exp.rows_file).then(function (rows) {
-        if (!rows.length) { rowsCard.appendChild(el('div', { class: 'empty small', text: 'Empty file.' })); return; }
-        var chart = csvChartControls(rows, 'exp-' + exp.id.toLowerCase() + '-rows-chart');
-        if (chart) { rowsCard.appendChild(chart); }
-        var allCols = Object.keys(rows[0]);
-        var shortCols = SHORT_COLUMNS.filter(function (c) { return allCols.indexOf(c) >= 0; });
-        var holder = el('div');
-        var toggle = el('label', { class: 'small muted', style: 'display:inline-flex;gap:0.35rem;align-items:center;margin:0.3rem 0' }, [el('input', { type: 'checkbox' }), document.createTextNode('show all ' + allCols.length + ' columns')]);
-        rowsCard.appendChild(toggle);
-        rowsCard.appendChild(holder);
-        var short = rows.map(function (r) { var o = {}; allCols.forEach(function (c) { o[c] = c === 'experiment_id' ? String(r[c]).replace(exp.id + '-', '') : r[c]; }); return o; });
-        function drawTable() {
-          clear(holder);
-          var full = toggle.querySelector('input').checked;
-          holder.appendChild(makeTable(short, full ? allCols : shortCols, { download: exp.rows_file, wrap: ['notes', 'experiment_name'], labels: { experiment_id: 'row (model-size-run)', average_inference_time_ms: 'ms/frame' } }));
-        }
-        toggle.querySelector('input').addEventListener('change', drawTable);
-        drawTable();
-      }).catch(function (err) { rowsCard.appendChild(el('div', { class: 'empty small', text: 'Could not load: ' + err.message })); });
-    }
+    var rowsCard = exp.rows_file ? el('div', { class: 'card' }, [el('h3', null, [document.createTextNode('Result rows '), el('span', { class: 'muted small', text: exp.rows + ' rows of all_results.csv' })])]) : null;
+    if (rowsCard) { body.appendChild(rowsCard); }
     if (exp.details_file) {
-      var detCard = el('details', { class: 'card exp-details' }, [el('summary', null, [el('h3', { style: 'display:inline', text: 'Per-row result records' }), el('span', { class: 'muted small', text: ' ' + exp.details + ' result.json files, expand to browse' })])]);
+      var detId = id + '-records';
+      var detCard = el('details', { class: 'card exp-details', id: detId, open: !!openGroups[detId] }, [el('summary', null, [el('strong', { text: 'Per-row result records' }), el('span', { class: 'muted small', text: ' ' + exp.details + ' result.json files, expand to browse' })])]);
       body.appendChild(detCard);
-      var loaded = false;
-      detCard.addEventListener('toggle', function () {
-        if (!detCard.open || loaded) { return; }
-        loaded = true;
+      lazyDetails(detCard, function () {
         var list = el('div', { class: 'json-root' });
         detCard.appendChild(list);
         fetchJSON(exp.details_file).then(function (bundle) {
-          var filter = el('input', { type: 'search', placeholder: 'Filter records…' });
+          var filter = el('input', { type: 'search', placeholder: 'Filter records…', 'aria-label': 'Filter records' });
           list.appendChild(el('div', { class: 'table-tools' }, [filter, el('span', { class: 'muted small', text: Object.keys(bundle).length + ' records' })]));
           var items = el('div');
           list.appendChild(items);
@@ -736,11 +728,10 @@
             Object.keys(bundle).sort().forEach(function (name) {
               if (needle && name.toLowerCase().indexOf(needle) < 0) { return; }
               var rec = bundle[name];
-              var row = rec.row || {};
+              var row = (rec && rec.row) || {};
               var brief = ['f1_score', 'precision', 'recall', 'map_score'].filter(function (k) { return typeof row[k] === 'number'; }).map(function (k) { return k.replace('_score', '') + ' ' + row[k].toFixed(3); }).join(' · ');
               var item = el('details', { class: 'json' }, [el('summary', null, [el('span', { class: 'json-key', text: name.replace(exp.id + '-', '') }), el('span', { class: 'muted small', text: ' ' + brief })])]);
-              var filled = false;
-              item.addEventListener('toggle', function () { if (item.open && !filled) { filled = true; item.appendChild(jsonRoot(rec)); } });
+              lazyDetails(item, function () { item.appendChild(jsonRoot(rec)); });
               items.appendChild(item);
             });
           }
@@ -749,7 +740,42 @@
         }).catch(function (err) { list.appendChild(el('div', { class: 'empty small', text: 'Could not load: ' + err.message })); });
       });
     }
-    return det;
+    return lazyDetails(det, function () {
+      if (sumCard) {
+        fetchJSON(exp.summary_file).then(function (summary) {
+          if (summary.description) { sumCard.appendChild(el('p', { class: 'small muted', text: summary.description + (summary.settings ? ' Settings: ' + summary.settings : '') })); }
+          if (Array.isArray(summary.cells) && summary.cells.length && isPlainObject(summary.cells[0]) && 'view' in summary.cells[0]) {
+            renderCellSummary(summary, id.toLowerCase(), sumCard);
+            var rest = {}; Object.keys(summary).forEach(function (k) { if (['cells', 'description', 'settings', 'best_by_f1'].indexOf(k) < 0) { rest[k] = summary[k]; } });
+            var more = el('details', { class: 'json', style: 'margin-top:0.6rem' }, [el('summary', { text: 'Other summary fields' })]);
+            more.appendChild(jsonRoot(rest));
+            sumCard.appendChild(more);
+          } else {
+            sumCard.appendChild(jsonRoot(summary));
+          }
+        }).catch(function (err) { sumCard.appendChild(el('div', { class: 'empty small', text: 'Could not load: ' + err.message })); });
+      }
+      if (rowsCard) {
+        fetchCSV(exp.rows_file).then(function (rows) {
+          if (!rows.length) { rowsCard.appendChild(el('div', { class: 'empty small', text: 'Empty file.' })); return; }
+          csvChartControls(rows, id.toLowerCase() + '-rows-chart', rowsCard);
+          var allCols = Object.keys(rows[0]);
+          var shortCols = SHORT_COLUMNS.filter(function (c) { return allCols.indexOf(c) >= 0; });
+          var holder = el('div');
+          var check = el('input', { type: 'checkbox' });
+          var toggle = el('label', { class: 'small muted', style: 'display:inline-flex;gap:0.35rem;align-items:center;margin:0.3rem 0' }, [check, document.createTextNode('show all ' + allCols.length + ' columns')]);
+          rowsCard.appendChild(toggle);
+          rowsCard.appendChild(holder);
+          var short = rows.map(function (r) { var o = {}; allCols.forEach(function (c) { o[c] = c === 'experiment_id' ? String(r[c]).replace(exp.id + '-', '') : r[c]; }); return o; });
+          function drawTable() {
+            clear(holder);
+            holder.appendChild(makeTable(short, check.checked ? allCols : shortCols, { download: exp.rows_file, wrap: ['notes', 'experiment_name'], labels: { experiment_id: 'row (model-size-run)', average_inference_time_ms: 'ms/frame' } }));
+          }
+          check.addEventListener('change', drawTable);
+          drawTable();
+        }).catch(function (err) { rowsCard.appendChild(el('div', { class: 'empty small', text: 'Could not load: ' + err.message })); });
+      }
+    });
   }
   function renderExperiments(m) {
     var ex = m.experiments || { experiments: [], files: [] };
@@ -760,41 +786,43 @@
         el('div', { class: 'small', text: exp.name }),
         el('div', { class: 'sub', text: exp.rows ? exp.rows + ' rows' + (exp.details ? ' · ' + exp.details + ' records' : '') : 'no results yet' })
       ]);
-      c.addEventListener('click', function () { var t = $('exp-' + exp.id); if (t) { t.open = true; } });
+      c.addEventListener('click', function () { var t = $('exp-' + exp.id); if (t && !t.open) { t.open = true; } });
       cards.appendChild(c);
     });
     var groups = clear($('experiment-groups'));
     var withData = ex.experiments.filter(function (e) { return e.status !== 'planned'; });
     var planned = ex.experiments.filter(function (e) { return e.status === 'planned'; });
     if (!withData.length) { groups.appendChild(el('div', { class: 'empty', text: 'No experiment has produced results yet. Each experiment gets its own group here as soon as rows appear in all_results.csv.' })); }
-    withData.forEach(function (exp, i) { groups.appendChild(renderExperimentGroup(exp, m, i)); });
+    // Default: the running experiment, else the first one with data, starts open; the reader's
+    // own choices (openGroups) win on every later render.
+    var defaultId = (withData.filter(function (e) { return e.status === 'running'; })[0] || withData[0] || {}).id;
+    withData.forEach(function (exp) { groups.appendChild(renderExperimentGroup(exp, m, exp.id === defaultId)); });
     if (planned.length) {
-      var pl = el('details', { class: 'exp planned' }, [el('summary', null, [el('div', { class: 'exp-title' }, [el('strong', { text: 'Planned' }), document.createTextNode(' ' + planned.length + ' experiments without results yet')]), el('div', { class: 'exp-meta' }, [pill('planned', 'gray')])])]);
+      var pl = el('details', { class: 'exp planned', id: 'exp-planned', open: !!openGroups['exp-planned'] });
+      pl.appendChild(groupSummary([el('strong', { text: 'Planned' }), document.createTextNode(' ' + planned.length + ' experiments without results yet')], [pill('planned', 'gray')]));
       var pbody = el('div', { class: 'exp-body' });
       pbody.appendChild(makeTable(planned, ['id', 'name', 'purpose', 'data_source', 'metrics'], { wrap: ['purpose', 'metrics', 'name', 'data_source'] }));
       pl.appendChild(pbody);
-      groups.appendChild(pl);
+      groups.appendChild(lazyDetails(pl, function () {}));
     }
     var filesBox = clear($('other-results'));
     if (!ex.files.length) { filesBox.appendChild(el('div', { class: 'empty', text: 'No further result files.' })); return; }
     ex.files.forEach(function (file, index) {
-      var card = el('details', { class: 'exp file', open: null }, [el('summary', null, [
-        el('div', { class: 'exp-title' }, [el('code', { text: file.name })]),
-        el('div', { class: 'exp-meta' }, [el('span', { class: 'muted small', text: (file.rows !== undefined ? file.rows + ' rows · ' : '') + file.size_kb + ' kB · ' + fmtDate(file.updated) })])
-      ])]);
+      var fid = 'file-' + file.name.replace(/\W+/g, '-');
+      var card = el('details', { class: 'exp file', id: fid, open: !!openGroups[fid] });
+      card.appendChild(groupSummary(
+        [el('code', { text: file.name })],
+        [el('span', { class: 'muted small', text: (file.rows !== undefined ? file.rows + ' rows · ' : '') + file.size_kb + ' kB · ' + fmtDate(file.updated) })]
+      ));
       var body = el('div', { class: 'exp-body' });
       card.appendChild(body);
       if (file.description) { body.appendChild(el('p', { class: 'small muted', text: file.description })); }
       filesBox.appendChild(card);
-      var loaded = false;
-      card.addEventListener('toggle', function () {
-        if (!card.open || loaded) { return; }
-        loaded = true;
+      lazyDetails(card, function () {
         if (/\.csv$/.test(file.name)) {
           fetchCSV(file.path).then(function (rows) {
             if (!rows.length) { body.appendChild(el('div', { class: 'empty small', text: 'Empty file.' })); return; }
-            var chart = csvChartControls(rows, 'file-chart-' + index);
-            if (chart) { body.appendChild(chart); }
+            csvChartControls(rows, 'file-chart-' + index, body);
             body.appendChild(makeTable(rows, null, { download: file.path, wrap: ['notes'] }));
           }).catch(function (err) { body.appendChild(el('div', { class: 'empty small', text: 'Could not load: ' + err.message })); });
         } else {

@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "165bb4fb6438df9ca93dd0c741dd57ee5514f5bb9c252d160b69e4ab63e5e454",
-   "size": 37333
+   "sha256": "893dea96f82dab4fedf3c475b5e60271af90818018531437a809c5873de379d5",
+   "size": 38101
   },
   "data/progress_notes.md": {
    "sha256": "3edfd318fde5c5652222c6d69d24095a6e6629c4ef686233d58fa8cbb39c26cd",
@@ -29,8 +29,16 @@
    "size": 2222
   },
   "data/training/log_tail.txt": {
-   "sha256": "6193d6cda314d97cba33cc4f2d5943e7c6a89f48d813a30363f3e1528e3263db",
-   "size": 12114
+   "sha256": "5351d8ac0caeedf1d900c89004735a51347cf0dd1853aed0b3e9ec35348e0893",
+   "size": 12160
+  },
+  "data/training/yolo11n_kt_v1_s0/args.yaml": {
+   "sha256": "9be58e5c93aba5b20fed7a302f9fdf6b963b33529deccdc73b2c61965ca04904",
+   "size": 1844
+  },
+  "data/training/yolo11n_kt_v1_s0/results.csv": {
+   "sha256": "21e6df5e8309aa8b45f8e4605e89e8f4990444ccaea5a64ffb2babed184ee76c",
+   "size": 578
   },
   "data/training/yolov8n_kt_v1_s0/args.yaml": {
    "sha256": "3c07f942cbad10330f5d6c7789def62a33c4e17d1ddd5f0d7fa0c0d503c9755d",
@@ -60,9 +68,13 @@
    "sha256": "0ef5d1e4cd5f45f312e861b8121548517df7236b2b6b2b2a281373954da6d86d",
    "size": 1844
   },
+  "data/training/yolov8n_kt_v1_s2/finetune_record.json": {
+   "sha256": "83fe7997f234b5a5aa95c94b6c8886690df598a27f63e190635784f2d1bd083a",
+   "size": 1686
+  },
   "data/training/yolov8n_kt_v1_s2/results.csv": {
-   "sha256": "94b27ccd3938798f08dc8284c916a9e03be73bd3466a6b211f213c720699df41",
-   "size": 7144
+   "sha256": "9dbb7851957c2042b4d3fc8c7c5d4b43176055e10d06324cadfe4dad9bc303b1",
+   "size": 8266
   },
   "figures/dp_data_flow_en.png": {
    "sha256": "a79c2432ba8796f4b52debde72fec91a17bf90417a30a6ce40fe3ca752bfacad",

@@ -428,6 +428,17 @@
 
   function renderTraining(m) {
     var tr = m.training || { runs: [] };
+    var stagesBox = clear($('training-stages'));
+    var ladder = tr.ladder || { stages: [] };
+    if (ladder.stages.length) {
+      var card = el('div', { class: 'card' }, [el('h3', { text: 'Training stages (sim-to-real ladder)' })]);
+      card.appendChild(makeTable(ladder.stages, ['stage', 'data', 'purpose', 'status', 'detail'], {
+        wrap: ['data', 'purpose', 'detail'], labels: { data: 'training data' },
+        render: { status: function (v) { return statusPill(v); } }
+      }));
+      if (ladder.note) { card.appendChild(el('p', { class: 'small muted', style: 'margin:0.5rem 0 0', text: 'S2 / S3 recipe: ' + ladder.note + ' S2 and S3 run for the architecture chosen after S1 only, three seeds each; every stage is evaluated on both the synthetic and the real test set.' })); }
+      stagesBox.appendChild(card);
+    }
     var cards = clear($('training-cards'));
     var runs = tr.runs || [];
     var byStatus = groupSum(runs, 'status');

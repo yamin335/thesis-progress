@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <title>Parked Vehicles Thesis: Progress</title>
 <meta name="description" content="Progress of the master's thesis 'Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data' (THI). Access restricted.">
-<link rel="stylesheet" href="assets/style.css?v=20261021d">
+<link rel="stylesheet" href="assets/style.css?v=20261022a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%232b6cb0'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='white' font-family='Arial'%3EP%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -76,7 +76,7 @@
   </section>
 
   <section class="block" id="plan">
-    <header><h2>Plan and phases</h2><p>The work breakdown from <code>docs/thesis_plan.md</code>; each box is one tracked item. Click a phase to expand it.</p></header>
+    <header><h2>Plan and phases</h2><p>The work breakdown from <code>docs/thesis_plan.md</code>; each box is one tracked item. Click a phase to expand it. Phase numbers are the plan document's own: the first plan's Phase 2 was merged into Phase 3 when the digital twin arrived, Phases 4 and 5 share one list, and Phase 9 (writing) is reported to the supervisor in person rather than here.</p></header>
     <div id="phase-list"></div>
   </section>
 
@@ -95,8 +95,9 @@
   </section>
 
   <section class="block" id="training">
-    <header><h2>Training (stage S1)</h2><p>Fine-tuning of four YOLO architectures on <code>kt_v1</code> with a fixed recipe, three seeds each. Curves update while a run is in progress when the collector runs in watch mode.</p></header>
-    <div class="grid" id="training-cards"></div>
+    <header><h2>Training</h2><p>The sim-to-real ladder of <code>docs/training_plan.md</code>: zero-shot (S0), synthetic fine-tuning (S1, four YOLO architectures on <code>kt_v1</code>, three seeds each), then synthetic plus a little real data (S2) and real only (S3) once the real recording exists. Curves update while a run is in progress when the collector runs in watch mode.</p></header>
+    <div id="training-stages"></div>
+    <div class="grid" id="training-cards" style="margin-top:0.9rem"></div>
     <div id="training-runs" style="margin-top:0.9rem"></div>
     <div class="grid wide" style="margin-top:0.9rem" id="training-charts">
       <div class="card">
@@ -142,6 +143,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
-<script src="assets/app.js?v=20261021d"></script>
+<script src="assets/app.js?v=20261022a"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-10-21 (page version `v=20261021d`, collector 1.4).
+State of the progress dashboard as of 2026-10-21 (page version `v=20261022a`, collector 1.5).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -47,7 +47,7 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
 | `timeline` | `build` | `[{date, text, source}]` newest first: notes log + plan hand-off history, writing entries dropped. |
 | `dataset` | `dataset_info` | `splits[]{split, frames, boxes, runs}` incl. `total`; `classes{id: name}`; `class_counts{split: {per_class}}`; `manifest_md` path. |
 | `matrix` | `matrix_info` | `present`, `csv` path, `runs`, `by_status{}`, `frames_on_disk`. |
-| `training` | `training_info` | `runs[]{name, arch, seed, status, epochs_done, best_epoch, best_map50_95, last_map50_95, files{results, record, log}, ...}`, `planned_runs`, `plan{archs, seeds, epochs, patience, image_size}`, `log_tail` path, `running`. |
+| `training` | `training_info`, `training_stages` | `runs[]{name, arch, seed, status, epochs_done, best_epoch, best_map50_95, last_map50_95, files{results, record, log}, ...}`, `planned_runs`, `plan{archs, seeds, epochs, patience, image_size}`, `log_tail` path, `running`; `ladder{stages[]{stage, data, purpose, status, detail}, note}` from `docs/training_plan.md` §2 (S0 done with EXP-A rows, S1 by run count, S2/S3 by plan item 7.6). |
 | `experiments` | `experiments_info` | see §3. |
 | `models` | `models_info` | `pretrained[]{name, format, size_mb, date}`; `fine_tuned[]{name, arch, dataset, seed, image_size, best_epoch, best_val_map50_95, best_val_map50, minutes, size_mb, date}` (from `finetune_record.json`); `app_models[]{id, family, arch, size_mb, classes, verified, nms_free_mb, nms_free_verified, nms_free_agreement, val_map50_95, trained_px}` from the app's `models.json`; `app_meta{generated_at, thesis_commit, input_size, models, files, total_mb, header{}}`. |
 | `figures` | `figures_info` | `[{file, name, group, caption, date}]`; files whose name marks real or anonymised footage are never published. |
@@ -96,7 +96,7 @@ printed as a line under the tables. Any other JSON summary is shown as a tree.
 | `timeline` | `timeline-list` | `renderTimeline` |
 | `plan` | `phase-list` | `renderPlan` |
 | `data` | `data-cards`, `chart-splits`, `chart-classes`, `chart-weather`, `chart-views`, `matrix-table`, `dataset-card` | `renderData` |
-| `training` | `training-cards`, `training-runs`, `training-metric`, `chart-training-curves`, `chart-training-best`, `training-log-wrap`, `training-log` | `renderTraining`, `populateMetricSelect`, `drawTrainingCurves` |
+| `training` | `training-stages` (ladder table), `training-cards`, `training-runs`, `training-metric`, `chart-training-curves`, `chart-training-best`, `training-log-wrap`, `training-log` | `renderTraining`, `populateMetricSelect`, `drawTrainingCurves` |
 | `experiments` | `experiment-cards`, `experiment-groups`, `other-results` | `renderExperiments`, `renderExperimentGroup`, `renderCellSummary`, `csvChartControls`, `figureStrip`, `jsonRoot` |
 | `models` | `model-cards` (`.stack`: a `.grid.wide` row with the pretrained and fine-tuned tables, then the full-width app-bundle table) | `renderModels` |
 | `figures` | `figure-groups` | `renderFigures`, `openLightbox` |
@@ -207,3 +207,5 @@ summary charts drawn, models, figures, commits.
   by side, the app bundle full width underneath (`v=20261021c`). The stale loop republished the
   old manifest once (empty app table); the loop now restarts itself on source changes (1.4.1).
 * 2026-10-21 (EXP-B): summary renderer reads `axes` so other row/column keys work (`v=20261021d`).
+* 2026-10-22: training ladder table (S0 to S3 with status) above the S1 cards; plan header explains
+  the phase numbering (`v=20261022a`, collector 1.5).

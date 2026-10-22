@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "9f28b3295b99ddd1b013c4672b1aa68910ee2d449c551bc3ddecdb4f051eeb96",
-   "size": 66533
+   "sha256": "71bf949a83ddb0df3061cc23173979b25031170300454c8375a8126407638e38",
+   "size": 68131
   },
   "data/progress_notes.md": {
-   "sha256": "eb52151c9a7a53bbd00f8763a24b8ad7b205b9b380e252b50fcf96d62ba13bc6",
-   "size": 7542
+   "sha256": "c0e9a2ff2fd91ea5b317bb23256e5ea5f94ea35344b2e23806d2a32f71bba23b",
+   "size": 8215
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -41,12 +41,16 @@
    "size": 72846
   },
   "data/results/EXP-C_details.json": {
-   "sha256": "b3b9285dd4d804e05ee63745b1e2f445ce16d3e926158367b74c1b8abf70865e",
-   "size": 1632214
+   "sha256": "5564db1ace33e9b947aefc5e38f2866a34f67767a5047a20863b9781eb100a2c",
+   "size": 1991520
   },
   "data/results/EXP-C_rows.csv": {
-   "sha256": "7d34d5033284b442d57d219b5e95bb456fe7625fecbc6bab44d5d160d595ce43",
-   "size": 103370
+   "sha256": "5b07a6f75297788d7b08ddec8f0ac8159f519c07004e7648c73ab920bb5ab1b2",
+   "size": 126058
+  },
+  "data/results/EXP-C_summary.json": {
+   "sha256": "badfc0e8d98de385c466123e49852fcae0b1e2ef541e9a8bacbf1e7b8d3de867",
+   "size": 75171
   },
   "data/results/exp_b_r60_summary.json": {
    "sha256": "dc176ed8d04bf2718e1360222350894ad6b269dda7fe188a50b8518bc2aacf40",
@@ -235,6 +239,10 @@
   "figures/exp_b_recall_vs_tparked.png": {
    "sha256": "6eb8a2c26a549f46169bdb0de35545c469da7b9e24b51f89d0b18196cd3646de",
    "size": 175446
+  },
+  "figures/exp_c_f1_vs_s0.png": {
+   "sha256": "1eb6ef282ec1bade6e04f7192e163e22d7284136e7899835631e060b5282baa6",
+   "size": 105167
   },
   "figures/kivi_twin_road2_parking_lane.png": {
    "sha256": "21ce34d87906c539bc04d8c857af9cbba0031776574f6f592e89a1d7c1e560ff",

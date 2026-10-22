@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "ce14569469cb0c0828c5be7bc8c477cab55bab7d19f5c91027a29deb5634a967",
-   "size": 76304
+   "sha256": "af23c64bc5063925199379053077779d215786c07b9bce5d91f3cee18f07bb2e",
+   "size": 79546
   },
   "data/progress_notes.md": {
-   "sha256": "4cc3d543756c9ac514f2cab496cb6b78558cae2f68ebfc00bc4eb9314a0dc0f8",
-   "size": 9612
+   "sha256": "0d500e420b38d408f81d86eceeb5b7fc0e7a5b850644bff7102f1b76656e3f00",
+   "size": 10777
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -53,12 +53,16 @@
    "size": 75171
   },
   "data/results/EXP-D_details.json": {
-   "sha256": "5449c3e75afab402cb77ce73693a5926a918553bc9f7e555393f5f63ccf7e108",
-   "size": 42840
+   "sha256": "faa4ed2b7f4a64c43787381c80d29b7653728eed7199bd947f2e11aabf6f35be",
+   "size": 342361
   },
   "data/results/EXP-D_rows.csv": {
-   "sha256": "47196bdb7e9e1328915071d6b413340be1d093750d623e01448fc389e67d0f65",
-   "size": 3484
+   "sha256": "55589fa4562415f91e640805d71d441b948d46e578165883b0fa1e4e118afb5f",
+   "size": 23961
+  },
+  "data/results/EXP-D_summary.json": {
+   "sha256": "5451fbce35f0b8e001ac14882aa888d8dcde63faa39498f240211ba0b9f4bd88",
+   "size": 24273
   },
   "data/results/EXP-E_details.json": {
    "sha256": "5beb2b971bb80cc72518f69fe6a1d325d5be7005845a5b1ddabbaf30f19f2c6c",
@@ -280,6 +284,10 @@
    "sha256": "1eb6ef282ec1bade6e04f7192e163e22d7284136e7899835631e060b5282baa6",
    "size": 105167
   },
+  "figures/exp_d_decision.png": {
+   "sha256": "6db9092344e80d6ea6fc6a0330857bac2349ae4942db0d405599d6ec52ef5a2c",
+   "size": 91397
+  },
   "figures/exp_e_traffic.png": {
    "sha256": "884ad9f4140e52969e2682d8573b5ab7c5b944639a8328856110998b4073f118",
    "size": 200463
@@ -289,8 +297,8 @@
    "size": 129941
   },
   "figures/exp_f_conditions.png": {
-   "sha256": "cf233c19fb774032a694ce35dbdaea6081f037b094d1a72c1f3ad8409f2ee8cf",
-   "size": 120750
+   "sha256": "a751ee5a54704498c6faafa6ccc26ff605920ab67b315870ba51b471fb71eee4",
+   "size": 121820
   },
   "figures/kivi_twin_road2_parking_lane.png": {
    "sha256": "21ce34d87906c539bc04d8c857af9cbba0031776574f6f592e89a1d7c1e560ff",

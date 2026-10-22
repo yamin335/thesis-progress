@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "a2c8d196b8ba5798f24bf4aacb37593ae4f0df34c355edfdddfd40de8468cc9b",
-   "size": 74088
+   "sha256": "ce14569469cb0c0828c5be7bc8c477cab55bab7d19f5c91027a29deb5634a967",
+   "size": 76304
   },
   "data/progress_notes.md": {
    "sha256": "4cc3d543756c9ac514f2cab496cb6b78558cae2f68ebfc00bc4eb9314a0dc0f8",
@@ -52,6 +52,14 @@
    "sha256": "badfc0e8d98de385c466123e49852fcae0b1e2ef541e9a8bacbf1e7b8d3de867",
    "size": 75171
   },
+  "data/results/EXP-D_details.json": {
+   "sha256": "5449c3e75afab402cb77ce73693a5926a918553bc9f7e555393f5f63ccf7e108",
+   "size": 42840
+  },
+  "data/results/EXP-D_rows.csv": {
+   "sha256": "47196bdb7e9e1328915071d6b413340be1d093750d623e01448fc389e67d0f65",
+   "size": 3484
+  },
   "data/results/EXP-E_details.json": {
    "sha256": "5beb2b971bb80cc72518f69fe6a1d325d5be7005845a5b1ddabbaf30f19f2c6c",
    "size": 570260
@@ -61,20 +69,28 @@
    "size": 40228
   },
   "data/results/EXP-E_summary.json": {
-   "sha256": "02a136010be890ab98e7b1481d405c0ae0612bb4020ce217889071f3bb2deac3",
-   "size": 29296
+   "sha256": "d516d3cc6b94c6f9a8597f162325b8d63b6ccf61946b66f9a660f550986024e0",
+   "size": 75493
   },
   "data/results/EXP-F_details.json": {
-   "sha256": "18aa8500c29f00ac14791ed382b605f959946ceaef107ca6dfeb1e4f49a4c54e",
-   "size": 829422
+   "sha256": "e837e3dbf07549b3fd5d647a912e371e81756573c4c4842943c1cef5faadca2f",
+   "size": 1410170
   },
   "data/results/EXP-F_rows.csv": {
-   "sha256": "7d7e20c0e722d04a9ffc8ee80e989c549aeb9b0c672cc6eef1e967d43fd271e0",
-   "size": 54479
+   "sha256": "2509d7f9013001c4afc92988d0986d878424bf3dbbea07a415e912c5796d9ddd",
+   "size": 92930
+  },
+  "data/results/EXP-F_summary.json": {
+   "sha256": "bc9df967ad8f233640a08236e3212fc93ddb8da35d1f5c2ca0f7f3badd2c612a",
+   "size": 239525
   },
   "data/results/exp_b_r60_summary.json": {
    "sha256": "dc176ed8d04bf2718e1360222350894ad6b269dda7fe188a50b8518bc2aacf40",
    "size": 73229
+  },
+  "data/results/exp_e_train_summary.json": {
+   "sha256": "0eb9caad28fa544c6f08bbaf2948503967fd8377d358e4fdc1e6b8fa0761e96b",
+   "size": 29689
   },
   "data/results/kt_matrix_manifest.csv": {
    "sha256": "501054b6c010106395c57712e7d697a8d7002ab457344ae15afff265a0022ca1",
@@ -265,8 +281,16 @@
    "size": 105167
   },
   "figures/exp_e_traffic.png": {
-   "sha256": "cc2421b74721a9629e34deae4b85aa184dd3dc7281581ddf698481038112f4f1",
-   "size": 149693
+   "sha256": "884ad9f4140e52969e2682d8573b5ab7c5b944639a8328856110998b4073f118",
+   "size": 200463
+  },
+  "figures/exp_e_train_traffic.png": {
+   "sha256": "c89f1d193528c6fb438f58d58f61d7736f5a71d1eeab23e44ccef2b898f26b5b",
+   "size": 129941
+  },
+  "figures/exp_f_conditions.png": {
+   "sha256": "cf233c19fb774032a694ce35dbdaea6081f037b094d1a72c1f3ad8409f2ee8cf",
+   "size": 120750
   },
   "figures/kivi_twin_road2_parking_lane.png": {
    "sha256": "21ce34d87906c539bc04d8c857af9cbba0031776574f6f592e89a1d7c1e560ff",

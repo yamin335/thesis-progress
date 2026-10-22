@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "1f0f1ce87934fa7aa594eea9a49686cd93d945eb14cd5932cc00f6fd79e463cc",
-   "size": 72478
+   "sha256": "ea903ec7d1d7ecf7214818f6a6730cefba899f9beb792cc4c5df547f7ce4e0e1",
+   "size": 74015
   },
   "data/progress_notes.md": {
    "sha256": "4cc3d543756c9ac514f2cab496cb6b78558cae2f68ebfc00bc4eb9314a0dc0f8",
@@ -53,16 +53,24 @@
    "size": 75171
   },
   "data/results/EXP-E_details.json": {
-   "sha256": "13a8ca987a16a1b25cea5f55baac4f1d2b556eb11e5d10c3d6324cbe1ac06a4a",
-   "size": 240009
+   "sha256": "5beb2b971bb80cc72518f69fe6a1d325d5be7005845a5b1ddabbaf30f19f2c6c",
+   "size": 570260
   },
   "data/results/EXP-E_rows.csv": {
-   "sha256": "6e5500269af29a31778d159f2cd0634b9f7cd338e8e59db18fea1cad045073ad",
-   "size": 16851
+   "sha256": "29bbd3eb3bd58c384de660f6a11f9dea8bcbfe7aad5cc760d749778f5393d3c0",
+   "size": 40228
   },
   "data/results/EXP-E_summary.json": {
    "sha256": "02a136010be890ab98e7b1481d405c0ae0612bb4020ce217889071f3bb2deac3",
    "size": 29296
+  },
+  "data/results/EXP-F_details.json": {
+   "sha256": "ab9db119358641198ff753178fea682bd85ff94812a2bfec7b57d812e3443d70",
+   "size": 222853
+  },
+  "data/results/EXP-F_rows.csv": {
+   "sha256": "4621be93badf38afde069b7861a0632a61ffbeeefe32b4a0bdfa4b2be76dc49a",
+   "size": 14738
   },
   "data/results/exp_b_r60_summary.json": {
    "sha256": "dc176ed8d04bf2718e1360222350894ad6b269dda7fe188a50b8518bc2aacf40",

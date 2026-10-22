@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-10-21 (page version `v=20261022b`, collector 1.5.1).
+State of the progress dashboard as of 2026-10-21 (page version `v=20261022c`, collector 1.5.1).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -213,3 +213,5 @@ summary charts drawn, models, figures, commits.
   the phase numbering (`v=20261022a`, collector 1.5).
 * 2026-10-22 (later): derived row columns (input size, t_parked, range rule, seed) in the rows CSV;
   the rows chart can group by them and the short table shows them (`v=20261022b`, collector 1.5.1).
+* 2026-10-22 (EXP-F): summary columns may be text (weather names); numeric columns still sort by
+  value (`v=20261022c`).

@@ -605,7 +605,9 @@
         var sub = cells.filter(function (c) { return c[GROUP] === view; });
         var models = [], sizes = [];
         sub.forEach(function (c) { if (models.indexOf(c[ROW]) < 0) { models.push(c[ROW]); } if (sizes.indexOf(c[COL]) < 0) { sizes.push(c[COL]); } });
-        sizes.sort(function (a, b) { return a - b; });
+        // numeric columns (input size, t_parked) sort by value; text columns (weather names,
+        // view labels) keep the order the summary listed them in
+        if (sizes.every(function (v) { return typeof v === 'number'; })) { sizes.sort(function (a, b) { return a - b; }); }
         var lookup = {}; sub.forEach(function (c) { lookup[c[ROW] + '|' + c[COL]] = c; });
         var runsPerCell = sub.map(function (c) { return c.runs; }).filter(function (r) { return typeof r === 'number'; });
         var runsText = runsPerCell.length ? (Math.min.apply(null, runsPerCell) === Math.max.apply(null, runsPerCell) ? runsPerCell[0] + ' runs per cell' : Math.min.apply(null, runsPerCell) + ' to ' + Math.max.apply(null, runsPerCell) + ' runs per cell') : '';

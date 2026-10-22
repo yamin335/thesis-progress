@@ -642,7 +642,7 @@
   }
 
   // ------------------------------------------------------------------ experiments
-  var SHORT_COLUMNS = ['experiment_id', 'model_name', 'dataset_name', 'precision', 'recall', 'f1_score', 'map_score', 'parking_accuracy', 'false_occupied_rate', 'false_free_rate', 'average_inference_time_ms', 'fps'];
+  var SHORT_COLUMNS = ['experiment_id', 'model_name', 'seed', 'input_px', 't_parked_s', 'max_range_m', 'dataset_name', 'precision', 'recall', 'f1_score', 'map_score', 'parking_accuracy', 'false_occupied_rate', 'false_free_rate', 'average_inference_time_ms', 'fps'];
   function statusPill(status, live) {
     var map = { done: ['done', 'ok'], results: ['results', 'accent'], running: ['running', 'warn'], planned: ['planned', 'gray'] };
     var p = map[status] || [status, 'gray'];
@@ -651,14 +651,15 @@
   function csvChartControls(rows, canvasId, mount) {
     var cols = Object.keys(rows[0]).filter(function (c) { return rows.some(function (r) { return r[c] !== '' && r[c] !== null && r[c] !== undefined; }); });
     var numericCols = cols.filter(function (c) { return rows.every(function (r) { return r[c] === '' || r[c] === null || r[c] === undefined || typeof r[c] === 'number'; }) && rows.some(function (r) { return typeof r[c] === 'number'; }); });
-    var catCols = cols.filter(function (c) { return numericCols.indexOf(c) < 0; }).filter(function (c) { var u = {}; rows.forEach(function (r) { u[r[c]] = 1; }); var n = Object.keys(u).length; return n > 1 && n <= 40; });
+    var GROUPABLE_NUMERIC = ['input_px', 't_parked_s', 'max_range_m', 'seed'];
+    var catCols = cols.filter(function (c) { return numericCols.indexOf(c) < 0 || GROUPABLE_NUMERIC.indexOf(c) >= 0; }).filter(function (c) { var u = {}; rows.forEach(function (r) { u[r[c]] = 1; }); var n = Object.keys(u).length; return n > 1 && n <= 40; });
     if (!numericCols.length || !catCols.length) { return null; }
     var controls = el('div', { class: 'table-tools' });
     var xSel = el('select', { class: 'metric' }); catCols.forEach(function (c) { xSel.appendChild(el('option', { value: c, text: c })); });
     var ySel = el('select', { class: 'metric' }); numericCols.forEach(function (c) { ySel.appendChild(el('option', { value: c, text: c })); });
     var preferY = ['f1_score', 'map_score', 'precision', 'recall', 'parking_accuracy'].filter(function (p) { return numericCols.indexOf(p) >= 0; })[0];
     if (preferY) { ySel.value = preferY; }
-    var preferX = ['model_name', 'dataset_name', 'scenario_name', 'experiment_id', 'run'].filter(function (p) { return catCols.indexOf(p) >= 0; })[0];
+    var preferX = ['t_parked_s', 'model_name', 'input_px', 'dataset_name', 'scenario_name', 'experiment_id', 'run'].filter(function (p) { return catCols.indexOf(p) >= 0; })[0];
     if (preferX) { xSel.value = preferX; }
     controls.appendChild(el('span', { class: 'small muted', text: 'Chart: mean of' }));
     controls.appendChild(ySel);
@@ -791,7 +792,7 @@
           var short = rows.map(function (r) { var o = {}; allCols.forEach(function (c) { o[c] = c === 'experiment_id' ? String(r[c]).replace(exp.id + '-', '') : r[c]; }); return o; });
           function drawTable() {
             clear(holder);
-            holder.appendChild(makeTable(short, check.checked ? allCols : shortCols, { download: exp.rows_file, wrap: ['notes', 'experiment_name'], labels: { experiment_id: 'row (model-size-run)', average_inference_time_ms: 'ms/frame' } }));
+            holder.appendChild(makeTable(short, check.checked ? allCols : shortCols, { download: exp.rows_file, wrap: ['notes', 'experiment_name'], labels: { experiment_id: 'row id (without the experiment prefix)', average_inference_time_ms: 'ms/frame', input_px: 'input px', t_parked_s: 't_parked s', max_range_m: 'max range m' } }));
           }
           check.addEventListener('change', drawTable);
           drawTable();

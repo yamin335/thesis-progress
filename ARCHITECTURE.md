@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-10-21 (page version `v=20261022a`, collector 1.5).
+State of the progress dashboard as of 2026-10-21 (page version `v=20261022b`, collector 1.5.1).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -59,7 +59,9 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
 { "experiments": [ { id, name, purpose, data_source, method, output, metrics,   ← docs/experiment_plan.md table
                      status,            "done" | "running" | "results" | "planned"
                      plan_item,         text of the plan checklist item naming the experiment earliest
-                     rows, columns,     rows of all_results.csv whose experiment_id is <id> or starts with "<id>-"
+                     rows, columns,     rows of all_results.csv whose experiment_id is <id> or starts with "<id>-",
+                                        plus derived columns parsed from the id when present: input_px,
+                                        t_parked_s, max_range_m (35 for untagged EXP-B rows), seed
                      rows_file,         data/results/<id>_rows.csv          (only when rows > 0)
                      details, details_file,   count and bundle data/results/<id>_details.json = {folder: result.json}
                      summary_file,      data/results/<id>_summary.json      (copy of experiments/results/exp_<x>_summary.json)
@@ -209,3 +211,5 @@ summary charts drawn, models, figures, commits.
 * 2026-10-21 (EXP-B): summary renderer reads `axes` so other row/column keys work (`v=20261021d`).
 * 2026-10-22: training ladder table (S0 to S3 with status) above the S1 cards; plan header explains
   the phase numbering (`v=20261022a`, collector 1.5).
+* 2026-10-22 (later): derived row columns (input size, t_parked, range rule, seed) in the rows CSV;
+  the rows chart can group by them and the short table shows them (`v=20261022b`, collector 1.5.1).

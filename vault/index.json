@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "9c290ba66961f19937c2e0f48793876dc5b150cdf1cdccea57862c1fc8a6d365",
-   "size": 87277
+   "sha256": "01e8f78395404b314e1070abb96860ebdaef2aae8ab634d5df81409ee1bc306f",
+   "size": 87122
   },
   "data/progress_notes.md": {
-   "sha256": "adae1df567a85e07227ece952b297ade6e7bd1767472ef956ace52585808bb17",
-   "size": 12375
+   "sha256": "b6fcaabd480c8c06354a6168ee1da83a91199d280b1586901cb04af49e2afc6e",
+   "size": 12382
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",

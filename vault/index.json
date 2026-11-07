@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "6c349ee5ccc4b1fc542db61e7349bb179ba9a08792ad3ae4e56ae213fa7e6b79",
-   "size": 79432
+   "sha256": "4b3ca41c1f2ae88bc7b0ce582f7094a001e20d41b8301fbb48724a7ad005930f",
+   "size": 82455
   },
   "data/progress_notes.md": {
-   "sha256": "0d500e420b38d408f81d86eceeb5b7fc0e7a5b850644bff7102f1b76656e3f00",
-   "size": 10777
+   "sha256": "c67a112bc403570037b010c5587e5be48f81699b8c98f4553259fffab08f6933",
+   "size": 11384
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -108,13 +108,17 @@
    "sha256": "3edbc61a5e4af5ad350673fad369e80db73b1750710397e89a5b9f00bde92d09",
    "size": 930
   },
+  "data/results/s1_summary.json": {
+   "sha256": "9c22806bb28d54029bf67b2aa20605b3963c1da9ebe9b229bba1382abab2b98c",
+   "size": 7946
+  },
   "data/results/visibility_calibration_p1.json": {
    "sha256": "0fe77cad7176de050a5f54dcfb2938810ef5c6c66035a7f00875fabc9a0b5f8e",
    "size": 2222
   },
   "data/training/log_tail.txt": {
-   "sha256": "b729c661a2f32851d1afce511a41ac25e338a245dd998bca2ae2861389236b2e",
-   "size": 9262
+   "sha256": "9fd4c5a81c2126d88f3c808211349bfea80f524202466da4e8d0f519e6f951e0",
+   "size": 12000
   },
   "data/training/yolo11n_kt_v1_s0/args.yaml": {
    "sha256": "9be58e5c93aba5b20fed7a302f9fdf6b963b33529deccdc73b2c61965ca04904",
@@ -299,6 +303,18 @@
   "figures/exp_f_conditions.png": {
    "sha256": "a751ee5a54704498c6faafa6ccc26ff605920ab67b315870ba51b471fb71eee4",
    "size": 121820
+  },
+  "figures/failure_insufficient_observation_windshield_A.png": {
+   "sha256": "e8f5ef341f61b060553e86af000c287c07788f7ae4fa73d0f2f8cae5e0b2d8cc",
+   "size": 1194443
+  },
+  "figures/failure_not_detected_windshield_A.png": {
+   "sha256": "78d17c6c66de4cbdab07085ac0202d130589fbbe76368a63656a1f1a779b3113",
+   "size": 1192665
+  },
+  "figures/failure_out_of_range_static_P4.png": {
+   "sha256": "a25cb4bfcab1e68980cf4ebd2c67cad0d66cdb1647bd801caeedcb9adb29d5a1",
+   "size": 1601416
   },
   "figures/kivi_twin_road2_parking_lane.png": {
    "sha256": "21ce34d87906c539bc04d8c857af9cbba0031776574f6f592e89a1d7c1e560ff",

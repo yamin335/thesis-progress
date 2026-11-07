@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "12fe67fe72c6307b3043865431cd014247196dfa1d03bb112f3b372976563b33",
-   "size": 84983
+   "sha256": "bd21eaf47b1e291315062aa263daae6f84bfbbe65423148b88948247bb66e8ca",
+   "size": 86170
   },
   "data/progress_notes.md": {
-   "sha256": "c67a112bc403570037b010c5587e5be48f81699b8c98f4553259fffab08f6933",
-   "size": 11384
+   "sha256": "fef839c0e1ae72e2dac696f002fd258a68007ab6221248926c1208871257f73b",
+   "size": 12000
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -109,16 +109,16 @@
    "size": 930
   },
   "data/results/s1_summary.json": {
-   "sha256": "9c22806bb28d54029bf67b2aa20605b3963c1da9ebe9b229bba1382abab2b98c",
-   "size": 7946
+   "sha256": "0106a9218d26853a37dca03736123f9f0eeda95368b83758260e2f2135a1155c",
+   "size": 9870
   },
   "data/results/visibility_calibration_p1.json": {
    "sha256": "0fe77cad7176de050a5f54dcfb2938810ef5c6c66035a7f00875fabc9a0b5f8e",
    "size": 2222
   },
   "data/training/log_tail.txt": {
-   "sha256": "16adfae0deccd7a2ebf33aa61f94efdc9739b6b78955c0de3041e8c68914c4e2",
-   "size": 11792
+   "sha256": "84846426daa70fbb5e3e2810f48f15a04d4fbcf7cdb72661678e8d8805f217fd",
+   "size": 10044
   },
   "data/training/yolo11n_kt_v1_s0/args.yaml": {
    "sha256": "9be58e5c93aba5b20fed7a302f9fdf6b963b33529deccdc73b2c61965ca04904",
@@ -220,9 +220,13 @@
    "sha256": "dc6589d6b696d19f86e45f871ad14762d86d8b75c1a264ec34b17d6a92773f39",
    "size": 1864
   },
+  "data/training/yolo26n_kt_v1_unfrozen_s2/finetune_record.json": {
+   "sha256": "afbacdc22ebc4261f044e5bddd7692930470dbefe25e381b549fca6beffe65ac",
+   "size": 1572
+  },
   "data/training/yolo26n_kt_v1_unfrozen_s2/results.csv": {
-   "sha256": "49cedca5ca3616ceae8e15119a24c1a0e585778964d43ebbc6afedd7bae05ec0",
-   "size": 7635
+   "sha256": "f7be505cc397e79edb480c749ebe741283170395767b021b6dee3dc954582e86",
+   "size": 8283
   },
   "data/training/yolo26s_kt_v1_s0/args.yaml": {
    "sha256": "d1a6cdd41dd5ff2b4e27432819a205303e370fbbea5a9499efac52954d0e134d",

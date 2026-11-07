@@ -719,6 +719,12 @@
     ));
     var body = el('div', { class: 'exp-body' });
     det.appendChild(body);
+    if (exp.overview) {
+      // One paragraph from docs/progress_notes.md ("Experiment overviews"): what the experiment
+      // does and what it will report, shown before the plan row so a planned experiment is not
+      // just an empty table.
+      body.appendChild(el('div', { class: 'card' }, [el('h3', { text: 'Overview' }), el('p', { class: 'overview', text: exp.overview })]));
+    }
     var dl = el('dl', { class: 'kv' });
     [['Purpose', exp.purpose], ['Data', exp.data_source], ['Method', exp.method], ['Output', exp.output], ['Metrics', exp.metrics], ['Plan item', exp.plan_item]].forEach(function (pair) {
       if (pair[1]) { dl.appendChild(el('dt', { text: pair[0] })); dl.appendChild(el('dd', { text: pair[1] })); }

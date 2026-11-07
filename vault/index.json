@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "ca9631530b08f46f68dabc5e86ed6256d4c25d9bde9d43dda68b37ab97d9590b",
-   "size": 86957
+   "sha256": "fb17dbd8fd5ac74f2b16652584b9d648f1e20ccc4e3509f934132430292dfba0",
+   "size": 91829
   },
   "data/progress_notes.md": {
-   "sha256": "b6fcaabd480c8c06354a6168ee1da83a91199d280b1586901cb04af49e2afc6e",
-   "size": 12382
+   "sha256": "184b09c390e38f5dceb0395b2063959ef40b0e9a29b5ddaf14118286e5e07494",
+   "size": 15463
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -107,6 +107,10 @@
   "data/results/region_mode_agreement_P1.json": {
    "sha256": "3edbc61a5e4af5ad350673fad369e80db73b1750710397e89a5b9f00bde92d09",
    "size": 930
+  },
+  "data/results/region_modes_summary.json": {
+   "sha256": "a1e5266afb744a3930f047e948f5fc9b987a26fdaeb0d415aa354f883ac1a349",
+   "size": 4489
   },
   "data/results/s1_summary.json": {
    "sha256": "0106a9218d26853a37dca03736123f9f0eeda95368b83758260e2f2135a1155c",
@@ -367,6 +371,34 @@
   "figures/kt_image_regions_p1.png": {
    "sha256": "fbb127411322719883d0f84c96eff6f952c3a792c69464a8f212132146f35da5",
    "size": 1290924
+  },
+  "figures/kt_image_regions_p1_r35.png": {
+   "sha256": "403654c478524623cbb0893d69273b21d7a1c96304caec685be4ae081800e3b3",
+   "size": 1291414
+  },
+  "figures/kt_image_regions_p3.png": {
+   "sha256": "23a771d4173923078759ab2edd28a2c573a89a1c8735763f87b2797cddbaadae",
+   "size": 1527536
+  },
+  "figures/kt_image_regions_p3_r35.png": {
+   "sha256": "28e0a270cb7ee37a74d1983a4c75eeb6cc4365b0362fdb0d76482049b461bbf3",
+   "size": 1528508
+  },
+  "figures/kt_image_regions_p4.png": {
+   "sha256": "1967c8a79f34b609f8b8817e5adb844a1706a756b9aa25b82952ed6dedd41d52",
+   "size": 1599142
+  },
+  "figures/kt_image_regions_p4_r35.png": {
+   "sha256": "80a87dd80ad827cf191604200089d910171ea0aac566af9a44b6c3595220e0cd",
+   "size": 1604138
+  },
+  "figures/kt_image_regions_p5.png": {
+   "sha256": "fbce179bd0be17eb9e71853aea8c5f6ab1783fa217b0e8cea048db536f508bf5",
+   "size": 910337
+  },
+  "figures/kt_image_regions_p5_r35.png": {
+   "sha256": "551c88ad5d396e553ba88c371da03a7bb0f31d290091b607b18b03ca4032e619",
+   "size": 911183
   },
   "figures/kt_regions_lot_overlay_p5.png": {
    "sha256": "fc9d0e4c2e48b1722d2ac10e2c065bc5f0be332775206d4ec60b6e35ac120d93",

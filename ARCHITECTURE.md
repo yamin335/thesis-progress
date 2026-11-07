@@ -59,6 +59,7 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
 { "experiments": [ { id, name, purpose, data_source, method, output, metrics,   ← docs/experiment_plan.md table
                      status,            "done" | "running" | "results" | "planned"
                      plan_item,         text of the plan checklist item naming the experiment earliest
+                     overview,          paragraph from docs/progress_notes.md "Experiment overviews" (null when none)
                      rows, columns,     rows of all_results.csv whose experiment_id is <id> or starts with "<id>-",
                                         plus derived columns parsed from the id when present: input_px,
                                         t_parked_s, max_range_m (35 for untagged EXP-B rows), seed

@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "af8327fc7d03bda8e3141d786790027ff03a65ac66804a67e2f6cd0239c6c66f",
-   "size": 96919
+   "sha256": "30a9035d9451e34d0b49cf47595f9af1218b14f225b9b50e36bf02abff0fc7a5",
+   "size": 99608
   },
   "data/progress_notes.md": {
-   "sha256": "11e599dd8ddadca2761cb63a0812f69c5e97ab87a2caa42af902bb7718294d42",
-   "size": 17464
+   "sha256": "8c73d6eb5ffe1cad69fe4d63b153d181f8d493d315dd78724c7aa4d0235e2062",
+   "size": 18463
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -87,6 +87,14 @@
   "data/results/EXP-F_summary.json": {
    "sha256": "bc9df967ad8f233640a08236e3212fc93ddb8da35d1f5c2ca0f7f3badd2c612a",
    "size": 239525
+  },
+  "data/results/EXP-I_rows.csv": {
+   "sha256": "bdb60a76a47c3df176de5e9c71208d476a318a293eff2a78e1a219de2cee9b40",
+   "size": 7730
+  },
+  "data/results/EXP-I_summary.json": {
+   "sha256": "84b456893df6f5ce8e23735654c15cdc3691d62ebb7cb57a1207e79cb67e65aa",
+   "size": 35309
   },
   "data/results/exp_b_r60_summary.json": {
    "sha256": "dc176ed8d04bf2718e1360222350894ad6b269dda7fe188a50b8518bc2aacf40",
@@ -343,6 +351,10 @@
   "figures/exp_f_conditions.png": {
    "sha256": "a751ee5a54704498c6faafa6ccc26ff605920ab67b315870ba51b471fb71eee4",
    "size": 121820
+  },
+  "figures/exp_i_latency_vs_f1.png": {
+   "sha256": "e2f3a09275d52fa0a18fa3a4cef22985d0e8d66aa983e4fdabe35f696bcdc4fb",
+   "size": 130435
   },
   "figures/failure_insufficient_observation_windshield_A.png": {
    "sha256": "e8f5ef341f61b060553e86af000c287c07788f7ae4fa73d0f2f8cae5e0b2d8cc",

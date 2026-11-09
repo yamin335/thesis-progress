@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "30a9035d9451e34d0b49cf47595f9af1218b14f225b9b50e36bf02abff0fc7a5",
-   "size": 99608
+   "sha256": "828971ad16e8361a38eac6d0a01956588f7b91de8c6985eb60ff7ad7eb616459",
+   "size": 102467
   },
   "data/progress_notes.md": {
-   "sha256": "8c73d6eb5ffe1cad69fe4d63b153d181f8d493d315dd78724c7aa4d0235e2062",
-   "size": 18463
+   "sha256": "b190f3bc3f84414ac3305aca7bf4cf49108d8ec0ae593c87bba162f3bda743b6",
+   "size": 19687
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -95,6 +95,10 @@
   "data/results/EXP-I_summary.json": {
    "sha256": "84b456893df6f5ce8e23735654c15cdc3691d62ebb7cb57a1207e79cb67e65aa",
    "size": 35309
+  },
+  "data/results/EXP-J_summary.json": {
+   "sha256": "25851b79b67939a78cda1307347b8c42861942e2ede961ddad3a06bd8488b565",
+   "size": 7145
   },
   "data/results/exp_b_r60_summary.json": {
    "sha256": "dc176ed8d04bf2718e1360222350894ad6b269dda7fe188a50b8518bc2aacf40",
@@ -355,6 +359,18 @@
   "figures/exp_i_latency_vs_f1.png": {
    "sha256": "e2f3a09275d52fa0a18fa3a4cef22985d0e8d66aa983e4fdabe35f696bcdc4fb",
    "size": 130435
+  },
+  "figures/exp_j_permission_denied.png": {
+   "sha256": "b44218b6033e689ef8bb13e101daf9ae0d700c35dcc19bef0b6543c5e33984b3",
+   "size": 98509
+  },
+  "figures/exp_j_permission_dialog.png": {
+   "sha256": "73c33104e7a7d2e8a7a3405e9cd018e91b7c1447b062e10aa3db2a407de39ccb",
+   "size": 117755
+  },
+  "figures/exp_j_permission_purpose.png": {
+   "sha256": "7ac1ce8ebafd70e7837e49f43be466554fc368d9e374d4f3cd966bffd4b87dff",
+   "size": 72650
   },
   "figures/failure_insufficient_observation_windshield_A.png": {
    "sha256": "e8f5ef341f61b060553e86af000c287c07788f7ae4fa73d0f2f8cae5e0b2d8cc",

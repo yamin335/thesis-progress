@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "3c63ba186b042f4204b0634ba5cccddbabff438c6fedfc68d5113d3056d65012",
-   "size": 105574
+   "sha256": "f992146f35950b950cbc42b9e04281991035c814e20601896b5386d590cdd10a",
+   "size": 108978
   },
   "data/progress_notes.md": {
-   "sha256": "0c771cd2ff37b61bafc2e73bec96445dbc62879177cae7b5305ff7fee5063011",
-   "size": 21225
+   "sha256": "d8b7241b6d13ec8c61481bdd1f1681a88229c9936eb8de9f7d33e4097787e285",
+   "size": 22933
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -93,16 +93,16 @@
    "size": 504359
   },
   "data/results/EXP-I_rows.csv": {
-   "sha256": "a0d1afff42b3100e0e315a5701bb65eaa69a2379af32f4a234b8c90dc775a503",
-   "size": 54475
+   "sha256": "f1c2893d24c8033e9c43529b8618eb7f3eb60c38335ee82838496d6c46fbe02e",
+   "size": 75362
   },
   "data/results/EXP-I_summary.json": {
-   "sha256": "9e4204a6da5ea7f9a0cc8671653acb5398ccec5d8d62d1d45b28b09e9063a12b",
-   "size": 85835
+   "sha256": "77cd40c24db80d73ee93ae9cd1891564797d18c13f9f8f8dd9b65a26b6d4e04d",
+   "size": 178610
   },
   "data/results/EXP-J_summary.json": {
-   "sha256": "25851b79b67939a78cda1307347b8c42861942e2ede961ddad3a06bd8488b565",
-   "size": 7145
+   "sha256": "e768d77e83822513b63530e18aeb26685f50bbb1d49ff636d893059a4b035e64",
+   "size": 8323
   },
   "data/results/exp_b_r60_summary.json": {
    "sha256": "dc176ed8d04bf2718e1360222350894ad6b269dda7fe188a50b8518bc2aacf40",
@@ -115,6 +115,10 @@
   "data/results/exp_i_accuracy_summary.json": {
    "sha256": "cccafe345d1cc3ae33a875a19c0fd8089a5683d5c97f5dbf9e79b8a406808553",
    "size": 12339
+  },
+  "data/results/exp_j_summary_ios.json": {
+   "sha256": "4c0fb0a90a01c6f3757f2cf72228ce4e6cd3b49cfbb12782e987b9382118dfda",
+   "size": 16205
   },
   "data/results/kt_matrix_manifest.csv": {
    "sha256": "501054b6c010106395c57712e7d697a8d7002ab457344ae15afff265a0022ca1",
@@ -365,20 +369,40 @@
    "size": 121820
   },
   "figures/exp_i_latency_vs_f1.png": {
-   "sha256": "6c09fcf8146d8766debcfdf93ba58f59201cb1713bff41900979632048c00c9d",
-   "size": 155060
+   "sha256": "9901febb4d5d18f2b9ae33b9b2655ea6c87ae44a994a9cfe9f8ac56f7e964011",
+   "size": 270245
+  },
+  "figures/exp_j_ios_permission_denied.png": {
+   "sha256": "c0582930c80acf5385c9925e78d0a120f71419ce9f6f0f298f97922b49f7a7a6",
+   "size": 137129
+  },
+  "figures/exp_j_ios_permission_dialog.png": {
+   "sha256": "c071aeea0145c75a2f6d88e4777c7e353a043b7910584ce14c5c20f0e2cef94f",
+   "size": 316606
+  },
+  "figures/exp_j_ios_permission_purpose.png": {
+   "sha256": "06715731921718ade070d5412f35cb1125c0862fa0e8fd20464ae110baff1683",
+   "size": 107135
   },
   "figures/exp_j_permission_denied.png": {
-   "sha256": "b44218b6033e689ef8bb13e101daf9ae0d700c35dcc19bef0b6543c5e33984b3",
-   "size": 98509
+   "sha256": "d5921fbf95cf4f5be926461743b39d048da7a3c36ba4fe099731a7ed59ab8e2b",
+   "size": 98008
   },
   "figures/exp_j_permission_dialog.png": {
-   "sha256": "73c33104e7a7d2e8a7a3405e9cd018e91b7c1447b062e10aa3db2a407de39ccb",
-   "size": 117755
+   "sha256": "c85fd9775c9f921c3e990f2cec36cb86123ea357af4ead3aaae310a4ef6ffec5",
+   "size": 116504
   },
   "figures/exp_j_permission_purpose.png": {
-   "sha256": "7ac1ce8ebafd70e7837e49f43be466554fc368d9e374d4f3cd966bffd4b87dff",
-   "size": 72650
+   "sha256": "dc1cdb33bb166b3567615e3287509f5739f5d164dde706150abe647bd483f003",
+   "size": 72405
+  },
+  "figures/exp_j_recents.png": {
+   "sha256": "a92d40901abdf3c3772ef5fa7fead184c42407c904ae61711e035193976ef6d0",
+   "size": 48094
+  },
+  "figures/exp_j_recents_before.png": {
+   "sha256": "3032030a0873f34ed7e23559544ecb466b714da086210e28ea8f86512c65820a",
+   "size": 125115
   },
   "figures/failure_insufficient_observation_windshield_A.png": {
    "sha256": "e8f5ef341f61b060553e86af000c287c07788f7ae4fa73d0f2f8cae5e0b2d8cc",

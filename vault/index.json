@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "6fafcd06dfac6aed0cebe03fb00d4cc3bbee5be6cbe9b04c8e1bab381dc7c5fd",
-   "size": 108942
+   "sha256": "4b13a07e81e0d51f7e43678ea2cdcab260b3aa2862995d6fe6cbe4ec2f3dd815",
+   "size": 112840
   },
   "data/progress_notes.md": {
-   "sha256": "d0d7abecaa57ca6a8d81413af1a72bee1bf6a407021f6e40c41e5b033413b9e5",
-   "size": 24241
+   "sha256": "ac9df4bb991f0387bc173d445438fb46d164f4af52b5b6025040ee11286624ee",
+   "size": 25531
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -104,6 +104,10 @@
    "sha256": "e768d77e83822513b63530e18aeb26685f50bbb1d49ff636d893059a4b035e64",
    "size": 8323
   },
+  "data/results/EXP-K_summary.json": {
+   "sha256": "cbf66c6a469ad13aa048ad31053d8f47ad94373ccc4237177c33766d8887e2da",
+   "size": 178345
+  },
   "data/results/association_probe_kt.json": {
    "sha256": "f90a516c1658ae77341ff1c622e6991adb006217bdd6c94eac66de4fcae2cda9",
    "size": 13297
@@ -111,6 +115,10 @@
   "data/results/exp_b_r60_summary.json": {
    "sha256": "dc176ed8d04bf2718e1360222350894ad6b269dda7fe188a50b8518bc2aacf40",
    "size": 73229
+  },
+  "data/results/exp_c_heldout_summary.json": {
+   "sha256": "894362a85b459c85a0291215c68cd68e0029780ebc69852be5b8490b23362e6e",
+   "size": 2851
   },
   "data/results/exp_e_train_summary.json": {
    "sha256": "0eb9caad28fa544c6f08bbaf2948503967fd8377d358e4fdc1e6b8fa0761e96b",
@@ -340,6 +348,10 @@
    "sha256": "9dbb7851957c2042b4d3fc8c7c5d4b43176055e10d06324cadfe4dad9bc303b1",
    "size": 8266
   },
+  "figures/app_start_page.png": {
+   "sha256": "9bccdac7eaaf34a7d7b1ac79dfd26ce3fc63c33d3ae8f330917120b3d1c36ad9",
+   "size": 271533
+  },
   "figures/dp_data_flow_en.png": {
    "sha256": "a79c2432ba8796f4b52debde72fec91a17bf90417a30a6ce40fe3ca752bfacad",
    "size": 352968
@@ -415,6 +427,10 @@
   "figures/exp_j_recents_before.png": {
    "sha256": "3032030a0873f34ed7e23559544ecb466b714da086210e28ea8f86512c65820a",
    "size": 125115
+  },
+  "figures/exp_k_playback_screen.png": {
+   "sha256": "2178e869807858f327f4743f8cd18d6a608c368afc3c800a103eda71f1770ec1",
+   "size": 974089
   },
   "figures/failure_insufficient_observation_windshield_A.png": {
    "sha256": "e8f5ef341f61b060553e86af000c287c07788f7ae4fa73d0f2f8cae5e0b2d8cc",

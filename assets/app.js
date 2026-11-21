@@ -733,6 +733,14 @@
     if (exp.log_tail && exp.log_tail.length && exp.status === 'running') {
       body.appendChild(el('div', { class: 'card' }, [el('h3', { text: 'Sweep log (tail)' }), el('pre', { text: exp.log_tail.join('\n') })]));
     }
+    // Readable tables the publisher built for experiments whose result is a checklist (EXP-J):
+    // drawn before the raw summary so the reader sees the outcome first.
+    (exp.tables || []).forEach(function (t) {
+      var tCard = el('div', { class: 'card' }, [el('h3', { text: t.title })]);
+      if (t.note) { tCard.appendChild(el('p', { class: 'small muted', text: t.note })); }
+      tCard.appendChild(makeTable(t.rows || [], t.columns, { wrap: t.columns }));
+      body.appendChild(tCard);
+    });
     var sumCard = exp.summary_file ? el('div', { class: 'card' }, [el('h3', null, [document.createTextNode('Summary '), el('span', { class: 'muted small', text: exp.summary_file.split('/').pop() })])]) : null;
     if (sumCard) { body.appendChild(sumCard); }
     if (exp.figures && exp.figures.length) {

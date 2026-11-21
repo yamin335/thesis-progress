@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "7c5d235e3d057b22831fd80ac757e33b4228e1bfbee6293f707b12cdd9d1c22a",
-   "size": 118552
+   "sha256": "ae9faa9b85a940c2103a4449356f0be1e418377859d3714192d4bcc42dbc93d7",
+   "size": 132383
   },
   "data/progress_notes.md": {
-   "sha256": "8ea8e4d9c19f0c986f91ba74648a2e9599dd93d8cffbe9fbd8cd63ea7c733a37",
-   "size": 26177
+   "sha256": "2bf4eeb6dd0aa649401f9d3f4e44a82f966cb0be7e42d8acb28d6ae90bb22605",
+   "size": 26843
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -131,6 +131,10 @@
   "data/results/exp_j_summary_ios.json": {
    "sha256": "4c0fb0a90a01c6f3757f2cf72228ce4e6cd3b49cfbb12782e987b9382118dfda",
    "size": 16205
+  },
+  "data/results/exp_k_part2_summary.json": {
+   "sha256": "aacb09bbc9be97681a4c2cd2fbdd8fed869bcbd11986230e6da312581917759b",
+   "size": 284188
   },
   "data/results/ground_bias_kt.json": {
    "sha256": "7334120ea7bbd328fe0759b117c423e9208a790535c763148013d08254ae4beb",

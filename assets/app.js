@@ -783,7 +783,8 @@
       if (sumCard) {
         fetchJSON(exp.summary_file).then(function (summary) {
           if (summary.description) { sumCard.appendChild(el('p', { class: 'small muted', text: summary.description + (typeof summary.settings === 'string' && summary.settings ? ' Settings: ' + summary.settings : '') })); }
-          if (Array.isArray(summary.cells) && summary.cells.length && isPlainObject(summary.cells[0]) && 'view' in summary.cells[0]) {
+          // a summary is drawn as tables when its cells carry the group key its axes name (default: view)
+          if (Array.isArray(summary.cells) && summary.cells.length && isPlainObject(summary.cells[0]) && (((summary.axes || {}).group) || 'view') in summary.cells[0]) {
             renderCellSummary(summary, id.toLowerCase(), sumCard);
             var rest = {}; Object.keys(summary).forEach(function (k) { if (['cells', 'description', 'settings', 'axes'].indexOf(k) < 0 && k.indexOf('best_by_') !== 0) { rest[k] = summary[k]; } });
             var more = el('details', { class: 'json', style: 'margin-top:0.6rem' }, [el('summary', { text: 'Other summary fields' })]);

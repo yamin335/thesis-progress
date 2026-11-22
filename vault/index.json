@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "6141a9effbb4d9935c4b182b3926189c1cd770d7657ac51aa5b7d8dd6034296e",
-   "size": 291460
+   "sha256": "3e5ff32e32063ab6a051f051afd5fe803c467080928afef6bf85532bb53c227c",
+   "size": 292234
   },
   "data/progress_notes.md": {
-   "sha256": "a40a512607ddac8d6708f6733611e91040cb16d9f8246467ca47934eba71bf1a",
-   "size": 32956
+   "sha256": "58f451e60f3c24a30294dec3626c8b8e3ea1869f13fc71e44e4e06a2dee3f3a1",
+   "size": 33701
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -385,8 +385,8 @@
    "size": 1862
   },
   "data/training/yolo26n_kt_v2p_s1/results.csv": {
-   "sha256": "0704be54b49f84f35b68968dc0cafb55b0a09aadc6c9bb9da52eda361597ddee",
-   "size": 3606
+   "sha256": "2c7b50b3702a5a6425bb2d7dbc4fc24305edce12333ffcaabc7bd274085b201f",
+   "size": 3769
   },
   "data/training/yolo26s_kt_v1_s0/args.yaml": {
    "sha256": "d1a6cdd41dd5ff2b4e27432819a205303e370fbbea5a9499efac52954d0e134d",

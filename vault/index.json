@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "ca78a49ea5200de6c0aedea954dae0f5c6ed75e324cb84f260fbda1ce49c1fd9",
-   "size": 406109
+   "sha256": "545b302c8386a8e63004bfe4cd1a6abc45a6969cc1f35194133d48cabf3a44b9",
+   "size": 447993
   },
   "data/progress_notes.md": {
    "sha256": "e33ebdfff1ec12af253c1acff5458dc7ca31550cda54aff320eed23204db8bde",
@@ -112,6 +112,10 @@
    "sha256": "692e0640bb24cad85774ce3341259cbe5244e06dfc65ccc1eec6c7eab7352446",
    "size": 225170
   },
+  "data/results/EXP-N_summary.json": {
+   "sha256": "c5830ac2d9ee001a528033f739d37b6c632675a12ad8821a1e37834cf0b8a404",
+   "size": 224571
+  },
   "data/results/association_probe_kt.json": {
    "sha256": "f90a516c1658ae77341ff1c622e6991adb006217bdd6c94eac66de4fcae2cda9",
    "size": 13297
@@ -176,6 +180,10 @@
    "sha256": "eb442e43bd108c6a095982ddf428ff1770f4607699f5e00947477a01c1d90b28",
    "size": 5002
   },
+  "data/results/exp_n_redlight_summary.json": {
+   "sha256": "bf6c8d957e34ba73d97b037ed18015ccbd4d93ade6014455859ed43d186a7d53",
+   "size": 1861645
+  },
   "data/results/ground_bias_kt.json": {
    "sha256": "7334120ea7bbd328fe0759b117c423e9208a790535c763148013d08254ae4beb",
    "size": 11162
@@ -209,8 +217,8 @@
    "size": 2222
   },
   "data/training/log_tail.txt": {
-   "sha256": "a83f9e7454b875120bb7eb6bf975f26164015b786b52b5b6b567ab8640c673e7",
-   "size": 451
+   "sha256": "c399ca0e38ba1b76003f19981e55461c85c9cc311cdaf4355ccf72e1e1eb712a",
+   "size": 1780
   },
   "data/training/yolo11n_kt_v1_s0/results.csv": {
    "sha256": "235edf086dca867c83d83ffafb371f87f4771b31f8df9a3e71abc58a7419dcc0",
@@ -269,8 +277,8 @@
    "size": 4570
   },
   "data/training/yolo26n_kt_v2p_s2/results.csv": {
-   "sha256": "b3c9bc49936ac4f3e987d4cd032d2b9c8b6661e586a1767c7ecee62fb8101752",
-   "size": 1691
+   "sha256": "e29e9c2058e9d31836790072a31229802957ea52f78b51439437888662944c8c",
+   "size": 6021
   },
   "data/training/yolo26s_kt_v1_s0/results.csv": {
    "sha256": "e0dba3ad12bd6fa5dcd1749507ff4074e8a3d4fb9d311b6e3d2a939fd4c227a8",

@@ -17,11 +17,11 @@ What is shown:
 | Section | Source in the thesis repository |
 |---|---|
 | Overview, Plan | `docs/thesis_plan.md` (status line, phase checklists, deadlines) and `docs/progress_notes.md` |
-| Data | `experiments/results/kt_matrix_manifest.csv`, `datasets/kt_v1/MANIFEST.md`, label statistics |
-| Training | `models/fine_tuned/<run>/results.csv`, `finetune_record.json`, `train_matrix.log` |
-| Experiments | `docs/experiment_plan.md` (EXP-A to EXP-J) and every file in `experiments/results/` |
+| Data | `experiments/results/kt_matrix_manifest.csv`, `datasets/kt_v1/MANIFEST.md`, label counts of `kt_v1`, `kt_v1p`, `kt_v2p` |
+| Training | `models/fine_tuned/<run>/results.csv`, `finetune_record.json`, the training logs, grouped by stage (S1, ablation, EXP-L, EXP-N) |
+| Experiments | `docs/experiment_plan.md` (EXP-A to EXP-N) and the files in `experiments/results/`, with readable tables built by the collector |
 | Models | `models/pretrained/`, `models/fine_tuned/*/best.pt`, the app's `MODEL_VERSION` |
-| Figures | `docs/figures/*.png` with captions from `docs/figures/captions.json` |
+| Figures | `docs/figures/*.png` with captions from `docs/figures/captions.json` (phone screenshots cropped to the app content) |
 | Activity | `git log` of the thesis and app repositories (messages only) |
 
 Updating: in the thesis repository run

@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-10-21 (page version `v=20261022c`, collector 1.5.1).
+State of the progress dashboard as of 2026-11-22 (page version `v=20261122a`, collector 1.6.0).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -45,9 +45,10 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
 | `plan` | `parse_plan` | `status`, `deadline`, `technical_cutoff`, `phases[]` = `{title, done, total, items[]{done, text}}`. The writing phase is dropped (`WRITING_RE`). |
 | `notes_status` | `parse_notes` | `[{key, value}]` from the "Current status" list of `progress_notes.md`. |
 | `timeline` | `build` | `[{date, text, source}]` newest first: notes log + plan hand-off history, writing entries dropped. |
+| `datasets` | `datasets_info` | `[{name, title, note, classes{id: name}, splits[]{split, runs, frames, boxes, empty_frames, per_class{}, new_runs, new_frames, new_boxes}, total{...}, new_runs}]` for kt_v1, kt_v1p, kt_v2p, counted from the label files. |
 | `dataset` | `dataset_info` | `splits[]{split, frames, boxes, runs}` incl. `total`; `classes{id: name}`; `class_counts{split: {per_class}}`; `manifest_md` path. |
 | `matrix` | `matrix_info` | `present`, `csv` path, `runs`, `by_status{}`, `frames_on_disk`. |
-| `training` | `training_info`, `training_stages` | `runs[]{name, arch, seed, status, epochs_done, best_epoch, best_map50_95, last_map50_95, files{results, record, log}, ...}`, `planned_runs`, `plan{archs, seeds, epochs, patience, image_size}`, `log_tail` path, `running`; `ladder{stages[]{stage, data, purpose, status, detail}, note}` from `docs/training_plan.md` §2 (S0 done with EXP-A rows, S1 by run count, S2/S3 by plan item 7.6). |
+| `training` | `training_info`, `training_ladder` | `runs[]{name, arch, dataset, seed, stage, status (done, running, stopped, queued, not started), epochs_done, best_epoch, best_map50_95, best_map50, last_map50_95, minutes, start_from, files{results}}`; `stages[]{id, title, dataset, experiment, note, validation, recipe, status, planned, done, running, queued, per_arch[]{arch, runs, map50_95_mean, map50_95_std, map50_mean, map50_std}, runs[]}` (S1, S1-unfrozen, EXP-L, EXP-N, or `runs-<dataset>` for an unlisted dataset); `planned_runs`; `log_tail` path and `log_name`; `running`; `ladder{stages[]{stage, data, purpose, status, detail}}` from `docs/training_plan.md` §2. |
 | `experiments` | `experiments_info` | see §3. |
 | `models` | `models_info` | `pretrained[]{name, format, size_mb, date}`; `fine_tuned[]{name, arch, dataset, seed, image_size, best_epoch, best_val_map50_95, best_val_map50, minutes, size_mb, date}` (from `finetune_record.json`); `app_models[]{id, family, arch, size_mb, classes, verified, nms_free_mb, nms_free_verified, nms_free_agreement, val_map50_95, trained_px}` from the app's `models.json`; `app_meta{generated_at, thesis_commit, input_size, models, files, total_mb, header{}}`. |
 | `figures` | `figures_info` | `[{file, name, group, caption, date}]`; files whose name marks real or anonymised footage are never published. |
@@ -57,7 +58,11 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
 
 ```
 { "experiments": [ { id, name, purpose, data_source, method, output, metrics,   ← docs/experiment_plan.md table
-                     status,            "done" | "running" | "results" | "planned"
+                     status,            "not_carried_out" | "done" | "running" | "results" | "started" | "planned"
+                     status_note,       sentence shown at the top of a group that was not carried out
+                     training_stage,    id of the training stage that belongs to the experiment (EXP-L, EXP-N)
+                     tables[],          readable tables built by the collector (READABLE_TABLES): {title, note, columns, rows,
+                                        verdict{text, kind}, pills[], charts[]{title, labels, datasets[{label, data}], y_title, y_max, stacked}}
                      plan_item,         text of the plan checklist item naming the experiment earliest
                      overview,          paragraph from docs/progress_notes.md "Experiment overviews" (null when none)
                      rows, columns,     rows of all_results.csv whose experiment_id is <id> or starts with "<id>-",
@@ -73,8 +78,10 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
   "columns": [...33 schema columns...], "total_rows": n }
 ```
 
-Status rules: `done` when the plan item is ticked; `running` when the last `--- ` line of the
-sweep log is a `start`; `results` when rows exist; else `planned`. Files produced for an earlier
+Status rules, first match: `not_carried_out` when `docs/experiment_plan.md` says so; `done` when the
+plan item is ticked; `running` when the last `--- ` line of the sweep log is a `start` or a run of
+the experiment's training stage is running (marker lines of the training logs); `results` when rows
+or a summary exist; `started` when finished training runs or a capture manifest exist; else `planned`. Files produced for an earlier
 run that no longer exist are deleted from `data/results/` so the vault drops them too.
 
 Conventions every experiment script must follow (also in the thesis repository's
@@ -86,7 +93,11 @@ The summary "cells" shape that gets pivot tables and charts:
 axes: {group, row, col, col_unit, cell_note}   (default group "view", row "model", col "size", unit " px"),
 best_by_<x>{group: {field: value}}, description, settings, ci }`. EXP-A uses the default axes,
 EXP-B `{group: "view", row: "run", col: "t_parked", col_unit: " s"}`. Every `best_by_*` object is
-printed as a line under the tables. Any other JSON summary is shown as a tree.
+printed as a line under the tables. Any other JSON summary is shown as a tree. Optional axes keys:
+`stat` (what follows the mean in a cell, for example "mean ± std over the training seeds"; the std of
+the cell is then printed) and `default_metric`. EXP-L, EXP-M and EXP-N get a slim site copy of their
+summary with one panel and the group of runs as the row (`SITE_SUMMARY_VIEWS`). The raw EXP-J
+summaries are not published at all.
 
 ## 4. Page structure (`index.html` ids ↔ renderers in `assets/app.js`)
 
@@ -98,9 +109,9 @@ printed as a line under the tables. Any other JSON summary is shown as a tree.
 | `overview` | `overview-cards`, `status-card` | `renderOverview` |
 | `timeline` | `timeline-list` | `renderTimeline` |
 | `plan` | `phase-list` | `renderPlan` |
-| `data` | `data-cards`, `chart-splits`, `chart-classes`, `chart-weather`, `chart-views`, `matrix-table`, `dataset-card` | `renderData` |
-| `training` | `training-stages` (ladder table), `training-cards`, `training-runs`, `training-metric`, `chart-training-curves`, `chart-training-best`, `training-log-wrap`, `training-log` | `renderTraining`, `populateMetricSelect`, `drawTrainingCurves` |
-| `experiments` | `experiment-cards`, `experiment-groups`, `other-results` | `renderExperiments`, `renderExperimentGroup`, `renderCellSummary`, `csvChartControls`, `figureStrip`, `jsonRoot` |
+| `data` | `data-cards`, `chart-splits`, `chart-weather`, `chart-views`, `dataset-cards` (one card per dataset, canvas `chart-dataset-<name>`), `matrix-table`, `dataset-card` | `renderData`, `renderDatasets` |
+| `training` | `training-stages` (ladder table), `training-metric`, `training-stage-cards` (one card per stage, canvas `chart-training-<stage id>`), `training-log-wrap`, `training-log` | `renderTraining`, `populateMetricSelect`, `drawTrainingCurves` |
+| `experiments` | `experiment-cards`, `experiment-groups`, `other-results` | `renderExperiments`, `renderExperimentGroup`, `readableTable`, `specChart`, `valuePill`, `renderCellSummary`, `csvChartControls`, `figureStrip`, `jsonRoot` |
 | `models` | `model-cards` (`.stack`: a `.grid.wide` row with the pretrained and fine-tuned tables, then the full-width app-bundle table) | `renderModels` |
 | `figures` | `figure-groups` | `renderFigures`, `openLightbox` |
 | `activity` | `commits-thesis`, `commits-app` | `renderActivity` |
@@ -139,7 +150,8 @@ Everything is built with `el(tag, attrs, children)`; there is no templating and 
   element, append their markup to it, and only then draw.
 * `makeTable(rows, columns, opts)`: filter box, click-to-sort headers, numeric right-alignment,
   `opts.download` (decrypted download), `opts.render{col: fn}`, `opts.wrap[]`, `opts.labels{}`,
-  `opts.limit` (1000).
+  `opts.limit` (1000), `opts.plain` (no filter row), `opts.readable` (wrapping headers, one
+  number of decimals per column, no inner scrolling up to 40 rows).
 * `jsonView` / `jsonRoot`: JSON tree. Objects and arrays become `details.json` (collapsed below the
   first level), arrays of uniform flat objects become a table, scalars and short arrays stay inline.
 * `lazyDetails(det, loader)`: runs `loader` once, the first time the `<details>` is open, and records
@@ -216,3 +228,12 @@ summary charts drawn, models, figures, commits.
   the rows chart can group by them and the short table shows them (`v=20261022b`, collector 1.5.1).
 * 2026-10-22 (EXP-F): summary columns may be text (weather names); numeric columns still sort by
   value (`v=20261022c`).
+* 2026-11-22: training section by stage (S1, ablation, EXP-L, EXP-N) with one explanation, table
+  and curve chart per stage; dataset cards for kt_v1, kt_v1p, kt_v2p; readable tables with verdict
+  pills and bar charts for EXP-L, EXP-M and EXP-N (`readableTable`, `specChart`); statuses
+  "not carried out" and "in progress"; summary panels say what the spread is and draw many rows as
+  horizontal bars; phone screenshots cropped by the collector; raw EXP-J summaries, training
+  `args.yaml` and records, and the plan's hand-off line no longer published (`v=20261122a`,
+  collector 1.6.0). A local preview with throwaway credentials and headless Firefox was used to
+  look at every section, so "no browser exists on the build machine" in §7 no longer holds:
+  `firefox --headless` with geckodriver is available.

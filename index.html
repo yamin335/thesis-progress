@@ -8,7 +8,7 @@
 <meta name="referrer" content="no-referrer">
 <title>Parked Vehicles Thesis: Progress</title>
 <meta name="description" content="Progress of the master's thesis 'Computer Vision Approach to Identify Parked Vehicles Based on Smartphone Camera Data' (THI). Access restricted.">
-<link rel="stylesheet" href="assets/style.css?v=20261121c">
+<link rel="stylesheet" href="assets/style.css?v=20261122a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%232b6cb0'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='white' font-family='Arial'%3EP%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -81,49 +81,44 @@
   </section>
 
   <section class="block" id="data">
-    <header><h2>Synthetic data</h2><p>The capture matrix on the KIVI_Twin digital twin and the exported YOLO dataset <code>kt_v1</code>. Split is by run, never by frame; road 2 appears only in the test split.</p></header>
+    <header><h2>Synthetic data</h2><p>The capture matrix on the KIVI_Twin digital twin and the three YOLO datasets exported from it: <code>kt_v1</code> (vehicles by type), <code>kt_v1p</code> (the same frames with the classes parked vehicle and other vehicle) and <code>kt_v2p</code> (plus the runs with traffic around the camera car). Split is by run, never by frame; road 2 appears only in the test split. The cards and charts at the top describe <code>kt_v1</code>.</p></header>
     <div class="grid" id="data-cards"></div>
     <div class="grid wide" style="margin-top:0.9rem">
-      <div class="card"><h3>Frames per split</h3><div class="chart short"><canvas id="chart-splits"></canvas></div></div>
-      <div class="card"><h3>Boxes per class and split</h3><div class="chart short"><canvas id="chart-classes"></canvas></div></div>
-      <div class="card"><h3>Frames per weather</h3><div class="chart short"><canvas id="chart-weather"></canvas></div></div>
-      <div class="card"><h3>Frames per camera view</h3><div class="chart short"><canvas id="chart-views"></canvas></div></div>
+      <div class="card"><h3>Frames per split, kt_v1</h3><div class="chart short"><canvas id="chart-splits"></canvas></div></div>
+      <div class="card"><h3>Frames per weather, capture matrix</h3><div class="chart short"><canvas id="chart-weather"></canvas></div></div>
+      <div class="card"><h3>Frames per camera view, capture matrix</h3><div class="chart short"><canvas id="chart-views"></canvas></div></div>
     </div>
-    <h3 style="margin-top:1.2rem">Capture matrix</h3>
+    <h3 style="margin-top:1.2rem">Datasets</h3>
+    <div class="stack" id="dataset-cards"></div>
+    <h3 style="margin-top:1.2rem">Capture matrix: the 53 runs of kt_v1 and the 40 factor runs</h3>
     <div id="matrix-table"></div>
     <details style="margin-top:0.9rem"><summary class="muted">Dataset card (kt_v1 MANIFEST.md)</summary><div class="md" id="dataset-card" style="margin-top:0.5rem"></div></details>
   </section>
 
   <section class="block" id="training">
-    <header><h2>Training</h2><p>The sim-to-real ladder of <code>docs/training_plan.md</code>: zero-shot (S0), synthetic fine-tuning (S1, four YOLO architectures on <code>kt_v1</code>, three seeds each), then synthetic plus a little real data (S2) and real only (S3) once the real recording exists. Curves update while a run is in progress when the collector runs in watch mode.</p></header>
+    <header><h2>Training</h2><p>Every training run of the thesis, grouped by stage: the fine-tuning on the synthetic dataset (S1), the ablation with every layer trained, the parked class of EXP-L and the further round of EXP-N. Each stage states its dataset and its validation set. Validation figures compare within a stage only, because the stages are validated on different data. A run in progress is shown as running, and its curve grows with every republished epoch.</p></header>
     <div id="training-stages"></div>
-    <div class="grid" id="training-cards" style="margin-top:0.9rem"></div>
-    <div id="training-runs" style="margin-top:0.9rem"></div>
-    <div class="grid wide" style="margin-top:0.9rem" id="training-charts">
-      <div class="card">
-        <h3>Validation metric per epoch <select class="metric" id="training-metric"></select></h3>
-        <div class="chart tall"><canvas id="chart-training-curves"></canvas></div>
-      </div>
-      <div class="card"><h3>Best mAP50-95 per run</h3><div class="chart tall"><canvas id="chart-training-best"></canvas></div></div>
-    </div>
+    <p class="small muted" style="margin:0.9rem 0 0.4rem">Metric of the curve charts <select class="metric" id="training-metric"></select></p>
+    <div class="stack" id="training-stage-cards"></div>
     <details style="margin-top:0.9rem" id="training-log-wrap" class="hidden"><summary class="muted">Training log (tail)</summary><pre id="training-log"></pre></details>
   </section>
 
   <section class="block" id="experiments">
-    <header><h2>Experiments and results</h2><p>The pre-registered experiments EXP-A to EXP-J, one group each: summary tables and charts, figures, the result rows of <code>all_results.csv</code> as a sortable table, and every per-row result record as an expandable item. Files that belong to no single experiment follow at the end.</p></header>
+    <header><h2>Experiments and results</h2><p>The experiments EXP-A to EXP-N, one group each. EXP-A to EXP-J were fixed in the experiment plan before the work, EXP-K to EXP-N were added in November 2026, each with a protocol written before its test. A group holds a short overview, tables with a note on what the columns mean, charts, figures, and where they exist the result rows of <code>all_results.csv</code> and the per-row records. EXP-G and EXP-H needed real footage and were not carried out. The result files as they were written follow at the end.</p></header>
     <div class="grid exp-cards" id="experiment-cards"></div>
     <div id="experiment-groups" style="margin-top:1rem"></div>
-    <h3 style="margin-top:1.4rem">Other result files</h3>
+    <h3 style="margin-top:1.4rem">Result files as written by the scripts</h3>
+    <p class="small muted">Calibrations, manifests and the records behind the tables above, for looking things up. Each opens as a table or as a tree of its fields.</p>
     <div id="other-results"></div>
   </section>
 
   <section class="block" id="models">
-    <header><h2>Models</h2><p>The pretrained weights and the fine-tuned S1 checkpoints side by side, and underneath every model bundled in the smartphone demonstrator app.</p></header>
+    <header><h2>Models</h2><p>The pretrained weights and the fine-tuned checkpoints of every training stage side by side, and underneath every model bundled in the smartphone demonstrator app.</p></header>
     <div class="stack" id="model-cards"></div>
   </section>
 
   <section class="block" id="figures">
-    <header><h2>Figures</h2><p>Figures saved in <code>docs/figures/</code>: simulator views, projected parking regions, label checks and data-protection figures. Click to enlarge.</p></header>
+    <header><h2>Figures</h2><p>Figures saved in <code>docs/figures/</code>: simulator views, projected parking regions, label checks, result plots and screenshots of the app. The phone screenshots are cut to the app's own content. Click to enlarge.</p></header>
     <div id="figure-groups"></div>
   </section>
 
@@ -143,6 +138,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
-<script src="assets/app.js?v=20261121c"></script>
+<script src="assets/app.js?v=20261122a"></script>
 </body>
 </html>

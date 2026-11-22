@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "3e5ff32e32063ab6a051f051afd5fe803c467080928afef6bf85532bb53c227c",
-   "size": 292234
+   "sha256": "95526cedade7baaa20734b7ae72fc05e7d2c30be249a24081fe97ebee0de73c3",
+   "size": 405394
   },
   "data/progress_notes.md": {
-   "sha256": "58f451e60f3c24a30294dec3626c8b8e3ea1869f13fc71e44e4e06a2dee3f3a1",
-   "size": 33701
+   "sha256": "4d3419facc295df8e75fac0e57bf09642923ce36e6b4e05b9e8ffda731b5dac5",
+   "size": 33414
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -100,21 +100,17 @@
    "sha256": "280866fbedd9a6fa97520586f97a730673a14eb936378029a4df0f985c6eafad",
    "size": 153122
   },
-  "data/results/EXP-J_summary.json": {
-   "sha256": "16c6a1ffd4265005f2013b1b2b330c6631612c0d781fc28dfd3936bc0763b0d7",
-   "size": 55350
-  },
   "data/results/EXP-K_summary.json": {
-   "sha256": "c72f39d517be9b81af222329cb6f90bbef7287bfe231090d8c2eb94d198cf8d4",
-   "size": 334673
+   "sha256": "6c8a154d959c5833751667b4c332627bbc368a10b6b47fa4daddb2c13c1f632f",
+   "size": 334621
   },
   "data/results/EXP-L_summary.json": {
-   "sha256": "c70877a216dd4147c002da2aec8822f4c54c87472924e0faf8498e34c8d688a7",
-   "size": 5427352
+   "sha256": "3e45e1aa74c0a3a1a0cd72c8cd1a53cb1ebb8edde3a3e9f7c5b684ca9b840801",
+   "size": 74210
   },
   "data/results/EXP-M_summary.json": {
-   "sha256": "3002d150b1e658a803d999f4d8e7ed91029dcfbfa3525d4c35b151bb3ed9b4df",
-   "size": 4810539
+   "sha256": "692e0640bb24cad85774ce3341259cbe5244e06dfc65ccc1eec6c7eab7352446",
+   "size": 225170
   },
   "data/results/association_probe_kt.json": {
    "sha256": "f90a516c1658ae77341ff1c622e6991adb006217bdd6c94eac66de4fcae2cda9",
@@ -136,14 +132,6 @@
    "sha256": "cccafe345d1cc3ae33a875a19c0fd8089a5683d5c97f5dbf9e79b8a406808553",
    "size": 12339
   },
-  "data/results/exp_j_summary_20261115_camera_only.json": {
-   "sha256": "e768d77e83822513b63530e18aeb26685f50bbb1d49ff636d893059a4b035e64",
-   "size": 8323
-  },
-  "data/results/exp_j_summary_ios.json": {
-   "sha256": "4c0fb0a90a01c6f3757f2cf72228ce4e6cd3b49cfbb12782e987b9382118dfda",
-   "size": 16205
-  },
   "data/results/exp_k_part2_summary.json": {
    "sha256": "e5b61aa0479995ab6bb5fcbbd36c7bf674d7b6b3ac7b60f05f5245b40b38c05d",
    "size": 415308
@@ -153,8 +141,8 @@
    "size": 3578282
   },
   "data/results/exp_k_part4_summary.json": {
-   "sha256": "be622b1fb955ab5ae7aa4f1b06cf1432cc40d35db1b71e8c94a77b5f778c24b0",
-   "size": 2378317
+   "sha256": "6700b45bfdd9b2dd925c529a0f8dcd77fdd4a675fa4235b202c9c4137be8927e",
+   "size": 3412855
   },
   "data/results/exp_l_choice_false_calls.json": {
    "sha256": "84fae4ef5458b626b2063407e5ef6d3cfb42a602cdb1fccbf02e5cb02abfaf4f",
@@ -221,240 +209,88 @@
    "size": 2222
   },
   "data/training/log_tail.txt": {
-   "sha256": "84846426daa70fbb5e3e2810f48f15a04d4fbcf7cdb72661678e8d8805f217fd",
-   "size": 10044
-  },
-  "data/training/yolo11n_kt_v1_s0/args.yaml": {
-   "sha256": "9be58e5c93aba5b20fed7a302f9fdf6b963b33529deccdc73b2c61965ca04904",
-   "size": 1844
-  },
-  "data/training/yolo11n_kt_v1_s0/finetune_record.json": {
-   "sha256": "1f37d4da27c4bc8be37fecbaf1363ab8dcdb5bb862f54fa60f79f805763e909e",
-   "size": 1701
+   "sha256": "2cac476e60f1e1bed755a2ca2f670d56eb500c4c18334df26e9877dfec0eafd9",
+   "size": 290
   },
   "data/training/yolo11n_kt_v1_s0/results.csv": {
    "sha256": "235edf086dca867c83d83ffafb371f87f4771b31f8df9a3e71abc58a7419dcc0",
    "size": 8252
   },
-  "data/training/yolo11n_kt_v1_s1/args.yaml": {
-   "sha256": "fd357031867546ff6fd2fa415703ed4eae14a5c93ff20f303901e4111a888396",
-   "size": 1844
-  },
-  "data/training/yolo11n_kt_v1_s1/finetune_record.json": {
-   "sha256": "bb61ecaba8769f3c88355606b1458b4b8237eca5743f0e5ba76686e48617d40f",
-   "size": 1702
-  },
   "data/training/yolo11n_kt_v1_s1/results.csv": {
    "sha256": "bfc089614a0aa3012e295b1a90849974395b9467f3339d73838eea933a659bdd",
    "size": 8267
-  },
-  "data/training/yolo11n_kt_v1_s2/args.yaml": {
-   "sha256": "bbb8f310e66fb4473def9ffa074fd8ab180f65432a6d9ff60713b55c0aa6f96c",
-   "size": 1844
-  },
-  "data/training/yolo11n_kt_v1_s2/finetune_record.json": {
-   "sha256": "770aab01a2a206451ecf2a2dc18b4c004728e610d6daa3379bf5d79c6361fbd5",
-   "size": 1701
   },
   "data/training/yolo11n_kt_v1_s2/results.csv": {
    "sha256": "539d96efb109f4a2ffe153937a706b40ccf2fb8b887e8747dba737e6299b5318",
    "size": 8277
   },
-  "data/training/yolo26n_kt_v1_s0/args.yaml": {
-   "sha256": "2bd170b42181c03498584fad4366737280708c579784ca27582d82a4ad8a8f99",
-   "size": 1844
-  },
-  "data/training/yolo26n_kt_v1_s0/finetune_record.json": {
-   "sha256": "67cf6c1d18d9a949bf0536c81b3f6631c22624248f1b8d98fc2f50e69f062377",
-   "size": 1702
-  },
   "data/training/yolo26n_kt_v1_s0/results.csv": {
    "sha256": "b7eee7a09fcd2d10dd477e405f97bb4dc245d5cce3dbf4a42f174d9795f96a1e",
    "size": 8268
-  },
-  "data/training/yolo26n_kt_v1_s1/args.yaml": {
-   "sha256": "1092244f9349e74220186383d6a7b7025040f038f0eb4485cdd86b1705aab709",
-   "size": 1844
-  },
-  "data/training/yolo26n_kt_v1_s1/finetune_record.json": {
-   "sha256": "ef4e524ebacc19b00c3d74dfb6e70ac8caba02294b67aa9939431e395c4555c6",
-   "size": 1702
   },
   "data/training/yolo26n_kt_v1_s1/results.csv": {
    "sha256": "a92accf596e0a8851f52bd197f5ba37dfe80e59075d6f02c347f91e126f331a7",
    "size": 8276
   },
-  "data/training/yolo26n_kt_v1_s2/args.yaml": {
-   "sha256": "cf321134f37721f71fceca74b1472f48753e9f965da57a359d489fdd41cbf5fb",
-   "size": 1844
-  },
-  "data/training/yolo26n_kt_v1_s2/finetune_record.json": {
-   "sha256": "51c04415d0a006487da8b6e23a10fcdb80e12178da998932f6c04dc0bc080f3f",
-   "size": 1702
-  },
   "data/training/yolo26n_kt_v1_s2/results.csv": {
    "sha256": "603cfa0cb550bfb9e64f1f5825be8e1831f8655fe3739f3913a08549e65f853f",
    "size": 8288
-  },
-  "data/training/yolo26n_kt_v1_unfrozen_s0/args.yaml": {
-   "sha256": "a30c729f3ff0d377b275a9c36234a08f13c7111604a0c745d86db0ca452fb1ab",
-   "size": 1864
-  },
-  "data/training/yolo26n_kt_v1_unfrozen_s0/finetune_record.json": {
-   "sha256": "8998fd538132bddde236df0577bf4138cde5d3ccd11711c40fe65691f70e0649",
-   "size": 1573
   },
   "data/training/yolo26n_kt_v1_unfrozen_s0/results.csv": {
    "sha256": "c6d57e6f574cc9e997ccfed7760ef17b22412f83090f499dab14635bbce9b0d6",
    "size": 8276
   },
-  "data/training/yolo26n_kt_v1_unfrozen_s1/args.yaml": {
-   "sha256": "f803158bf1091af655a29e018f154d5796e7dbe6b23114e66a93fd16d0ced274",
-   "size": 1864
-  },
-  "data/training/yolo26n_kt_v1_unfrozen_s1/finetune_record.json": {
-   "sha256": "cd459590464426ece70174a91450d92cd7782ed720908c2bc7c64f37ab879536",
-   "size": 1573
-  },
   "data/training/yolo26n_kt_v1_unfrozen_s1/results.csv": {
    "sha256": "7a2032c2c408f049efa12ca71d0005439814000b2448cafd26224227ac4b5374",
    "size": 8270
-  },
-  "data/training/yolo26n_kt_v1_unfrozen_s2/args.yaml": {
-   "sha256": "dc6589d6b696d19f86e45f871ad14762d86d8b75c1a264ec34b17d6a92773f39",
-   "size": 1864
-  },
-  "data/training/yolo26n_kt_v1_unfrozen_s2/finetune_record.json": {
-   "sha256": "afbacdc22ebc4261f044e5bddd7692930470dbefe25e381b549fca6beffe65ac",
-   "size": 1572
   },
   "data/training/yolo26n_kt_v1_unfrozen_s2/results.csv": {
    "sha256": "f7be505cc397e79edb480c749ebe741283170395767b021b6dee3dc954582e86",
    "size": 8283
   },
-  "data/training/yolo26n_kt_v1p_s0/args.yaml": {
-   "sha256": "8a711db38877e7eae30a860ad5fd5ec8eef68e01058ee1ad9ce0abc6effd27cd",
-   "size": 1861
-  },
-  "data/training/yolo26n_kt_v1p_s0/finetune_record.json": {
-   "sha256": "85ff10bf5508671f58ae9d6ec7a73ae2aac7aca174fa629ef0f035394aa56b53",
-   "size": 1661
-  },
   "data/training/yolo26n_kt_v1p_s0/results.csv": {
    "sha256": "8cd1352d963aeb581e742ab00701b272382a007314cdd2c6dada8eeb078d742b",
    "size": 5394
-  },
-  "data/training/yolo26n_kt_v1p_s1/args.yaml": {
-   "sha256": "351ce4f48f2ac228cb8a145f6352039a7d1a14d91c4513a2ee721733d43f0f6c",
-   "size": 1861
-  },
-  "data/training/yolo26n_kt_v1p_s1/finetune_record.json": {
-   "sha256": "82795240556175aa45016c2f2cfd3b04ac6bf8fb069ea7a9d4bce4e290d452b2",
-   "size": 1660
   },
   "data/training/yolo26n_kt_v1p_s1/results.csv": {
    "sha256": "3aef4b3b7f4e5f03234c9e32a7f0c393400ba6bf585bd98b7c977656a55a8ae1",
    "size": 2824
   },
-  "data/training/yolo26n_kt_v1p_s2/args.yaml": {
-   "sha256": "a41833ee750d85c883785f18e80d01110af8a7ea79c5adb184a6a0f7b2ebb84f",
-   "size": 1861
-  },
-  "data/training/yolo26n_kt_v1p_s2/finetune_record.json": {
-   "sha256": "071840799b64971e58e5410faa99e0f8bc41c3be96da36182e9d19d58a15c669",
-   "size": 1661
-  },
   "data/training/yolo26n_kt_v1p_s2/results.csv": {
    "sha256": "cdf7068a73fa374ab9abdeac9a22beeb9282bde90acfb81eb30cc2f6ff3481e7",
    "size": 6504
-  },
-  "data/training/yolo26n_kt_v2p_s0/args.yaml": {
-   "sha256": "14a0f5be23e4b926a08513454a6797a3e5a66eea02189fb5979cec0621c78e40",
-   "size": 1862
-  },
-  "data/training/yolo26n_kt_v2p_s0/finetune_record.json": {
-   "sha256": "e8dbd54bbfe09439614ad818061f058135c95ae05fa84ba90407a70ca5d36e22",
-   "size": 1661
   },
   "data/training/yolo26n_kt_v2p_s0/results.csv": {
    "sha256": "87a8928ef35592cae6c6d7c18da177040ed74f987eac3e63e8562e794408506d",
    "size": 5695
   },
-  "data/training/yolo26n_kt_v2p_s1/args.yaml": {
-   "sha256": "2b69daca50fec3b7909cef1a369004a3efcbd86fe3b8474009da1611bb990063",
-   "size": 1862
-  },
   "data/training/yolo26n_kt_v2p_s1/results.csv": {
-   "sha256": "2c7b50b3702a5a6425bb2d7dbc4fc24305edce12333ffcaabc7bd274085b201f",
-   "size": 3769
+   "sha256": "1341ae0f40fd6b2c44bab203404526bc11db249f0e5566903e6e35a1f51970e6",
+   "size": 4570
   },
-  "data/training/yolo26s_kt_v1_s0/args.yaml": {
-   "sha256": "d1a6cdd41dd5ff2b4e27432819a205303e370fbbea5a9499efac52954d0e134d",
-   "size": 1843
-  },
-  "data/training/yolo26s_kt_v1_s0/finetune_record.json": {
-   "sha256": "bb2258b1501d1b114bdaf226a24f747a86686600bd5d36683f1de677123acc5f",
-   "size": 1701
+  "data/training/yolo26n_kt_v2p_s2/results.csv": {
+   "sha256": "1fb02554672991ee99747d1e55a02cbae6361b0ad407307d080d6d7aba86cfce",
+   "size": 1530
   },
   "data/training/yolo26s_kt_v1_s0/results.csv": {
    "sha256": "e0dba3ad12bd6fa5dcd1749507ff4074e8a3d4fb9d311b6e3d2a939fd4c227a8",
    "size": 8272
   },
-  "data/training/yolo26s_kt_v1_s1/args.yaml": {
-   "sha256": "caec9cc66b45f86d44366e4a5b29a6076b3604bc4568f86fdfcb1a4fbdb0f4a3",
-   "size": 1843
-  },
-  "data/training/yolo26s_kt_v1_s1/finetune_record.json": {
-   "sha256": "03b641b6b4a02b520ebd0d0ca896ea8076b9226cf9b44c24cd4f5895f6cabed1",
-   "size": 1701
-  },
   "data/training/yolo26s_kt_v1_s1/results.csv": {
    "sha256": "a2df5de08a7063c2bc71f76a12d5669dacec190acf70084e255c3207b0e8877c",
    "size": 8274
-  },
-  "data/training/yolo26s_kt_v1_s2/args.yaml": {
-   "sha256": "8c4138a617fec9d5d8023d2edb34184fa59a10cfc60c0bb2ee1353b2e82e9019",
-   "size": 1843
-  },
-  "data/training/yolo26s_kt_v1_s2/finetune_record.json": {
-   "sha256": "9767b843355b6ba7ba78ff7d02d59195727975ae068335ed169c99a4ecfe7609",
-   "size": 1701
   },
   "data/training/yolo26s_kt_v1_s2/results.csv": {
    "sha256": "ea1f647481e0f063a5fdf03a6e6b2158c0242894031669bf5cc83a7ec025c80c",
    "size": 8265
   },
-  "data/training/yolov8n_kt_v1_s0/args.yaml": {
-   "sha256": "3c07f942cbad10330f5d6c7789def62a33c4e17d1ddd5f0d7fa0c0d503c9755d",
-   "size": 1844
-  },
-  "data/training/yolov8n_kt_v1_s0/finetune_record.json": {
-   "sha256": "93e2f9de5162a490e77131676f6c59846e793c8a1ba8f37ace29645a5337dc7d",
-   "size": 1686
-  },
   "data/training/yolov8n_kt_v1_s0/results.csv": {
    "sha256": "75a5d384c6ecd83a2cce44cde3db3d73f425eaf0c106e9c5422d4878d3bbf62b",
    "size": 8272
   },
-  "data/training/yolov8n_kt_v1_s1/args.yaml": {
-   "sha256": "1939054f28e5ee28aea7268f9a8095ce23802bc759f0d09404a59d8b9b92bb56",
-   "size": 1844
-  },
-  "data/training/yolov8n_kt_v1_s1/finetune_record.json": {
-   "sha256": "b3406283e9fd466ff9374779df700ecf5b4d4bc71a32b3a7b8d0301955be3081",
-   "size": 1686
-  },
   "data/training/yolov8n_kt_v1_s1/results.csv": {
    "sha256": "442c43b8e5596c5d9b7547815d131a9e083cda4dcfe9282a076630cbfaa48f1b",
    "size": 8292
-  },
-  "data/training/yolov8n_kt_v1_s2/args.yaml": {
-   "sha256": "0ef5d1e4cd5f45f312e861b8121548517df7236b2b6b2b2a281373954da6d86d",
-   "size": 1844
-  },
-  "data/training/yolov8n_kt_v1_s2/finetune_record.json": {
-   "sha256": "83fe7997f234b5a5aa95c94b6c8886690df598a27f63e190635784f2d1bd083a",
-   "size": 1686
   },
   "data/training/yolov8n_kt_v1_s2/results.csv": {
    "sha256": "9dbb7851957c2042b4d3fc8c7c5d4b43176055e10d06324cadfe4dad9bc303b1",
@@ -463,14 +299,6 @@
   "figures/app_start_page.png": {
    "sha256": "9bccdac7eaaf34a7d7b1ac79dfd26ce3fc63c33d3ae8f330917120b3d1c36ad9",
    "size": 271533
-  },
-  "figures/dp_data_flow_en.png": {
-   "sha256": "a79c2432ba8796f4b52debde72fec91a17bf90417a30a6ce40fe3ca752bfacad",
-   "size": 352968
-  },
-  "figures/dp_recording_area.png": {
-   "sha256": "959b5e223f4e5798e3caf6940fbd006736ff94babc0a51869383bcb72e9c977b",
-   "size": 453486
   },
   "figures/exp_a_f1_heatmap.png": {
    "sha256": "d8f6f5666aa8abb329a1770e3233d6ba28d204396c41b37b8ce9a144a4f24c66",
@@ -508,49 +336,53 @@
    "sha256": "9901febb4d5d18f2b9ae33b9b2655ea6c87ae44a994a9cfe9f8ac56f7e964011",
    "size": 270245
   },
+  "figures/exp_j_ios_location_dialog.png": {
+   "sha256": "72a0fb975cfce48376f002349e6044630678408e88a150c591ef210da313977c",
+   "size": 135120
+  },
   "figures/exp_j_ios_permission_denied.png": {
-   "sha256": "c0582930c80acf5385c9925e78d0a120f71419ce9f6f0f298f97922b49f7a7a6",
-   "size": 137129
+   "sha256": "7b3daf622fb3912f463e994764b8e376a1241afd234ddfc283c3526ecae34b9f",
+   "size": 93795
   },
   "figures/exp_j_ios_permission_dialog.png": {
-   "sha256": "c071aeea0145c75a2f6d88e4777c7e353a043b7910584ce14c5c20f0e2cef94f",
-   "size": 316606
+   "sha256": "7b110476ece28b97735c64f99f7a16a6c51c2ffb2563f2e0da6ca270cbe81031",
+   "size": 117676
   },
   "figures/exp_j_ios_permission_purpose.png": {
-   "sha256": "06715731921718ade070d5412f35cb1125c0862fa0e8fd20464ae110baff1683",
-   "size": 107135
+   "sha256": "6e302de656e37a70c15338a2fc7d33acb4a4d79f6572cc5782525c166f472151",
+   "size": 62889
   },
   "figures/exp_j_location_dialog.png": {
-   "sha256": "58fc0213985be6c1e8b5910821f315a78577c8b03f457dfd0901353f8167929b",
-   "size": 220758
+   "sha256": "0dab3b5be252dd774f6d1399b237f4eb7ce7a33e09bcc09c59b8be67f3ab5576",
+   "size": 191438
   },
   "figures/exp_j_location_purpose.png": {
-   "sha256": "307356a8fb34c250053989bf8b5349f5a6c04f0c925cbfd6fc8c6a19f79ecda8",
-   "size": 112639
+   "sha256": "7a32e755df1448d0bd76900ab5ce15425f45231061464a2f0d9870230997062d",
+   "size": 103566
   },
   "figures/exp_j_permission_denied.png": {
-   "sha256": "d33ad59c11462b524241031f22736465646d60edf0430f4ad6061c235a5e3206",
-   "size": 98018
+   "sha256": "998687867fef487f4475c18a29a60f0aca6a664cf80757f49d2ce63ee8059614",
+   "size": 89496
   },
   "figures/exp_j_permission_denied_20261115_camera_only.png": {
-   "sha256": "d5921fbf95cf4f5be926461743b39d048da7a3c36ba4fe099731a7ed59ab8e2b",
-   "size": 98008
+   "sha256": "8d41c777300b3e584efe3c7ea580e84edf18c637aaf393a57db1c4391b9f9889",
+   "size": 89496
   },
   "figures/exp_j_permission_dialog.png": {
-   "sha256": "24b1fbf6c94cd7292458ab13098807b240e530d68ef8fd7ee2efee85ce1a3f09",
-   "size": 116683
+   "sha256": "351f7b744f9ce758a367352082150b825c27596d890ef0a24fd1bfa8e5ab5bb6",
+   "size": 97554
   },
   "figures/exp_j_permission_dialog_20261115_camera_only.png": {
-   "sha256": "c85fd9775c9f921c3e990f2cec36cb86123ea357af4ead3aaae310a4ef6ffec5",
-   "size": 116504
+   "sha256": "d890d51b226e2ed10deb4f35a7883752c960ab76e489f3020038d7c5697764da",
+   "size": 97554
   },
   "figures/exp_j_permission_purpose.png": {
-   "sha256": "86f00fe76d2ac06d55ce557e5f13d7bfecbea4e4889af9157940ec2fa6abfd39",
-   "size": 72268
+   "sha256": "ac5429439c7e46eb3647919ae11efe22142fe5cd4fdc4b2595af35da774dd0e7",
+   "size": 63897
   },
   "figures/exp_j_permission_purpose_20261115_camera_only.png": {
-   "sha256": "dc1cdb33bb166b3567615e3287509f5739f5d164dde706150abe647bd483f003",
-   "size": 72405
+   "sha256": "89cb409995e7106fec61a5f72a8da7b114dfe7876ad8215ee569c1632813e639",
+   "size": 63897
   },
   "figures/exp_j_recents.png": {
    "sha256": "fd11eab96acbb07e5372ceed6651905c0f95910fab84bfb050a8dd659407a267",

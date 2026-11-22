@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "d44a7857223cad0bebaa681b23ae85eef765f1b711c2495de37af78a1dc48b30",
-   "size": 193790
+   "sha256": "c2030bdf060c242c5cf8f7c0a7146ca273f219512557934c4bac8c8c09864f01",
+   "size": 287367
   },
   "data/progress_notes.md": {
-   "sha256": "983a2fb20076249266a7cdb4d21ff8918c61b6d310e8b592038f914d18b30a7d",
-   "size": 29377
+   "sha256": "1fe58bb44ee2578d5cf2cad61d7d7851719e431dc0bc8607c4d255e6bb67b982",
+   "size": 31967
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -101,8 +101,8 @@
    "size": 153122
   },
   "data/results/EXP-J_summary.json": {
-   "sha256": "e768d77e83822513b63530e18aeb26685f50bbb1d49ff636d893059a4b035e64",
-   "size": 8323
+   "sha256": "16c6a1ffd4265005f2013b1b2b330c6631612c0d781fc28dfd3936bc0763b0d7",
+   "size": 55350
   },
   "data/results/EXP-K_summary.json": {
    "sha256": "c72f39d517be9b81af222329cb6f90bbef7287bfe231090d8c2eb94d198cf8d4",
@@ -111,6 +111,10 @@
   "data/results/EXP-L_summary.json": {
    "sha256": "c70877a216dd4147c002da2aec8822f4c54c87472924e0faf8498e34c8d688a7",
    "size": 5427352
+  },
+  "data/results/EXP-M_summary.json": {
+   "sha256": "3002d150b1e658a803d999f4d8e7ed91029dcfbfa3525d4c35b151bb3ed9b4df",
+   "size": 4810539
   },
   "data/results/association_probe_kt.json": {
    "sha256": "f90a516c1658ae77341ff1c622e6991adb006217bdd6c94eac66de4fcae2cda9",
@@ -132,6 +136,10 @@
    "sha256": "cccafe345d1cc3ae33a875a19c0fd8089a5683d5c97f5dbf9e79b8a406808553",
    "size": 12339
   },
+  "data/results/exp_j_summary_20261115_camera_only.json": {
+   "sha256": "e768d77e83822513b63530e18aeb26685f50bbb1d49ff636d893059a4b035e64",
+   "size": 8323
+  },
   "data/results/exp_j_summary_ios.json": {
    "sha256": "4c0fb0a90a01c6f3757f2cf72228ce4e6cd3b49cfbb12782e987b9382118dfda",
    "size": 16205
@@ -141,8 +149,12 @@
    "size": 415308
   },
   "data/results/exp_k_part3_summary.json": {
-   "sha256": "9e7b481d68ccbfbe022221b111141c75acff739d4cffebc0ad2bb2b8d7e35304",
-   "size": 2497126
+   "sha256": "a2b452b44a20edcb641024f8e8864b2aee6127d8c9e7389fd276a743b5e88370",
+   "size": 3578282
+  },
+  "data/results/exp_k_part4_summary.json": {
+   "sha256": "be622b1fb955ab5ae7aa4f1b06cf1432cc40d35db1b71e8c94a77b5f778c24b0",
+   "size": 2378317
   },
   "data/results/exp_l_choice_false_calls.json": {
    "sha256": "84fae4ef5458b626b2063407e5ef6d3cfb42a602cdb1fccbf02e5cb02abfaf4f",
@@ -159,6 +171,22 @@
   "data/results/exp_l_views_summary.json": {
    "sha256": "cf03997387d73dc3c60399756c4f39be5969343132d5385c2eeeef4385d85c62",
    "size": 13673
+  },
+  "data/results/exp_m_choice_summary.json": {
+   "sha256": "dd18539b875e62910cefff564d4f63780943bacf28b3222256d72a9a8d257aca",
+   "size": 2856131
+  },
+  "data/results/exp_m_redlight_manifest.csv": {
+   "sha256": "4fc18d61a84e6f7ee9612b02b396981264f45339d42f59ae700ec0b891dedd58",
+   "size": 814
+  },
+  "data/results/exp_m_redlight_summary.json": {
+   "sha256": "eee44bccdc7ac87715a73f957aca19b678a29b4fddcc15344b988b3e5d9dd08e",
+   "size": 1867957
+  },
+  "data/results/exp_n_manifest.csv": {
+   "sha256": "eb442e43bd108c6a095982ddf428ff1770f4607699f5e00947477a01c1d90b28",
+   "size": 5002
   },
   "data/results/ground_bias_kt.json": {
    "sha256": "7334120ea7bbd328fe0759b117c423e9208a790535c763148013d08254ae4beb",
@@ -472,19 +500,43 @@
    "sha256": "06715731921718ade070d5412f35cb1125c0862fa0e8fd20464ae110baff1683",
    "size": 107135
   },
+  "figures/exp_j_location_dialog.png": {
+   "sha256": "58fc0213985be6c1e8b5910821f315a78577c8b03f457dfd0901353f8167929b",
+   "size": 220758
+  },
+  "figures/exp_j_location_purpose.png": {
+   "sha256": "307356a8fb34c250053989bf8b5349f5a6c04f0c925cbfd6fc8c6a19f79ecda8",
+   "size": 112639
+  },
   "figures/exp_j_permission_denied.png": {
+   "sha256": "d33ad59c11462b524241031f22736465646d60edf0430f4ad6061c235a5e3206",
+   "size": 98018
+  },
+  "figures/exp_j_permission_denied_20261115_camera_only.png": {
    "sha256": "d5921fbf95cf4f5be926461743b39d048da7a3c36ba4fe099731a7ed59ab8e2b",
    "size": 98008
   },
   "figures/exp_j_permission_dialog.png": {
+   "sha256": "24b1fbf6c94cd7292458ab13098807b240e530d68ef8fd7ee2efee85ce1a3f09",
+   "size": 116683
+  },
+  "figures/exp_j_permission_dialog_20261115_camera_only.png": {
    "sha256": "c85fd9775c9f921c3e990f2cec36cb86123ea357af4ead3aaae310a4ef6ffec5",
    "size": 116504
   },
   "figures/exp_j_permission_purpose.png": {
+   "sha256": "86f00fe76d2ac06d55ce557e5f13d7bfecbea4e4889af9157940ec2fa6abfd39",
+   "size": 72268
+  },
+  "figures/exp_j_permission_purpose_20261115_camera_only.png": {
    "sha256": "dc1cdb33bb166b3567615e3287509f5739f5d164dde706150abe647bd483f003",
    "size": 72405
   },
   "figures/exp_j_recents.png": {
+   "sha256": "fd11eab96acbb07e5372ceed6651905c0f95910fab84bfb050a8dd659407a267",
+   "size": 29825
+  },
+  "figures/exp_j_recents_20261115_camera_only.png": {
    "sha256": "a92d40901abdf3c3772ef5fa7fead184c42407c904ae61711e035193976ef6d0",
    "size": 48094
   },

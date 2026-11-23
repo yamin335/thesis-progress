@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "49b1be279a214c41dc3d99574035cc01e694347d1d502a32c3acb1b9249abeed",
-   "size": 1056274
+   "sha256": "c834585baa027f31c34353d99de6d249bcebf07aafffec4c1d36bb2820cc072a",
+   "size": 1057598
   },
   "data/progress_notes.md": {
    "sha256": "e890042587faf3d6f51c3730e9ea0c8f5aa18598cab75ee41eb1cf3893ee93af",
@@ -349,8 +349,16 @@
    "size": 8266
   },
   "figures/app_start_page.png": {
-   "sha256": "9bccdac7eaaf34a7d7b1ac79dfd26ce3fc63c33d3ae8f330917120b3d1c36ad9",
-   "size": 271533
+   "sha256": "ac7b31330c4a85914a4c277e716ec3d4d850eb94c4f8e790442f0fd084be6437",
+   "size": 237619
+  },
+  "figures/app_start_page_alternative.png": {
+   "sha256": "5143c02c90cb1350ce2ca26afe1f72ef66504eee2b5a868fa4c8d4218f440b3d",
+   "size": 238779
+  },
+  "figures/app_start_page_in_use.png": {
+   "sha256": "e829314f437e1bda564736d0ba417427dc72e69988f8f1c0aa716f1f9e6b1c2b",
+   "size": 243840
   },
   "figures/exp_a_f1_heatmap.png": {
    "sha256": "d8f6f5666aa8abb329a1770e3233d6ba28d204396c41b37b8ce9a144a4f24c66",

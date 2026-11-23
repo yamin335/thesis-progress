@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "a68d8db1c80db4defee4b9de9ab568ae1ac35732348fed0fa824f0856d71d1e0",
-   "size": 1066703
+   "sha256": "c3c8fc16ef4886b524fb587f47a829bdb4a10a00c033fc599f802a744ce0a6a0",
+   "size": 1067103
   },
   "data/progress_notes.md": {
    "sha256": "f445c8b17ea519583923256aded4e78d5062bd011514ea1dd9bef0a4f4c1672f",
@@ -183,6 +183,10 @@
   "data/results/exp_k_part5_summary_chosen.json": {
    "sha256": "c9d6b17cf187cb9f4f8712ca71430c0ded3d007aeb597920d3181dbb605a178b",
    "size": 7685047
+  },
+  "data/results/exp_k_stage_timings.json": {
+   "sha256": "1c815ac915c2470111caec5f175985af5d19651b0d9c5f4b10cbc765955e4d35",
+   "size": 312
   },
   "data/results/exp_k_summary_chosen.json": {
    "sha256": "cb18668f7b4feeeb10e2a92a11099076747088e0de559a0cddb73e2912013d14",
@@ -365,40 +369,40 @@
    "size": 421145
   },
   "figures/exp_a_f1_heatmap.png": {
-   "sha256": "d8f6f5666aa8abb329a1770e3233d6ba28d204396c41b37b8ce9a144a4f24c66",
-   "size": 104917
+   "sha256": "5f57db3b77076328f88c3b6b931f7e2a92f732c0921b42ebed8abdcd45814258",
+   "size": 154164
   },
   "figures/exp_b_r60_recall_vs_tparked.png": {
-   "sha256": "3c5b8fbd4e45e58e736c7ae63b848dc11a6de15a70e18a2631298b134db57f6d",
-   "size": 184751
+   "sha256": "a6a3ffe9eeebc1b1086c5437c606d0dcddf119c9d5ba48e1c69904fbf9fd9a04",
+   "size": 210514
   },
   "figures/exp_b_recall_vs_tparked.png": {
-   "sha256": "6eb8a2c26a549f46169bdb0de35545c469da7b9e24b51f89d0b18196cd3646de",
-   "size": 175446
+   "sha256": "198222e03306c17047860d05d8e4f55ab6405c7c2f62e9e1f59a6873838e10f8",
+   "size": 201975
   },
   "figures/exp_c_f1_vs_s0.png": {
-   "sha256": "01cda62d04d0491303b078b356e36a9bd16df2b8e7f62d5ebd6bfd6008bf0754",
-   "size": 110872
+   "sha256": "e7557d0167c68b5ad0d3f0dc0002617172449a00ac3c42c64be30e3f1d98ed3c",
+   "size": 149183
   },
   "figures/exp_d_decision.png": {
-   "sha256": "6db9092344e80d6ea6fc6a0330857bac2349ae4942db0d405599d6ec52ef5a2c",
-   "size": 91397
+   "sha256": "53ea2756e04f948ba66488991497dcc1014dd4e26331c5fbb68551ce8c4fa1a9",
+   "size": 115637
   },
   "figures/exp_e_traffic.png": {
-   "sha256": "884ad9f4140e52969e2682d8573b5ab7c5b944639a8328856110998b4073f118",
-   "size": 200463
+   "sha256": "0aaf111e11cb8102fe7ececd1075d1abda0adfa7013161d382eb0efdac9baff2",
+   "size": 143035
   },
   "figures/exp_e_train_traffic.png": {
    "sha256": "c89f1d193528c6fb438f58d58f61d7736f5a71d1eeab23e44ccef2b898f26b5b",
    "size": 129941
   },
   "figures/exp_f_conditions.png": {
-   "sha256": "a751ee5a54704498c6faafa6ccc26ff605920ab67b315870ba51b471fb71eee4",
-   "size": 121820
+   "sha256": "9526a411da12a0472a5ad04df56eef1ef76d0f852b5727e64d1f5067c846cffd",
+   "size": 223395
   },
   "figures/exp_i_latency_vs_f1.png": {
-   "sha256": "9901febb4d5d18f2b9ae33b9b2655ea6c87ae44a994a9cfe9f8ac56f7e964011",
-   "size": 270245
+   "sha256": "b0142bdc750d000f2da135a2284edad3180b895767b236f1221e58dd9b28d6da",
+   "size": 315346
   },
   "figures/exp_j_ios_location_dialog.png": {
    "sha256": "72a0fb975cfce48376f002349e6044630678408e88a150c591ef210da313977c",
@@ -465,8 +469,8 @@
    "size": 974089
   },
   "figures/exp_p_position.png": {
-   "sha256": "7abe2157f0e521f59a5a36f1e90b1bfedf71b52c705b48b0d0906847dacfbf13",
-   "size": 216680
+   "sha256": "0b8e4e5227591b50df1abd5ac8cd3b80d4157fcd9c2151b8e7ddad01cc3ccc0e",
+   "size": 262734
   },
   "figures/failure_insufficient_observation_windshield_A.png": {
    "sha256": "e8f5ef341f61b060553e86af000c287c07788f7ae4fa73d0f2f8cae5e0b2d8cc",
@@ -545,12 +549,12 @@
    "size": 957945
   },
   "figures/kt_stationary_windows_route_a.png": {
-   "sha256": "7283ff5899a678b3415d4c1052c8d89ae495f40648f70f7cccedf78210b7d054",
-   "size": 89748
+   "sha256": "fc9f2d2f6a2fc0a421a9569691872fd95cefdc4438385abcdfddf64bf74fceb4",
+   "size": 112408
   },
   "figures/kt_visibility_calibration_p1.png": {
-   "sha256": "fee0e727233bdc9936fceae8ff17435b1e990a8574d420368a03b3ab38f07c07",
-   "size": 74411
+   "sha256": "b26395d1804bc27cfff9876f447f399121ff5a6e088345b396365e84e12ebd97",
+   "size": 94438
   },
   "figures/kt_windshield_route_a_gt.png": {
    "sha256": "5e6767d26f86fdf9b920732d0e4758ceb1502c09986f4ef91e1969164f327842",

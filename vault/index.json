@@ -9,8 +9,8 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "1752ede65c3cc6918f120b834f9be403c74b745baa04c6c43b7405a05d37580c",
-   "size": 996431
+   "sha256": "49b1be279a214c41dc3d99574035cc01e694347d1d502a32c3acb1b9249abeed",
+   "size": 1056274
   },
   "data/progress_notes.md": {
    "sha256": "e890042587faf3d6f51c3730e9ea0c8f5aa18598cab75ee41eb1cf3893ee93af",
@@ -173,8 +173,8 @@
    "size": 2377753
   },
   "data/results/exp_k_part5_summary.json": {
-   "sha256": "3a967168545e1edea3db0d7c680f4548364a6ffdf73bc6c7c424701ac242b2d8",
-   "size": 7686301
+   "sha256": "282b12e83c9fd7a64798f2b1857256816020d2cd4bb7e643c6fe52dfa013bb89",
+   "size": 10966789
   },
   "data/results/exp_k_part5_summary_chosen.json": {
    "sha256": "c9d6b17cf187cb9f4f8712ca71430c0ded3d007aeb597920d3181dbb605a178b",

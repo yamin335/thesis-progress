@@ -531,16 +531,25 @@
       if (stage.per_arch && stage.per_arch.length) {
         var pmText = function (mean, std, n) { return typeof mean === 'number' ? mean.toFixed(3) + (n > 1 ? ' \u00b1 ' + std.toFixed(3) : '') : ''; };
         var archRows = stage.per_arch.map(function (a) {
-          return { Architecture: a.arch, 'Finished runs': a.runs, 'Best val mAP50-95, mean \u00b1 std over seeds': pmText(a.map50_95_mean, a.map50_95_std, a.runs), 'Val mAP50 at the best epoch, mean \u00b1 std': pmText(a.map50_mean, a.map50_std, a.runs) };
+          var row = { Architecture: a.arch, 'Finished runs': a.runs, 'Best val mAP50-95, mean \u00b1 std over seeds': pmText(a.map50_95_mean, a.map50_95_std, a.runs), 'Val mAP50 at the best epoch, mean \u00b1 std': pmText(a.map50_mean, a.map50_std, a.runs) };
+          // the run with the best validation mAP50-95 (tested in the app as an alternative, not adopted; seed 0 is in use)
+          if (stage.per_arch.some(function (x) { return typeof x.chosen_seed === 'number'; })) {
+            row['Best on validation'] = typeof a.chosen_seed === 'number' ? 'seed ' + a.chosen_seed + (typeof a.chosen_map50_95 === 'number' ? ' (' + a.chosen_map50_95.toFixed(4) + ')' : '') : '';
+          }
+          return row;
         });
         card.appendChild(makeTable(archRows, null, { plain: true, readable: true }));
       }
+      var withApp = members.some(function (r) { return typeof r.chosen === 'boolean'; });
       var rows = members.map(function (r) {
-        return { Run: r.name, Seed: r.seed, Status: r.status, 'Continued from': r.start_from || '', 'Epochs finished': r.epochs_done || '', 'Best epoch': r.best_epoch, 'Best val mAP50-95': r.best_map50_95, 'Val mAP50 at the best epoch': r.best_map50, Minutes: r.minutes, Updated: r.updated || '' };
+        var row = { Run: r.name, Seed: r.seed, Status: r.status };
+        if (withApp) { row['In the app'] = r.app || ''; }
+        return Object.assign(row, { 'Continued from': r.start_from || '', 'Epochs finished': r.epochs_done || '', 'Best epoch': r.best_epoch, 'Best val mAP50-95': r.best_map50_95, 'Val mAP50 at the best epoch': r.best_map50, Minutes: r.minutes, Updated: r.updated || '' });
       });
       card.appendChild(makeTable(rows, null, {
         sort: 'Run', readable: true, plain: rows.length <= 8,
         render: {
+          'In the app': function (v) { return v ? pill(v, /^in use/.test(v) ? 'accent' : 'gray') : document.createTextNode(''); },
           Status: function (v) { return v === 'done' || v === 'running' ? valuePill(v) : statusPill(v); },
           Updated: function (v) { return document.createTextNode(fmtDate(v)); }
         }
@@ -940,7 +949,7 @@
       var c = el('a', { class: 'card exp-card', href: '#exp-' + exp.id }, [
         el('div', { class: 'exp-card-head' }, [el('strong', { text: exp.id }), statusPill(exp.status)]),
         el('div', { class: 'small', text: exp.name }),
-        el('div', { class: 'sub', text: exp.rows ? exp.rows + ' rows' + (exp.details ? ' · ' + exp.details + ' records' : '') : (exp.tables && exp.tables.length ? exp.tables.length + ' tables' + (exp.figures && exp.figures.length ? ' · ' + exp.figures.length + ' figures' : '') : (exp.summary_file ? 'summary' : (exp.status === 'not_carried_out' ? 'left to future work' : 'no results yet'))) })
+        el('div', { class: 'sub', text: exp.rows ? exp.rows + ' rows' + (exp.details ? ' · ' + exp.details + ' records' : '') : (exp.tables && exp.tables.length ? exp.tables.length + ' tables' + (exp.figures && exp.figures.length ? ' · ' + exp.figures.length + (exp.figures.length === 1 ? ' figure' : ' figures') : '') : (exp.summary_file ? 'summary' : (exp.status === 'not_carried_out' ? 'left to future work' : 'no results yet'))) })
       ]);
       c.addEventListener('click', function () { var t = $('exp-' + exp.id); if (t && !t.open) { t.open = true; } });
       cards.appendChild(c);

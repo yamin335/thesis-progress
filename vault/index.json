@@ -9,12 +9,12 @@
    "size": 6612
   },
   "data/manifest.json": {
-   "sha256": "9cb573d35b6a92da751a232a5949a89d48dc658bc96ff672d08c58147c7d1b96",
-   "size": 597640
+   "sha256": "79f2abeefd594d0847380196179be2b2b46883ed600c080ffea1acaac69a5641",
+   "size": 995940
   },
   "data/progress_notes.md": {
-   "sha256": "e33ebdfff1ec12af253c1acff5458dc7ca31550cda54aff320eed23204db8bde",
-   "size": 34056
+   "sha256": "7e3ab9799d922ba0ebd03171eaffb53c4ecc95a008ff0d711402470822f699ec",
+   "size": 37775
   },
   "data/results/EXP-A_details.json": {
    "sha256": "07047cf772914b424467cedd7c43789a73f55cb492675397d577a5ad4655409e",
@@ -89,12 +89,12 @@
    "size": 239525
   },
   "data/results/EXP-I_details.json": {
-   "sha256": "6e4afe9260d857458ec2584f1db03c5b63b51c067c713cc3a08386a6d51badde",
-   "size": 504359
+   "sha256": "572c48148d84eef646a486d883c80cec34faefd47d3b7be3ec2aea919bb14527",
+   "size": 1008442
   },
   "data/results/EXP-I_rows.csv": {
-   "sha256": "f1c2893d24c8033e9c43529b8618eb7f3eb60c38335ee82838496d6c46fbe02e",
-   "size": 75362
+   "sha256": "1c854ab2092020c17615603e84867c307ed79d9c8bcb8dbce390b8b40aa7dc6d",
+   "size": 110370
   },
   "data/results/EXP-I_summary.json": {
    "sha256": "280866fbedd9a6fa97520586f97a730673a14eb936378029a4df0f985c6eafad",
@@ -116,6 +116,14 @@
    "sha256": "c5830ac2d9ee001a528033f739d37b6c632675a12ad8821a1e37834cf0b8a404",
    "size": 224571
   },
+  "data/results/EXP-O_summary.json": {
+   "sha256": "d4ad471b1cf1200fbd1d95ca6571402bfc6cd27de24e8126e990b89d21b19efe",
+   "size": 111950
+  },
+  "data/results/EXP-P_summary.json": {
+   "sha256": "d0d8519dec4e761a0a3ad5b237258e28468e720a461e90883ce83d5149882e28",
+   "size": 143974
+  },
   "data/results/association_probe_kt.json": {
    "sha256": "f90a516c1658ae77341ff1c622e6991adb006217bdd6c94eac66de4fcae2cda9",
    "size": 13297
@@ -136,21 +144,45 @@
    "sha256": "cccafe345d1cc3ae33a875a19c0fd8089a5683d5c97f5dbf9e79b8a406808553",
    "size": 12339
   },
+  "data/results/exp_i_accuracy_summary_best_seed.json": {
+   "sha256": "cf01b9649b63c684836dd169737ea4f7572274291072ce360f22771592b2c864",
+   "size": 12355
+  },
   "data/results/exp_k_part2_summary.json": {
    "sha256": "e5b61aa0479995ab6bb5fcbbd36c7bf674d7b6b3ac7b60f05f5245b40b38c05d",
    "size": 415308
+  },
+  "data/results/exp_k_part2_summary_chosen.json": {
+   "sha256": "2ad368fa6e57de5b0c3ba43e46b748e76f25a07cf2d2147cc9aaa72fe5ef9da3",
+   "size": 283407
   },
   "data/results/exp_k_part3_summary.json": {
    "sha256": "a2b452b44a20edcb641024f8e8864b2aee6127d8c9e7389fd276a743b5e88370",
    "size": 3578282
   },
+  "data/results/exp_k_part3_summary_chosen.json": {
+   "sha256": "6c1609798ce0b80d02b80d15278be3fdbd0034fe99ca08c7fd0dc76702fb5d12",
+   "size": 2495643
+  },
   "data/results/exp_k_part4_summary.json": {
    "sha256": "6700b45bfdd9b2dd925c529a0f8dcd77fdd4a675fa4235b202c9c4137be8927e",
    "size": 3412855
   },
+  "data/results/exp_k_part4_summary_chosen.json": {
+   "sha256": "528fe9fe761b62e5d334c521325a4a13bb4c63fb7567b75a1a4682f0021ed94f",
+   "size": 2377753
+  },
   "data/results/exp_k_part5_summary.json": {
    "sha256": "3a967168545e1edea3db0d7c680f4548364a6ffdf73bc6c7c424701ac242b2d8",
    "size": 7686301
+  },
+  "data/results/exp_k_part5_summary_chosen.json": {
+   "sha256": "c9d6b17cf187cb9f4f8712ca71430c0ded3d007aeb597920d3181dbb605a178b",
+   "size": 7685047
+  },
+  "data/results/exp_k_summary_chosen.json": {
+   "sha256": "cb18668f7b4feeeb10e2a92a11099076747088e0de559a0cddb73e2912013d14",
+   "size": 228759
   },
   "data/results/exp_l_choice_false_calls.json": {
    "sha256": "84fae4ef5458b626b2063407e5ef6d3cfb42a602cdb1fccbf02e5cb02abfaf4f",
@@ -188,6 +220,14 @@
    "sha256": "bf6c8d957e34ba73d97b037ed18015ccbd4d93ade6014455859ed43d186a7d53",
    "size": 1861645
   },
+  "data/results/exp_o_reproduction.json": {
+   "sha256": "d579efc69ecfb1c5ab210bf87bc992b1303fa89147f651c3607cae400bdb13f5",
+   "size": 19640
+  },
+  "data/results/exp_p_lanes.json": {
+   "sha256": "d9201e086d86362b32d0524630d53593198d64776a2e45ec9cd982010efc3e30",
+   "size": 2186397
+  },
   "data/results/ground_bias_kt.json": {
    "sha256": "7334120ea7bbd328fe0759b117c423e9208a790535c763148013d08254ae4beb",
    "size": 11162
@@ -201,8 +241,8 @@
    "size": 8369
   },
   "data/results/model_export_manifest.json": {
-   "sha256": "40779103d09ce1fa533a6a2d697b8e85a7412f8e9d73f557bee67e0e33cd33b5",
-   "size": 93372
+   "sha256": "edc4f88d4992e401b1855e2004879bfdcaa144e6152af115ffc118e3de760785",
+   "size": 138858
   },
   "data/results/region_mode_agreement_P1.json": {
    "sha256": "3edbc61a5e4af5ad350673fad369e80db73b1750710397e89a5b9f00bde92d09",
@@ -411,6 +451,10 @@
   "figures/exp_k_playback_screen.png": {
    "sha256": "2178e869807858f327f4743f8cd18d6a608c368afc3c800a103eda71f1770ec1",
    "size": 974089
+  },
+  "figures/exp_p_position.png": {
+   "sha256": "7abe2157f0e521f59a5a36f1e90b1bfedf71b52c705b48b0d0906847dacfbf13",
+   "size": 216680
   },
   "figures/failure_insufficient_observation_windshield_A.png": {
    "sha256": "e8f5ef341f61b060553e86af000c287c07788f7ae4fa73d0f2f8cae5e0b2d8cc",

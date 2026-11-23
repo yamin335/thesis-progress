@@ -1,6 +1,6 @@
 # Dashboard architecture
 
-State of the progress dashboard as of 2026-11-22 (page version `v=20261122a`, collector 1.6.0).
+State of the progress dashboard as of 2026-11-23 (page version `v=20261123a`, collector 1.7.0).
 Read this before changing `index.html`, `assets/app.js`, `assets/style.css` or the collector
 `experiments/publish_progress.py` in the thesis repository, and update it in the same commit as
 any change it describes. The README covers what a reader sees; this file covers how it is built.
@@ -48,7 +48,7 @@ Top level: `generated_at`, `generator_version`, `thesis_title`, `repo` and `app_
 | `datasets` | `datasets_info` | `[{name, title, note, classes{id: name}, splits[]{split, runs, frames, boxes, empty_frames, per_class{}, new_runs, new_frames, new_boxes}, total{...}, new_runs}]` for kt_v1, kt_v1p, kt_v2p, counted from the label files. |
 | `dataset` | `dataset_info` | `splits[]{split, frames, boxes, runs}` incl. `total`; `classes{id: name}`; `class_counts{split: {per_class}}`; `manifest_md` path. |
 | `matrix` | `matrix_info` | `present`, `csv` path, `runs`, `by_status{}`, `frames_on_disk`. |
-| `training` | `training_info`, `training_ladder` | `runs[]{name, arch, dataset, seed, stage, status (done, running, stopped, queued, not started), epochs_done, best_epoch, best_map50_95, best_map50, last_map50_95, minutes, start_from, files{results}}`; `stages[]{id, title, dataset, experiment, note, validation, recipe, status, planned, done, running, queued, per_arch[]{arch, runs, map50_95_mean, map50_95_std, map50_mean, map50_std}, runs[]}` (S1, S1-unfrozen, EXP-L, EXP-N, or `runs-<dataset>` for an unlisted dataset); `planned_runs`; `log_tail` path and `log_name`; `running`; `ladder{stages[]{stage, data, purpose, status, detail}}` from `docs/training_plan.md` §2. |
+| `training` | `training_info`, `training_ladder` | `runs[]{name, arch, dataset, seed, stage, status (done, running, stopped, queued, not started), epochs_done, best_epoch, best_map50_95, best_map50, last_map50_95, minutes, start_from, files{results}, chosen? (best on validation), app? ("in use", "alternative (best on validation), not adopted", ...)}`; `stages[]{id, title, dataset, experiment, note, validation, recipe, status, planned, done, running, queued, per_arch[]{arch, runs, map50_95_mean, map50_95_std, map50_mean, map50_std, chosen_seed?, chosen_map50_95?}, runs[]}` (S1, S1-unfrozen, EXP-L, EXP-N, or `runs-<dataset>` for an unlisted dataset); `planned_runs`; `log_tail` path and `log_name`; `running`; `ladder{stages[]{stage, data, purpose, status, detail}}` from `docs/training_plan.md` §2. |
 | `experiments` | `experiments_info` | see §3. |
 | `models` | `models_info` | `pretrained[]{name, format, size_mb, date}`; `fine_tuned[]{name, arch, dataset, seed, image_size, best_epoch, best_val_map50_95, best_val_map50, minutes, size_mb, date}` (from `finetune_record.json`); `app_models[]{id, family, arch, size_mb, classes, verified, nms_free_mb, nms_free_verified, nms_free_agreement, val_map50_95, trained_px}` from the app's `models.json`; `app_meta{generated_at, thesis_commit, input_size, models, files, total_mb, header{}}`. |
 | `figures` | `figures_info` | `[{file, name, group, caption, date}]`; files whose name marks real or anonymised footage are never published. |
@@ -237,3 +237,11 @@ summary charts drawn, models, figures, commits.
   collector 1.6.0). A local preview with throwaway credentials and headless Firefox was used to
   look at every section, so "no browser exists on the build machine" in §7 no longer holds:
   `firefox --headless` with geckodriver is available.
+* 2026-11-23: readable tables for EXP-I (laptop accuracy of the bundled files, seed 0 next to the
+  best-on-validation run), EXP-O (one table per group of runs with both readings of the best
+  approach) and EXP-P (part A per error level and tolerance, part B per group and per scripted
+  vehicle); slim site copies of the EXP-O and EXP-P summaries; EXP-K parts 1 to 5 with a "Run"
+  column that interleaves seed 0 (in use) and the repetition with the best-on-validation run
+  (`*_chosen.json`, tested and not adopted); training tables mark the run in use and the alternative
+  (`chosen`, `app`, `per_arch[].chosen_seed`, column "In the app" and "Best on validation")
+  (`v=20261123a`, collector 1.7.0).
